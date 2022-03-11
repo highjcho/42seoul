@@ -63,7 +63,6 @@ static char	**ft_atoi(char **argv, int *num)
 		sign = -1;
 		(*argv)++;
 	}
-	printf("c: %c\n", **argv);
 	while (**argv >= '0' && **argv <= '9')
 	{
 		tmp = *num;
@@ -72,7 +71,6 @@ static char	**ft_atoi(char **argv, int *num)
 			error_handler("Error\n", 1); // errno
 		(*argv)++;
 	}
-	printf("atoi num: %d\n", *num);
 	return (argv);
 }
 
@@ -91,7 +89,6 @@ static void	fill_stack(array_stack *stack, char **argv)
 			}
 			else
 				(*argv)++;
-			printf("num:%d\n", num);
 		}
 		argv++;
 	}
