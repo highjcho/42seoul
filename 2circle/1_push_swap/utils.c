@@ -1,8 +1,12 @@
 #include "pushswap.h"
 
-static void	tmp(array_stack *stack, int num)
+void error_handler(char *message, int error_code)
 {
-	stack->element[stack->cur_count].data = num;
-	stack->cur_count++;
-	stack->front++;
+	int	i;
+
+	i = 0;
+	while (message[i])
+		i++;
+	write(1, message, i);
+	exit(error_code);
 }
