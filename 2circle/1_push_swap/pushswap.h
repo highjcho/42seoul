@@ -23,8 +23,6 @@ typedef struct arr_stack_type
 } arr_stack;
 
 void	fill_stack(arr_stack *stack, char **argv);
-void	insert_front(arr_stack *stack, int data);
-int		remove_front(arr_stack *stack);
 void	ft_sa_sb(arr_stack *stack, int flag);
 void	ft_ss(arr_stack *a, arr_stack *b);
 void	ft_pa_pb(arr_stack *a, arr_stack *b, int flag);

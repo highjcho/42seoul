@@ -10,3 +10,8 @@ void error_handler(char *message, int error_code)
 	write(1, message, i);
 	exit(error_code);
 }
+
+int	check_ascending(arr_stack *stack)
+{
+	
+}
