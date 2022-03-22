@@ -57,7 +57,8 @@ static void	print_arr(arr_stack *a, int flag)
 	printf("\n\n");
 }
 
-int	main(int argc, char **argv)
+
+int	main(int argc, char **argv) // 인자 중복검사 필요
 {
 	arr_stack *a;
 	arr_stack	*b;
@@ -73,12 +74,14 @@ int	main(int argc, char **argv)
 	if (!a)
 		error_handler("Error\n", 1);
 	b = make_stack(b, count);
-	if (!b)
+	if (!b) // 줄일 수 있는 방법 없나
 	{
 		free(a->element);
 		free(a);
 		exit(1);
 	}
 	fill_stack(a, ++argv);
+	if (check_ascending(a))
+		return (0);
 	push_swap(a, b);
 }

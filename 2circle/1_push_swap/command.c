@@ -9,7 +9,7 @@ void	ft_sa_sb(arr_stack *stack, int flag)
     if (stack->cur_count < 2)
 		return ;
 	first = stack->front;
-	second = first + 1;
+	second = (first + 1) % stack->max_count; // 이게 되는 건지 확인 필요
 	if (first == stack->max_count - 1)
 		second = 0;
 	tmp = stack->element[first].data;
