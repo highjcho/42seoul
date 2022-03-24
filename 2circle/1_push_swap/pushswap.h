@@ -18,11 +18,18 @@ typedef struct arr_stack_type
 	int			cur_count; // 스택에 차 있는 개수
 	int 		front; // 프론트
 	int 		rear; // 리어
+	int			max;
+	int			min;
+	int			ra;
+	int			rb;
+	int			pa;
+	int			pb;
     arr_node	*element;
 
 } arr_stack;
 
 void	fill_stack(arr_stack *stack, char **argv);
+void 	push_swap(arr_stack *a, arr_stack *b);
 void	ft_sa_sb(arr_stack *stack, int flag);
 void	ft_ss(arr_stack *a, arr_stack *b);
 void	ft_pa_pb(arr_stack *a, arr_stack *b, int flag);
@@ -31,5 +38,6 @@ void	ft_rr(arr_stack *a, arr_stack *b);
 void	ft_rra_rrb(arr_stack *stack, int flag);
 void	ft_rrr(arr_stack *a, arr_stack *b);
 void 	error_handler(char *message, int error_code);
+void	print_arr(arr_stack *a, int flag); //제출전 지우기
 
 #endif

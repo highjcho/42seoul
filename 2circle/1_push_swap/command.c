@@ -9,9 +9,7 @@ void	ft_sa_sb(arr_stack *stack, int flag)
     if (stack->cur_count < 2)
 		return ;
 	first = stack->front;
-	second = (first + 1) % stack->max_count; // 이게 되는 건지 확인 필요
-	if (first == stack->max_count - 1)
-		second = 0;
+	second = (first + 1) % stack->max_count;
 	tmp = stack->element[first].data;
 	stack->element[first].data = stack->element[second].data;
 	stack->element[second].data = tmp;
@@ -50,11 +48,17 @@ static int	remove_front(arr_stack *stack)
 
 void	ft_pa_pb(arr_stack *a, arr_stack *b, int flag)
 {
-	if (b->cur_count == 0)
+	if (a->cur_count == 0)
 		return ;
-	insert_front(a, remove_front(b));
+	insert_front(b, remove_front(a));
 	if (flag == 1)
+	{
 		write(1, "pa\n", 3);
+		b->pa++;
+	}
 	else
+	{
 		write(1, "pb\n", 3);
+		a->pb++;
+	}
 }

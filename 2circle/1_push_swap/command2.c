@@ -9,9 +9,19 @@ void	ft_ra_rb(arr_stack *stack, int flag)
 	stack->rear = (stack->rear + 1) % stack->max_count;
 	stack->element[stack->rear].data = tmp;
 	if (flag == 1)
+	{
 		write(1, "ra\n", 3);
+		if (stack->ra < 0)
+			stack->ra = 0;
+		stack->ra++;
+	}
 	else if (flag == 2)
+	{
 		write(1, "rb\n", 3);
+		if (stack->rb < 0)
+			stack->rb = 0;
+		stack->rb++;
+	}
 }
 
 void	ft_rr(arr_stack *a, arr_stack *b)
@@ -30,6 +40,10 @@ void	ft_rra_rrb(arr_stack *stack, int flag)
 		stack->front = stack->max_count - 1;
 	else
 		stack->front--;
+	if (stack->rear == 0)
+		stack->rear = stack->max_count - 1;
+	else
+		stack->rear--;
 	stack->element[stack->front].data = tmp;
 	if (flag == 1)
 		write(1, "rra\n", 4);
