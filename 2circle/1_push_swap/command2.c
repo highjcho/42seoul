@@ -1,6 +1,6 @@
 #include "pushswap.h"
 
-void	ft_ra_rb(arr_stack *stack, int flag)
+void	ft_ra_rb(t_arr_stack *stack, t_cnt *cnt, int flag)
 {
 	int	tmp;
 
@@ -11,27 +11,23 @@ void	ft_ra_rb(arr_stack *stack, int flag)
 	if (flag == 1)
 	{
 		write(1, "ra\n", 3);
-		if (stack->ra < 0)
-			stack->ra = 0;
-		stack->ra++;
+		cnt->ra++;
 	}
 	else if (flag == 2)
 	{
 		write(1, "rb\n", 3);
-		if (stack->rb < 0)
-			stack->rb = 0;
-		stack->rb++;
+		cnt->rb++;
 	}
 }
 
-void	ft_rr(arr_stack *a, arr_stack *b)
+void	ft_rr(t_arr_stack *a, t_arr_stack *b, t_cnt *cnt)
 {
-	ft_ra_rb(a, -1);
-	ft_ra_rb(b, -1);
+	ft_ra_rb(a, cnt, -1);
+	ft_ra_rb(b, cnt, -1);
 	write(1, "rr\n", 3);
 }
 
-void	ft_rra_rrb(arr_stack *stack, int flag)
+void	ft_rra_rrb(t_arr_stack *stack, int flag)
 {
 	int	tmp;
 
@@ -51,7 +47,7 @@ void	ft_rra_rrb(arr_stack *stack, int flag)
 		write(1, "rrb\n", 4);
 }
 
-void	ft_rrr(arr_stack *a, arr_stack *b)
+void	ft_rrr(t_arr_stack *a, t_arr_stack *b)
 {
 	ft_rra_rrb(a, -1);
 	ft_rra_rrb(b, -1);

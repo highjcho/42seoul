@@ -7,37 +7,43 @@
 #include <unistd.h>
 #include <stdio.h> // 제출 전 삭제 필
 
-typedef struct arr_node_type
+typedef struct s_cnt_type
+{
+	int	ra;
+	int	rb;
+	int	pa;
+	int	pb;
+}	t_cnt;
+
+typedef struct s_arr_node_type
 {
 	int data;
-}	arr_node;
+}	t_arr_node;
 
-typedef struct arr_stack_type
+typedef struct s_arr_stack_type
 {
 	int			max_count; // 인자 개수
 	int			cur_count; // 스택에 차 있는 개수
 	int 		front; // 프론트
 	int 		rear; // 리어
-	int			max;
-	int			min;
-	int			ra;
-	int			rb;
-	int			pa;
-	int			pb;
-    arr_node	*element;
+    t_arr_node	*element;
+}	t_arr_stack;
 
-} arr_stack;
-
-void	fill_stack(arr_stack *stack, char **argv);
-void 	push_swap(arr_stack *a, arr_stack *b);
-void	ft_sa_sb(arr_stack *stack, int flag);
-void	ft_ss(arr_stack *a, arr_stack *b);
-void	ft_pa_pb(arr_stack *a, arr_stack *b, int flag);
-void	ft_ra_rb(arr_stack *stack, int flag);
-void	ft_rr(arr_stack *a, arr_stack *b);
-void	ft_rra_rrb(arr_stack *stack, int flag);
-void	ft_rrr(arr_stack *a, arr_stack *b);
+void	fill_stack(t_arr_stack *stack, char **argv);
+void 	push_swap(t_arr_stack *a, t_arr_stack *b);
+void	b_to_a(t_arr_stack *a, t_arr_stack *b, int count, int *check);
+void	a_to_b(t_arr_stack *a, t_arr_stack *b, int count, int *check);
+void	small_arg(t_arr_stack *a, t_arr_stack *b, int count, int flag);
+void	ft_sa_sb(t_arr_stack *stack, int flag);
+void	ft_ss(t_arr_stack *a, t_arr_stack *b);
+void	ft_pa_pb(t_arr_stack *from, t_arr_stack *to, t_cnt *cnt, int flag);
+void	ft_ra_rb(t_arr_stack *stack, t_cnt *cnt, int flag);
+void	ft_rr(t_arr_stack *a, t_arr_stack *b, t_cnt *cnt);
+void	ft_rra_rrb(t_arr_stack *stack, int flag);
+void	ft_rrr(t_arr_stack *a, t_arr_stack *b);
+void	sort_arr(t_arr_stack *a, int *sort);
 void 	error_handler(char *message, int error_code);
-void	print_arr(arr_stack *a, int flag); //제출전 지우기
+void	error_free(t_arr_stack *stack1, t_arr_stack *stack2);
+void	print_arr(t_arr_stack *a, int flag); //제출전 지우기
 
 #endif

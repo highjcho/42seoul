@@ -26,7 +26,7 @@ static char	**ft_atoi(char **argv, int *num) // 문자나 이런거 들어오면
 	return (argv);
 }
 
-static void	check_dup(arr_stack *stack)
+static void	check_dup(t_arr_stack *stack)
 {
 	int	i;
 	int	j;
@@ -45,7 +45,7 @@ static void	check_dup(arr_stack *stack)
 	}
 }
 
-void	fill_stack(arr_stack *stack, char **argv)
+void	fill_stack(t_arr_stack *stack, char **argv)
 {
 	int	num;
 
@@ -57,12 +57,8 @@ void	fill_stack(arr_stack *stack, char **argv)
 			if (**argv == '-' || **argv == '+' || (**argv >= '0' && **argv <= '9'))
 			{
 				argv = ft_atoi(argv, &num);
-				if (argv == NULL)
-				{
-					free(stack->element);
-					free(stack);
-					error_handler("Error\n", 1);
-				}
+				if (!argv)
+					error_free(stack, 0);
 				stack->element[stack->cur_count++].data = num;
 				stack->rear++;
 			}

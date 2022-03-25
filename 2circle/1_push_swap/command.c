@@ -1,6 +1,6 @@
 #include "pushswap.h"
 
-void	ft_sa_sb(arr_stack *stack, int flag)
+void	ft_sa_sb(t_arr_stack *stack, int flag)
 {
 	int	first;
 	int	second;
@@ -19,14 +19,14 @@ void	ft_sa_sb(arr_stack *stack, int flag)
 		write(1, "sb\n", 3);
 }
 
-void	ft_ss(arr_stack *a, arr_stack *b)
+void	ft_ss(t_arr_stack *a, t_arr_stack *b)
 {
 	ft_sa_sb(a, -1);
 	ft_sa_sb(b, -1);
 	write(1, "ss\n", 3);
 }
 
-static void	insert_front(arr_stack *stack, int	data)
+static void	insert_front(t_arr_stack *stack, int	data)
 {
 	if (stack->front == 0)
 		stack->front = stack->max_count - 1;
@@ -36,7 +36,7 @@ static void	insert_front(arr_stack *stack, int	data)
 	stack->cur_count++;
 }
 
-static int	remove_front(arr_stack *stack)
+static int	remove_front(t_arr_stack *stack)
 {
 	int	ret;
 
@@ -46,19 +46,19 @@ static int	remove_front(arr_stack *stack)
 	return (ret);
 }
 
-void	ft_pa_pb(arr_stack *a, arr_stack *b, int flag)
+void	ft_pa_pb(t_arr_stack *from, t_arr_stack *to, t_cnt *cnt, int flag)
 {
-	if (a->cur_count == 0)
+	if (from->cur_count == 0)
 		return ;
-	insert_front(b, remove_front(a));
+	insert_front(to, remove_front(from));
 	if (flag == 1)
 	{
-		write(1, "pa\n", 3);
-		b->pa++;
+		write(1, "pb\n", 3);
+		cnt->pb++;
 	}
 	else
 	{
-		write(1, "pb\n", 3);
-		a->pb++;
+		write(1, "pa\n", 3);
+		cnt->pa++;
 	}
 }
