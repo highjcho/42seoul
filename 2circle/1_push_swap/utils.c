@@ -1,5 +1,13 @@
 #include "pushswap.h"
 
+void	set_cnt(t_cnt *cnt)
+{
+	cnt->pa = 0;
+	cnt->pb = 0;
+	cnt->ra = 0;
+	cnt->rb = 0;
+}
+
 void	error_free(t_arr_stack *stack1, t_arr_stack *stack2)
 {
 	free(stack1->element);

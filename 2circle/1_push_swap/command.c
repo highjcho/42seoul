@@ -54,11 +54,13 @@ void	ft_pa_pb(t_arr_stack *from, t_arr_stack *to, t_cnt *cnt, int flag)
 	if (flag == 1)
 	{
 		write(1, "pb\n", 3);
-		cnt->pb++;
+		if (cnt)
+			cnt->pb++;
 	}
 	else
 	{
 		write(1, "pa\n", 3);
-		cnt->pa++;
+		if (cnt)
+			cnt->pa++;
 	}
 }

@@ -30,7 +30,8 @@ typedef struct s_arr_stack_type
 }	t_arr_stack;
 
 void	fill_stack(t_arr_stack *stack, char **argv);
-void 	push_swap(t_arr_stack *a, t_arr_stack *b);
+void 	push_swap(t_arr_stack *a, t_arr_stack *b, int count);
+void	less_five(t_arr_stack *a, t_arr_stack *b, int count);
 void	b_to_a(t_arr_stack *a, t_arr_stack *b, int count, int *check);
 void	a_to_b(t_arr_stack *a, t_arr_stack *b, int count, int *check);
 void	small_arg(t_arr_stack *a, t_arr_stack *b, int count, int flag);
@@ -41,7 +42,8 @@ void	ft_ra_rb(t_arr_stack *stack, t_cnt *cnt, int flag);
 void	ft_rr(t_arr_stack *a, t_arr_stack *b, t_cnt *cnt);
 void	ft_rra_rrb(t_arr_stack *stack, int flag);
 void	ft_rrr(t_arr_stack *a, t_arr_stack *b);
-void	sort_arr(t_arr_stack *a, int *sort);
+void	sort_arr(t_arr_stack *a, int *sort, int count);
+void	set_cnt(t_cnt *cnt);
 void 	error_handler(char *message, int error_code);
 void	error_free(t_arr_stack *stack1, t_arr_stack *stack2);
 void	print_arr(t_arr_stack *a, int flag); //제출전 지우기

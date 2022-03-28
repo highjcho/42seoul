@@ -11,12 +11,14 @@ void	ft_ra_rb(t_arr_stack *stack, t_cnt *cnt, int flag)
 	if (flag == 1)
 	{
 		write(1, "ra\n", 3);
-		cnt->ra++;
+		if (cnt)
+			cnt->ra++;
 	}
 	else if (flag == 2)
 	{
 		write(1, "rb\n", 3);
-		cnt->rb++;
+		if (cnt)
+			cnt->rb++;
 	}
 }
 

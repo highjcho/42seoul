@@ -61,14 +61,17 @@ static int	check_ascending(t_arr_stack *a)
 {
 	int	max;
 	int	i;
+	int j;
 
-	max = a->element[0].data;
+	max = a->element[a->front].data;
 	i = -1;
+	j = a->front;
 	while (++i < a->max_count)
 	{
-		if (a->element[i].data < max)
+		if (a->element[j].data < max)
 			return (0);
-		max = a->element[i].data;
+		max = a->element[j].data;
+		j = (j + 1) % a->max_count;
 	}
 	return (1);
 }
@@ -90,12 +93,12 @@ int	main(int ac, char **av)
 	if (!a)
 		error_handler("Error\n", 1);
 	b = make_stack(b, count);
-	if (!b) // 줄일 수 있는 방법 없나
+	if (!b)
 		error_free(a, 0);
 	fill_stack(a, ++av);
-	if (check_ascending(a))
+	if (count == 1 || check_ascending(a))
 		return (0);
-	push_swap(a, b);
-	print_arr(a, 1);
-	print_arr(b, 2);
+	push_swap(a, b, count);
+	if (check_ascending(a))
+		printf("finish!!!!\n");
 }

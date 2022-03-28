@@ -37,17 +37,17 @@ static void	quickSort(int *arr, int	start, int end) // pivot 중앙값 찾기 �
 	quickSort(arr, left + 1, end); // 기존 pivot 기준 right
 }
 
-void	sort_arr(t_arr_stack *stack, int *sort)
+void	sort_arr(t_arr_stack *stack, int *sort, int count)
 {
 	int	i;
 	int	j;
 
 	i = -1;
 	j = stack->front;
-	while (++i < stack->cur_count)
+	while (++i < count)
 	{
 		sort[i] = stack->element[j].data;
 		j = (j + 1) % stack->max_count;
 	}
-	quickSort(sort, 0, stack->cur_count - 1);
+	quickSort(sort, 0, count - 1);
 }
