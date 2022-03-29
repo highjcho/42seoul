@@ -1,6 +1,18 @@
-#include "pushswap.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/03/29 17:58:24 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/03/29 17:58:35 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static int	get_count(char **av) // static 띄어쓰기 놈?
+#include "push_swap.h"
+
+static int	get_count(char **av)
 {
 	int	i;
 	int	j;
@@ -13,7 +25,8 @@ static int	get_count(char **av) // static 띄어쓰기 놈?
 		j = 0;
 		while (av[i][j])
 		{
-			if (av[i][j] >= '0' && av[i][j] <= '9' && (av[i][j + 1] == ' ' || av[i][j + 1] == 0)) // 줄여야 함
+			if (av[i][j] >= '0' && av[i][j] <= '9' && \
+			(av[i][j + 1] == ' ' || av[i][j + 1] == 0))
 				count++;
 			j++;
 		}
@@ -22,17 +35,17 @@ static int	get_count(char **av) // static 띄어쓰기 놈?
 	return (count);
 }
 
-static t_arr_stack	*make_stack(t_arr_stack *new, int count)
+static t_stack	*make_stack(t_stack *new, int count)
 {
-	new = malloc(sizeof(t_arr_stack));
+	new = malloc(sizeof(t_stack));
 	if (!new)
 		error_handler("Error\n", 1);
 	new->max_count = count;
 	new->cur_count = 0;
 	new->front = 0;
 	new->rear = count - 1;
-	new->element = malloc(count * sizeof(t_arr_node));
-	if (!(new->element))
+	new->arr = malloc(count * sizeof(t_node));
+	if (!(new->arr))
 	{
 		free(new);
 		return (NULL);
@@ -40,47 +53,36 @@ static t_arr_stack	*make_stack(t_arr_stack *new, int count)
 	return (new);
 }
 
-void	print_arr(t_arr_stack *a, int flag) // 제출전 지울 함수
+static void	less_5(t_stack *a, t_stack *b, int count)
 {
-	int	pos;
-
-	if (flag == 1)
-		printf("a: ");
-	else
-		printf("b: ");
-	pos = a->front;
-	for (int i = 0; i < a->cur_count; i++)
-	{
-		printf("[%d] %d ", i, a->element[pos].data);
-		pos = (pos + 1) % a->max_count;
-	}
-	printf("\n\n");
+	if (count == 2)
+		sa_sb(a, 1);
+	else if (count == 3)
+		sort_3(a);
+	else if (count == 4)
+		sort_4(a, b, a->arr[a->front].data);
+	else if (count == 5)
+		sort_5_a(a, b);
 }
 
-static int	check_ascending(t_arr_stack *a)
+static void	push_swap(t_stack *a, t_stack *b, int count)
 {
-	int	max;
-	int	i;
-	int j;
+	int	check;
 
-	max = a->element[a->front].data;
-	i = -1;
-	j = a->front;
-	while (++i < a->max_count)
+	check = 0;
+	if (count < 6)
 	{
-		if (a->element[j].data < max)
-			return (0);
-		max = a->element[j].data;
-		j = (j + 1) % a->max_count;
+		less_5(a, b, count);
+		return ;
 	}
-	return (1);
+	a_to_b(a, b, count, &check);
 }
 
 int	main(int ac, char **av)
 {
-	t_arr_stack	*a;
-	t_arr_stack	*b;
-	int			count;
+	t_stack	*a;
+	t_stack	*b;
+	int		count;
 
 	count = 0;
 	a = NULL;
@@ -96,9 +98,11 @@ int	main(int ac, char **av)
 	if (!b)
 		error_free(a, 0);
 	fill_stack(a, ++av);
-	if (count == 1 || check_ascending(a))
+	if (count == 1 || check_ascending(a, a->max_count))
 		return (0);
 	push_swap(a, b, count);
-	if (check_ascending(a))
-		printf("finish!!!!\n");
+	free(a->arr);
+	free(a);
+	free(b->arr);
+	free(b);
 }
