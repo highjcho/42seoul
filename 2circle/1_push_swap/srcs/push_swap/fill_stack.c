@@ -57,7 +57,7 @@ static void	check_dup(t_stack *a)
 	}
 }
 
-void	fill_stack(t_stack *a, char **s)
+void	fill_stack(t_stack *a, t_stack *b, char **s)
 {
 	int	num;
 
@@ -69,9 +69,8 @@ void	fill_stack(t_stack *a, char **s)
 			{
 				s = ft_atoi(s, &num);
 				if (!s)
-					error_free(a, 0);
+					error_free(a, b);
 				a->arr[a->cur_count++].data = num;
-				a->rear++;
 			}
 			else
 				(*s)++;

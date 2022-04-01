@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "checker.h"
 
-void	sa_sb(t_stack *stack, int flag)
+void	sa_sb_checker(t_stack *stack)
 {
 	int	first;
 	int	second;
@@ -25,20 +25,15 @@ void	sa_sb(t_stack *stack, int flag)
 	tmp = stack->arr[first].data;
 	stack->arr[first].data = stack->arr[second].data;
 	stack->arr[second].data = tmp;
-	if (flag == 1)
-		write(1, "sa\n", 3);
-	else if (flag == 2)
-		write(1, "sb\n", 3);
 }
 
-void	ss(t_stack *a, t_stack *b)
+void	ss_checker(t_stack *a, t_stack *b)
 {
-	sa_sb(a, -1);
-	sa_sb(b, -1);
-	write(1, "ss\n", 3);
+	sa_sb_checker(a);
+	sa_sb_checker(b);
 }
 
-static void	insert_front(t_stack *stack, int	data)
+static void	insert_front(t_stack *stack, int data)
 {
 	if (stack->front == 0)
 		stack->front = stack->max_count - 1;
@@ -58,21 +53,9 @@ static int	remove_front(t_stack *stack)
 	return (ret);
 }
 
-void	pa_pb(t_stack *from, t_stack *to, t_cmd *cmd, int flag)
+void	pa_pb_checker(t_stack *from, t_stack *to)
 {
 	if (from->cur_count == 0)
 		return ;
 	insert_front(to, remove_front(from));
-	if (flag == 1)
-	{
-		write(1, "pb\n", 3);
-		if (cmd)
-			cmd->pb++;
-	}
-	else
-	{
-		write(1, "pa\n", 3);
-		if (cmd)
-			cmd->pa++;
-	}
 }

@@ -26,12 +26,15 @@ typedef struct s_cmd
 	int	pb;
 }	t_cmd;
 
-void	fill_stack(t_stack *a, char **s);
-void	b_to_a(t_stack *a, t_stack *b, int count, int *check);
-void	a_to_b(t_stack *a, t_stack *b, int count, int *check);
+t_stack	*make_stack(int count);
+void	fill_stack(t_stack *a, t_stack *b, char **s);
+int		get_count(char **av);
+void	less_5(t_stack *a, t_stack *b, int count);
 void	sort_3(t_stack *a);
 void	sort_4(t_stack *a, t_stack *b, int min);
 void	sort_5_a(t_stack *a, t_stack *b);
+void	b_to_a(t_stack *a, t_stack *b, int count, int *check);
+void	a_to_b(t_stack *a, t_stack *b, int count, int *check);
 void	small_part(t_stack *a, t_stack *b, int count, int flag);
 void	a_part_3(t_stack *a);
 void	b_part_3(t_stack *b, t_stack *a);

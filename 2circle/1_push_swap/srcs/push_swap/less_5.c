@@ -96,3 +96,15 @@ void	sort_5_a(t_stack *a, t_stack *b)
 	while (cmd.pb-- > 0)
 		pa_pb(b, a, &cmd, 0);
 }
+
+void	less_5(t_stack *a, t_stack *b, int count)
+{
+	if (count == 2)
+		sa_sb(a, 1);
+	else if (count == 3)
+		sort_3(a);
+	else if (count == 4)
+		sort_4(a, b, a->arr[a->front].data);
+	else if (count == 5)
+		sort_5_a(a, b);
+}
