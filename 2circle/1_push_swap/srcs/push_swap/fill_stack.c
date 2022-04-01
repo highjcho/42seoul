@@ -30,7 +30,7 @@ static char	**ft_atoi(char **s, int *num)
 		tmp = *num;
 		*num = (sign * (**s - '0')) + (*num * 10);
 		if (tmp != *num / 10)
-			error_handler("Error\n", 1);
+			return (NULL);
 		(*s)++;
 	}
 	if (!(**s == ' ' || **s == 0))
@@ -38,7 +38,7 @@ static char	**ft_atoi(char **s, int *num)
 	return (s);
 }
 
-static void	check_dup(t_stack *a)
+static void	check_dup(t_stack *a, t_stack *b)
 {
 	int	i;
 	int	j;
@@ -50,7 +50,7 @@ static void	check_dup(t_stack *a)
 		while (j < a->max_count)
 		{
 			if (a->arr[i].data == a->arr[j].data)
-				error_handler("Error\n", 1);
+				error_free(a, b);
 			j++;
 		}
 		i++;
@@ -77,5 +77,5 @@ void	fill_stack(t_stack *a, t_stack *b, char **s)
 		}
 		s++;
 	}
-	check_dup(a);
+	check_dup(a, b);
 }

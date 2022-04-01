@@ -49,6 +49,7 @@ static void	a_part_5(t_stack *a, t_stack *b, int count)
 	set_cmd(&cmd);
 	sort = sort_arr(a, b, count);
 	mid = sort[2];
+	free (sort);
 	while (cmd.pb < 2)
 	{
 		if (a->arr[a->front].data < mid)
@@ -71,6 +72,7 @@ static void	sort_5_b(t_stack *b, t_stack *a)
 	sort = sort_arr(b, a, 5);
 	mid = sort[1];
 	set_cmd(&cmd);
+	free(sort);
 	while (cmd.pa < 3)
 	{
 		if (b->arr[b->front].data > mid)
@@ -96,6 +98,7 @@ static void	b_part_5(t_stack *b, t_stack *a, int count)
 	}
 	sort = sort_arr(b, a, count);
 	mid = sort[1];
+	free(sort);
 	while (cmd.pa < 3)
 	{
 		if (b->arr[b->front].data > mid)

@@ -38,7 +38,7 @@ static void	read_cmd(t_stack *a, t_stack *b)
 	while (cmd)
 	{
 		do_push_swap(a, b, cmd);
-
+		free(cmd);
 		cmd = get_next_cmd(&flag);
 		if (flag < 0)
 			error_free(a, b);

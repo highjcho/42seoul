@@ -1,19 +1,5 @@
 #include "push_swap.h"
 
-char	*ft_calloc(int	count)
-{
-	char	*s;
-	int		i;
-
-	s = malloc(sizeof(char) * count);
-	if (!s)
-		return (NULL);
-	i = -1;
-	while (++i < count)
-		s[i] = 0;
-	return (s);
-}
-
 static void	push_swap(t_stack *a, t_stack *b, int count)
 {
 	int	check;
