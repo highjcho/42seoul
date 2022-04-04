@@ -6,24 +6,22 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:58:24 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/03/29 17:58:35 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/04/04 08:43:31 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "checker.h"
 
-char	*ft_calloc(int	count)
+int	ft_strlen(char *s)
 {
-	char	*s;
-	int		i;
+	int	i;
 
-	s = malloc(sizeof(char) * count);
-	if (!s)
-		return (NULL);
-	i = -1;
-	while (++i < count)
-		s[i] = 0;
-	return (s);
+	i = 0;
+	while (s[i] && s[i] != '\n')
+		i++;
+	if (s[i] == '\n')
+		i++;
+	return (i);
 }
 
 static void	read_cmd(t_stack *a, t_stack *b)
@@ -51,11 +49,9 @@ int	main(int ac, char **av)
 	t_stack	*b;
 	int		count;
 
-	count = 0;
-	if (ac == 1)
-		error_handler("Error\n", 1);
-	else if (ac >= 2)
-		count = get_count(av);
+	if (ac < 2)
+		return (0);
+	count = get_count(av);
 	a = make_stack(count);
 	if (!a)
 		error_handler("Error\n", 1);

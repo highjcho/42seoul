@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/04 08:43:50 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/04/04 08:45:17 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	push_swap(t_stack *a, t_stack *b, int count)
@@ -19,11 +31,9 @@ int	main(int ac, char **av)
 	t_stack	*b;
 	int		count;
 
-	count = 0;
-	if (ac == 1)
-		error_handler("Error\n", 1);
-	else if (ac >= 2)
-		count = get_count(av);
+	if (ac < 2)
+		return (0);
+	count = get_count(av);
 	a = make_stack(count);
 	if (!a)
 		error_handler("Error\n", 1);

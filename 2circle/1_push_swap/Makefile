@@ -25,7 +25,7 @@ PS_SRCS = $(addprefix $(PS_DIR), $(PS_FILES))
 PS_OBJS = $(PS_SRCS:.c=.o)
 CHECKER_DIR = ./srcs/checker/
 CHECKER_MAIN = $(addprefix $(CHECKER_DIR), $(MAIN_FILE))
-CHECKER_FILES = get_cmd.c do_push_swap.c command1_checker.c command2_checker.c
+CHECKER_FILES = get_next_cmd.c do_push_swap.c command1_checker.c command2_checker.c
 CHECKER_SRCS = $(addprefix $(CHECKER_DIR), $(CHECKER_FILES))
 CHECKER_OBJS = $(CHECKER_SRCS:.c=.o)
 

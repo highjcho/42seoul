@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/04 08:38:43 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/04/04 08:40:42 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CHECKER_H
 # define CHECKER_H
 
@@ -16,6 +28,6 @@ void	ra_rb_checker(t_stack *stack);
 void	rr_checker(t_stack *a, t_stack *b);
 void	rra_rrb_checker(t_stack *stack);
 void	rrr_checker(t_stack *a, t_stack *b);
-char	*ft_calloc(int	count);
+int		ft_strlen(char *s);
 
 #endif

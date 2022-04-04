@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:59:04 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/03/29 17:59:04 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/04/04 08:44:39 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static void	swap(int *arr, int a, int b)
 	arr[b] = tmp;
 }
 
-static void	quickSort(int *arr, int	start, int end)
+static void	quick_sort(int *arr, int start, int end)
 {
 	int	pivot;
 	int	left;
@@ -45,8 +45,8 @@ static void	quickSort(int *arr, int	start, int end)
 		else if (left != pivot && left > right)
 			swap(arr, left, pivot);
 	}
-	quickSort(arr, start, right);
-	quickSort(arr, left + 1, end);
+	quick_sort(arr, start, right);
+	quick_sort(arr, left + 1, end);
 }
 
 int	*sort_arr(t_stack *main, t_stack *sub, int count)
@@ -65,6 +65,6 @@ int	*sort_arr(t_stack *main, t_stack *sub, int count)
 		sort[i] = main->arr[j].data;
 		j = (j + 1) % main->max_count;
 	}
-	quickSort(sort, 0, count - 1);
+	quick_sort(sort, 0, count - 1);
 	return (sort);
 }

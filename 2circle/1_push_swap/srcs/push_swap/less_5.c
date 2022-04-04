@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 17:58:19 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/03/29 17:58:21 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/04/04 08:43:44 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void	sort_5_a(t_stack *a, t_stack *b)
 
 	sort = sort_arr(a, b, 5);
 	mid = sort[1];
+	free(sort);
 	set_cmd(&cmd);
 	while (cmd.pb < 2)
 	{
