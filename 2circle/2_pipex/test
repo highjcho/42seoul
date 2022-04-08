@@ -1,0 +1,44 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <sys/stat.h>
+#include <string.h>
+#include <fcntl.h>
+
+int main(void){
+        int fd1, ret;
+        char message[32]={"STDERR from fd1\n"};
+
+        //그림 1번
+        fd1=open("made_by_fd1",O_RDWR|O_CREAT, S_IRUSR|S_IWUSR);
+        if(fd1<0){
+                printf("file open error\n");
+                exit(0);
+        }
+        //표준 입출력으로 print됨
+        printf("file open\n");
+
+        //fd1의 파일 디스크립터가 명시한 STDOUT_FILENO의 파일 디스크립터로
+        //복제됨,
+        //그림 2번
+        ret=dup2(fd1,STDOUT_FILENO); // fd1=made_by_fd1 파일인데 이게 stdout이 된거. 그래서 프린트에프로 써도, write를 stdout_fileno로 해도 파일에 써지는 거. 반환값은 내가 복제한 파일디스크립터
+
+        //fd1으로 출력됨
+        printf("fd1 :%d, ret:%d\n",fd1,ret);
+		write(1, "hello\n", 6); // 이래도 파일에 기록되겠지
+
+        //STDERR_FILENO 디스크립터가 명시된 fd1으로 복제됨
+        //그림 3번
+        ret=dup2(STDERR_FILENO,fd1); // fd1이 stderr로 복제됨. 글서 반환값도 stderr이 됨. dup2(복제할값, 복제될값) 뒤에 있는 애가 실제로 앞에 있는애에 써지고, 반환값은 뒤에 있는애임.
+        //fd1은 에러로 출력됨
+        write(fd1,message,strlen(message));
+		printf("fd1 :%d, ret:%d\n",fd1,ret);
+
+        //stdout이 file로 써짐
+        printf("printf를 썼지만 파일에 기록됨 \n");
+
+
+		//dup은 단순히 fd를 복제하는거 f2=dup(fd1)하면 f2는 가장 낮은 사용되지 않은 파일디스크립터를 할당받고 f1에 써지는 거. 
+
+        close(fd1);
+}

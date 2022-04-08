@@ -1,0 +1,14 @@
+args->cmd1_path: /bin/ls
+args->cmd2_path: /usr/bin/wc
+0: /Users/hyunjcho/goinfre/.brew/bin
+1: /Users/hyunjcho/goinfre/.brew/bin
+2: /Users/hyunjcho/goinfre/.brew/bin
+3: /Users/hyunjcho/goinfre/.brew/bin
+4: /Users/hyunjcho/goinfre/.brew/bin
+5: /usr/local/bin
+6: /usr/bin
+7: /bin
+8: /usr/sbin
+9: /sbin
+10: /usr/local/munki
+11: /Users/hyunjcho/goinfre/.brew/bin

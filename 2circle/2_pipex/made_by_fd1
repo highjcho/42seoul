@@ -1,0 +1,4 @@
+fd1 :3, ret:1
+hello
+fd1 :3, ret:3
+printf를 썼지만 파일에 기록됨 
