@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipex.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/13 09:25:35 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/04/13 09:25:36 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PIPEX_H
 # define PIPEX_H
 
@@ -7,10 +19,9 @@
 # include <fcntl.h>
 # include <string.h>
 # include <sys/wait.h>
-# include "libft/libft.h"
+# include "../libft/libft.h"
 
-
-typedef struct	s_arg
+typedef struct s_arg
 {
 	char	*infile;
 	char	*outfile;
@@ -20,7 +31,7 @@ typedef struct	s_arg
 	char	*cmd2_path;
 }	t_arg;
 
-void	pipex(t_arg *args, int *fd, char **envp, pid_t *pid);
+void	pipex(t_arg *args, int *fd, pid_t *pid, char **envp);
 void	set_arg(char **argv, char **envp, t_arg *args);
 void	single_free(char *src, char *msg);
 void	double_free(char **free1, char **free2, char *msg);

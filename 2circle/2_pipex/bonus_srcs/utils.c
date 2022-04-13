@@ -1,11 +1,16 @@
 #include "pipex.h"
 
-void	all_free(t_arg *args, char *msg)
+void	all_free(t_arg *args, char *msg, int flag)
 {
-	double_free(args->cmd1, args->cmd2, 0);
-	free(args->cmd1_path);
-	free(args->cmd2_path);
-	free(args->infile);
+	if (flag)
+	{
+		double_free(args->cmd, 0, 0);
+		free(args->path);
+	}
+	if (args->infile)
+		free(args->infile);
+	else
+		free(args->limiter);
 	free(args->outfile);
 	error_handler(msg);
 }

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_arg.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/13 09:23:58 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/04/13 09:23:59 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex.h"
 
 static char	*check_cmd(char **path, char *cmd)
@@ -24,7 +36,7 @@ static char	*check_cmd(char **path, char *cmd)
 	return (NULL);
 }
 
-static void	set_cmd(char **argv, char **envp, t_arg *args)
+static void	set_cmd(char **envp, t_arg *args)
 {
 	char	**path;
 
@@ -34,7 +46,7 @@ static void	set_cmd(char **argv, char **envp, t_arg *args)
 		if (!ft_strncmp(*envp, "PATH=", 5))
 		{
 			path = ft_split(*envp + 5, ':');
-			break;
+			break ;
 		}
 		envp++;
 	}
@@ -44,7 +56,7 @@ static void	set_cmd(char **argv, char **envp, t_arg *args)
 	if (!args->cmd1_path)
 		double_free(args->cmd1, args->cmd2, "Pipex: Invalid command path");
 	args->cmd2_path = check_cmd(path, args->cmd2[0]);
-	if(!args->cmd2_path)
+	if (!args->cmd2_path)
 	{
 		free(args->cmd1_path);
 		double_free(args->cmd1, args->cmd2, "Pipex: Invalid command path");
@@ -73,5 +85,5 @@ void	set_arg(char **argv, char **envp, t_arg *args)
 		free(args->outfile);
 		double_free(args->cmd1, 0, "Pipex: Allocate failed");
 	}
-	set_cmd(argv, envp, args);
+	set_cmd(envp, args);
 }

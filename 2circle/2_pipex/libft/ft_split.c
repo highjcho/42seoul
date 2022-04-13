@@ -11,9 +11,8 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include "../pipex.h"
 
-static int	find_c(char const	s, char	c)
+static int	find_c(char const s, char c)
 {
 	if (s == c)
 		return (0);
@@ -22,7 +21,7 @@ static int	find_c(char const	s, char	c)
 	return (1);
 }
 
-static void	make_str(char *new_strs, char const *s, char	c)
+static void	make_str(char *new_strs, char const *s, char c)
 {
 	int	i;
 
@@ -34,7 +33,7 @@ static void	make_str(char *new_strs, char const *s, char	c)
 	}
 }
 
-static int	ft_free(char	**new_strs, int	j)
+static int	ft_free(char **new_strs, int j)
 {
 	int	i;
 
@@ -49,7 +48,7 @@ static int	ft_free(char	**new_strs, int	j)
 	return (0);
 }
 
-static int	split_str(char	**new_strs, char const	*s, char	c)
+static int	split_str(char **new_strs, char const *s, char c)
 {
 	int	str;
 	int	i;
@@ -77,7 +76,7 @@ static int	split_str(char	**new_strs, char const	*s, char	c)
 	return (1);
 }
 
-char	**ft_split(char const	*s, char	c)
+char	**ft_split(char const *s, char c)
 {
 	char	**new_strs;
 	int		strs;
