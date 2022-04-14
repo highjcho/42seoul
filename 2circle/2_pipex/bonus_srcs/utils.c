@@ -7,12 +7,10 @@ void	all_free(t_arg *args, char *msg, int flag)
 		double_free(args->cmd, 0, 0);
 		free(args->path);
 	}
-	if (args->infile)
-		free(args->infile);
-	else
-		free(args->limiter);
+	free(args->first);
 	free(args->outfile);
-	error_handler(msg);
+	if (msg)
+		error_handler(msg);
 }
 
 void	single_free(char *src, char *msg)

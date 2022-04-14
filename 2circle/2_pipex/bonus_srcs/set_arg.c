@@ -14,7 +14,6 @@ static char	*check_cmd(char **path, char *cmd)
 		if (!access(cmd_path, F_OK) && !access(cmd_path, X_OK))
 		{
 			free(tmp);
-			free(cmd);
 			return (cmd_path);
 		}
 		else
@@ -24,7 +23,7 @@ static char	*check_cmd(char **path, char *cmd)
 	return (NULL);
 }
 
-static void	set_cmd(char **argv, char **envp, t_arg *args)
+static void	set_path(char **argv, char **envp, t_arg *args)
 {
 	char	**path;
 
@@ -39,39 +38,22 @@ static void	set_cmd(char **argv, char **envp, t_arg *args)
 		envp++;
 	}
 	if (!path)
-		error_handler("Pipex: Invalid path");
-	args->cmd1_path = check_cmd(path, args->cmd1[0]);
-	if (!args->cmd1_path)
-		double_free(args->cmd1, args->cmd2, "Pipex: Invalid command path");
-	args->cmd2_path = check_cmd(path, args->cmd2[0]);
-	if(!args->cmd2_path)
-	{
-		free(args->cmd1_path);
-		double_free(args->cmd1, args->cmd2, "Pipex: Invalid command path");
-	}
+		error_handler("Pipex: Allocate failed."); // 이 시점에 args가 뭐뭐 할당 돼있는 지 확인하고 free처리 해줘야 할듯
+	args->path = check_cmd(path, args->cmd[0]);
+	if (!args->path)
+		double_free(args->cmd, 0, "Pipex: Invalid command path");
 	double_free(path, 0, 0);
 }
 
-void	set_arg(char **argv, char **envp, t_arg *args)
+void	set_cmd(char **argv, char **envp, t_arg *args, int i)
 {
-	args->infile = ft_strdup(argv[1]);
-	if (!args->infile)
-		error_handler("Pipex: Allocate failed");
-	args->outfile = ft_strdup(argv[4]);
-	if (!args->outfile)
-		single_free(args->infile, "Pipex: Allocate failed");
-	args->cmd1 = ft_split(argv[2], ' ');
-	if (!args->cmd1)
+	char	**path;
+	
+	args->cmd = ft_split(argv[i + 2], ' '); // 반복문 횟수와 일치한다고 가정할 때 명령어의 위치와
+	if (!args->cmd)
 	{
-		free(args->infile);
+		free(args->first);
 		single_free(args->outfile, "Pipex: Allocate failed");
 	}
-	args->cmd2 = ft_split(argv[3], ' ');
-	if (!args->cmd2)
-	{
-		free(args->infile);
-		free(args->outfile);
-		double_free(args->cmd1, 0, "Pipex: Allocate failed");
-	}
-	set_cmd(argv, envp, args);
+	set_path(argv, envp, args);
 }

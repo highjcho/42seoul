@@ -5,35 +5,41 @@
 #                                                     +:+ +:+         +:+      #
 #    By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2021/11/26 16:57:26 by hyunjcho          #+#    #+#              #
-#    Updated: 2021/12/06 15:35:58 by hyunjcho         ###   ########.fr        #
+#    Created: 2022/03/29 19:06:40 by hyunjcho          #+#    #+#              #
+#    Updated: 2022/03/29 19:06:46 by hyunjcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
-
+PIPEX = pipex
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar -rcs
 RM = rm -f
 
-SRCS = ft_strlen.c ft_strncmp.c ft_strdup.c ft_strjoin.c ft_split.c ft_bzero.c ft_calloc.c
-OBJS = $(SRCS:.c=.o)
+MAIN_FILE = main.c
+PIPEX_DIR = ./srcs/
+PIPEX_MAIN = $(addprefix $(PIPEX_DIR), $(MAIN_FILE))
+PIPEX_FILES = pipex.c set_arg.c utils.c
+PIPEX_SRCS = $(addprefix $(PIPEX_DIR), $(PIPEX_FILES))
+PIPEX_OBJS = $(PIPEX_SRCS:.c=.o)
 
-all : $(NAME)
-
-$(NAME) : $(OBJS)
-	${AR} $@ $^
+all : $(PIPEX)
 
 %.o : %.c
-	$(CC) $(FLAGS) -c $< -o $@
-	
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(PIPEX) : $(PIPEX_MAIN) $(PIPEX_OBJS)
+	make -C libft
+	$(CC) $(CFLAGS) ./libft/libft.a -o $@ $^
+
 clean : 
-	$(RM) $(OBJS) $(B_OBJS)
+	make -C libft clean
+	$(RM) $(PIPEX_OBJS)
 
 fclean : clean
-	$(RM) $(NAME)
+	$(RM) ./libft/libft.a
+	$(RM) $(PIPEX)
 
 re : fclean all
 
-.PHONY : all clean fclean re bonus
+.PHONY : all bonus clean fclean re

@@ -26,7 +26,6 @@ static char	*check_cmd(char **path, char *cmd)
 		if (!access(cmd_path, F_OK) && !access(cmd_path, X_OK))
 		{
 			free(tmp);
-			free(cmd);
 			return (cmd_path);
 		}
 		else
