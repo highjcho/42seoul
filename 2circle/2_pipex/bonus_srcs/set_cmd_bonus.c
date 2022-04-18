@@ -38,10 +38,10 @@ static void	set_path(char **envp, t_arg *args)
 		}
 	}
 	if (!path)
-		single_free(args->infile, args->outfile, "Pipex: Allocate failed.");
+		single_free(args->infile, args->outfile, "pipex: allocate failed");
 	args->path = check_cmd(path, args->cmd[0]);
 	if (!args->path)
-		double_free(args->cmd, "Pipex: Command not found.");
+		double_free(args->cmd, "pipex: command not found");
 	double_free(path, 0);
 }
 
@@ -49,20 +49,20 @@ void	set_cmd(char **argv, char **envp, t_arg *args, int i)
 {
 	args->cmd = ft_split(argv[i + 2], ' ');
 	if (!args->cmd)
-		single_free(args->infile, args->outfile, "Pipex: Allocate failed.");
+		single_free(args->infile, args->outfile, "pipex: allocate failed");
 	if (args->cmd[0][0] == '/')
 	{
 		if (!access(args->cmd[0], F_OK) && !access(args->cmd[0], X_OK))
 		{
 			args->path = ft_strdup(args->cmd[0]);
 			if (!args->path)
-				single_free(args->infile, args->outfile, "Pipex: Allocate failed.");
+				single_free(args->infile, args->outfile, "pipex: allocate failed");
 			return ;
 		}
 		else
 		{
 			single_free(args->infile, args->outfile, 0);
-			double_free(args->cmd, "Pipex: Command not found.");
+			double_free(args->cmd, "pipex: command not found");
 		}
 	}
 	set_path(envp, args);
