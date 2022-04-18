@@ -12,24 +12,27 @@
 # define TRUE 1
 # define FALSE 0
 
-
 typedef struct	s_arg
 {
-	char	*first;
+	char	*limiter;
+	char	*infile;
 	char	*outfile;
 	char	**cmd;
 	char	*path;
 	int		here_doc;
 	int		cnt;
-	int		in_fd;
-	int		out_fd;
+	int		fd1[2];
+	int		fd2[2];
 }	t_arg;
 
 void	multi_pipex(t_arg *args, char **argv, char **envp);
 void	set_cmd(char **argv, char **envp, t_arg *args, int i);
-void	single_free(char *src, char *msg);
-void	double_free(char **free1, char **free2, char *msg);
-void	all_free(t_arg *args, char *msg, int flag);
+void	direct_pipe(t_arg *args, int *fd, int use_fd);
+void	redirect_in(t_arg *args);
+void	redirect_out(t_arg *args, int i);
+void	single_free(char *src1, char *src2, char *msg);
+void	double_free(char **cmd, char *msg);
+void	all_free(t_arg *args, char *msg);
 void	error_handler(char *msg);
 
 #endif

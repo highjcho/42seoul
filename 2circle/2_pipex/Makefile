@@ -16,29 +16,40 @@ CFLAGS = -Wall -Wextra -Werror
 AR = ar -rcs
 RM = rm -f
 
-MAIN_FILE = main.c
-PIPEX_DIR = ./srcs/
-PIPEX_MAIN = $(addprefix $(PIPEX_DIR), $(MAIN_FILE))
-PIPEX_FILES = pipex.c set_arg.c utils.c
-PIPEX_SRCS = $(addprefix $(PIPEX_DIR), $(PIPEX_FILES))
-PIPEX_OBJS = $(PIPEX_SRCS:.c=.o)
+MAN_DIR = ./mandatory_srcs/
+MAN_FILES = main.c multi_pipex.c set_cmd.c direct.c free.c
+MAN_SRCS = $(addprefix $(MAN_DIR), $(MAN_FILES))
+MAN_OBJS = $(MAN_SRCS:.c=.o)
+BONUS_DIR = ./bonus_srcs/
+BONUS_FILES = main_bonus.c multi_pipex_bonus.c set_cmd_bonus.c direct_bonus.c free_bonus.c
+BONUS_SRCS = $(addprefix $(BONUS_DIR), $(BONUS_FILES))
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+
+ifdef BONUS
+	OBJS = $(BONUS_OBJS)
+else
+	OBJS = $(MAN_OBJS)
+endif
 
 all : $(PIPEX)
 
 %.o : %.c
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(PIPEX) : $(PIPEX_MAIN) $(PIPEX_OBJS)
+$(PIPEX) : $(OBJS)
 	make -C libft
-	$(CC) $(CFLAGS) ./libft/libft.a -o $@ $^
+	$(CC) $(CFLAGS) -o $@ ./libft/libft.a $^
+
+bonus :
+	make BONUS=1 all
 
 clean : 
 	make -C libft clean
-	$(RM) $(PIPEX_OBJS)
+	$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean : clean
 	$(RM) ./libft/libft.a
-	$(RM) $(PIPEX)
+	$(RM) $(PIPEX) 
 
 re : fclean all
 

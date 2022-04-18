@@ -22,7 +22,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		return (0);
 	new = (char *)ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
 	if (!new)
-		return (0);
+		return (NULL);
 	i = -1;
 	while (++i < ft_strlen(s1))
 		new[i] = s1[i];
