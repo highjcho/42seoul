@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   set_cmd_bonus.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/19 09:12:12 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/04/19 09:12:13 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex_bonus.h"
 
 static char	*check_cmd(char **path, char *cmd)
@@ -34,15 +46,15 @@ static void	set_path(char **envp, t_arg *args)
 		if (!ft_strncmp(envp[i], "PATH=", 5))
 		{
 			path = ft_split(envp[i] + 5, ':');
-			break;
+			break ;
 		}
 	}
 	if (!path)
 		single_free(args->infile, args->outfile, "pipex: allocate failed");
 	args->path = check_cmd(path, args->cmd[0]);
 	if (!args->path)
-		double_free(args->cmd, "pipex: command not found");
-	double_free(path, 0);
+		args->flag = 1;
+	double_free(path, 0, 0);
 }
 
 void	set_cmd(char **argv, char **envp, t_arg *args, int i)
@@ -56,13 +68,14 @@ void	set_cmd(char **argv, char **envp, t_arg *args, int i)
 		{
 			args->path = ft_strdup(args->cmd[0]);
 			if (!args->path)
-				single_free(args->infile, args->outfile, "pipex: allocate failed");
+				single_free(args->infile, args->outfile, \
+				"pipex: allocate failed");
 			return ;
 		}
 		else
 		{
-			single_free(args->infile, args->outfile, 0);
-			double_free(args->cmd, "pipex: command not found");
+			args->flag = 1;
+			return ;
 		}
 	}
 	set_path(envp, args);

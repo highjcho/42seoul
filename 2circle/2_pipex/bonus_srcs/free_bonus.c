@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_bonus.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/19 09:11:53 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/04/19 09:11:57 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "pipex_bonus.h"
 
 void	single_free(char *src1, char *src2, char *msg)
@@ -5,10 +17,10 @@ void	single_free(char *src1, char *src2, char *msg)
 	free(src1);
 	if (src2)
 		free(src2);
-	error_handler(msg);
+	error_handler(msg, 1);
 }
 
-void	double_free(char **src, char *msg)
+void	double_free(char **src, char *msg, int error_code)
 {
 	int	i;
 
@@ -21,19 +33,19 @@ void	double_free(char **src, char *msg)
 	free(src);
 	if (!msg)
 		return ;
-	error_handler(msg);
+	error_handler(msg, error_code);
 }
 
-void	all_free(t_arg *args, char *msg)
+void	all_free(t_arg *args, char *msg, int error_code)
 {
 	free(args->infile);
 	free(args->outfile);
 	free(args->path);
-	double_free(args->cmd, msg);
+	double_free(args->cmd, msg, error_code);
 }
 
-void	error_handler(char *msg)
+void	error_handler(char *msg, int error_code)
 {
 	perror(msg);
-	exit(1);
+	exit(error_code);
 }
