@@ -38,7 +38,6 @@ int		pipex(t_arg *args, char **envp, int read_fd);
 void	set_path(t_arg *args, char **envp);
 void	set_cmd(t_arg *args, char *cmd);
 void	output(t_arg *args, char *cmd, char **envp, int read_fd);
-void	direct_pipe(t_arg *args, int *fd, int use_fd);
 void	cmd_free(t_arg *args, char *msg, int error_code);
 void	double_free(char **cmd, char *msg, int error_code);
 void	all_free(t_arg *args, char *msg, int error_code);
