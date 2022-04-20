@@ -12,71 +12,64 @@
 
 #include "pipex.h"
 
-static char	*check_cmd(char **path, char *cmd)
+void	set_path(t_arg *args, char **envp)
 {
-	char	*cmd_path;
-	char	*tmp;
 	int		i;
+	int	j;
 
 	i = -1;
-	tmp = ft_strjoin("/", cmd);
-	while (path[++i])
-	{
-		cmd_path = ft_strjoin(path[i], tmp);
-		if (!access(cmd_path, F_OK) && !access(cmd_path, X_OK))
-		{
-			free(tmp);
-			return (cmd_path);
-		}
-		else
-			free(cmd_path);
-	}
-	return (NULL);
-}
-
-static void	set_path(char **envp, t_arg *args)
-{
-	char	**path;
-	int		i;
-
-	path = 0;
-	i = -1;
+	j = -1;
+	args->path = NULL;
 	while (envp[++i])
 	{
 		if (!ft_strncmp(envp[i], "PATH=", 5))
 		{
-			path = ft_split(envp[i] + 5, ':');
-			break ;
+			args->path = ft_split(envp[i] + 5, ':');
+			if (!args->path)
+				error_handler("pipex: allocate failed", errno);
+			return ;
 		}
 	}
-	if (!path)
-		single_free(args->infile, args->outfile, "pipex: allocate failed");
-	args->path = check_cmd(path, args->cmd[0]);
 	if (!args->path)
-		args->flag = 1;
-	double_free(path, 0, 0);
+		error_handler("pipex: wrong path", 1);
 }
 
-void	set_cmd(char **argv, char **envp, t_arg *args, int i)
+static int	check_cmd(t_arg *args)
 {
-	args->cmd = ft_split(argv[i + 2], ' ');
-	if (!args->cmd)
-		single_free(args->infile, args->outfile, "pipex: allocate failed");
-	if (args->cmd[0][0] == '/')
+	char	*tmp;
+	int		i;
+
+	i = -1;
+	tmp = ft_strjoin("/", args->cmd[0]);
+	while (args->path[++i])
 	{
-		if (!access(args->cmd[0], F_OK) && !access(args->cmd[0], X_OK))
+		args->cmd_path = ft_strjoin(args->path[i], tmp);
+		if (!access(args->cmd_path, F_OK) && !access(args->cmd_path, X_OK))
 		{
-			args->path = ft_strdup(args->cmd[0]);
-			if (!args->path)
-				single_free(args->infile, args->outfile, \
-				"pipex: allocate failed");
-			return ;
+			free(tmp);
+			return (TRUE);
 		}
 		else
-		{
-			args->flag = 1;
-			return ;
-		}
+			free(args->cmd_path);
 	}
-	set_path(envp, args);
+	args->cmd_path = tmp;
+	return (FALSE);
+}
+
+void	set_cmd(t_arg *args, char *cmd)
+{
+	args->cmd = ft_split(cmd, ' ');
+	if (!args->cmd)
+		error_handler("pipex: allocate failed", errno);
+	if (args->cmd[0][0] == '/')
+	{
+		args->cmd_path = ft_strdup(args->cmd[0]);
+		if (!args->path)
+			double_free(args->cmd, "allocate failed", errno);
+		if (access(args->cmd[0], F_OK) < 0 || access(args->cmd[0], X_OK) < 0)
+			args->cmd_err = TRUE;
+		return ;
+	}
+	if (!check_cmd(args))
+		args->cmd_err = TRUE;
 }

@@ -27,24 +27,19 @@
 
 typedef struct s_arg
 {
-	char	*limiter;
-	char	*infile;
-	char	*outfile;
+	char	**path;
+	char	*cmd_path;
 	char	**cmd;
-	char	*path;
 	int		here_doc;
-	int		cnt;
-	int		fd1[2];
-	int		fd2[2];
-	int		flag;
+	int		cmd_err;
 }	t_arg;
 
-void	multi_pipex(t_arg *args, char **argv, char **envp);
-void	set_cmd(char **argv, char **envp, t_arg *args, int i);
+int		pipex(t_arg *args, char **envp, int read_fd);
+void	set_path(t_arg *args, char **envp);
+void	set_cmd(t_arg *args, char *cmd);
+void	output(t_arg *args, char *cmd, char **envp, int read_fd);
 void	direct_pipe(t_arg *args, int *fd, int use_fd);
-void	redirect_in(t_arg *args);
-void	redirect_out(t_arg *args, int i);
-void	single_free(char *src1, char *src2, char *msg);
+void	cmd_free(t_arg *args, char *msg, int error_code);
 void	double_free(char **cmd, char *msg, int error_code);
 void	all_free(t_arg *args, char *msg, int error_code);
 void	error_handler(char *msg, int error_code);

@@ -12,90 +12,99 @@
 
 #include "pipex.h"
 
-static void	set_here_doc(int *argc, char **argv, t_arg *args)
+static void set_input(t_arg *args, char *infile)
 {
 	int	in_fd;
 	int	dup_ret;
+
+	in_fd = open(infile, O_RDONLY);
+	if (in_fd < 0)
+		error_handler("pipex: file open failed", errno);
+	dup_ret = dup2(in_fd, 0);
+	close(in_fd);
+	dup_ret = 0;
+	if (dup_ret < 0)
+		error_handler("pipex: file dup failed", errno);
+	args->path = NULL;
+	args->cmd = NULL;
+	args->cmd_path = NULL;
+	args->cmd_err = FALSE;
+}
+static void	write_here_doc(char *limiter)
+{
+	char	*here_doc;
+	int		tmp;
+	size_t	lim_len;
+	size_t	doc_len;
+	int		dup_ret;
+
+	lim_len = ft_strlen(limiter);
+	tmp = open("tmp", O_RDWR | O_CREAT | O_APPEND, 0644);
+	if (tmp < 0)
+		error_handler("pipex: file open failed", errno);
+	dup_ret = dup2(tmp, STDOUT_FILENO);
+	if (dup_ret < 0)
+		error_handler("pipex: file dup failed", errno);
+	close(tmp);
+	here_doc = get_next_line(STDIN_FILENO);
+	while (here_doc)
+	{
+		doc_len = ft_strlen(here_doc);
+		if (doc_len == lim_len + 1 && !(ft_strncmp(limiter, here_doc, lim_len)))
+			return ;
+		write(1, here_doc, doc_len);
+		free(here_doc);
+		here_doc = get_next_line(STDIN_FILENO);
+	}
+	error_handler("read failed", errno);
+}
+
+static void	set_here_doc(int *argc, char **argv, t_arg *args)
+{
 	int	i;
 
+	if (*argc < 6)
+		error_handler("pipex: too few options", EXIT_FAILURE);
 	i = 1;
-	while (++i < (*argc) + 1)
+	while (++i < *argc)
 		argv[i - 1] = argv[i];
-	args->here_doc = TRUE;
 	(*argc)--;
-	args->limiter = ft_strdup(argv[1]);
-	if (!args->limiter)
-		error_handler("pipex: allocate failed", 1);
-	args->infile = ft_strdup("tmp");
-	if (!args->infile)
-		single_free(args->limiter, 0, "pipex: allocate failed");
-			in_fd = open(args->infile, O_RDWR | O_APPEND | O_CREAT, 0644);
-	if (in_fd < 0)
-		single_free(args->limiter, args->infile, "pipex: file open failed");
-	dup_ret = dup2(in_fd, 1);
-	if (dup_ret < 0)
-		single_free(args->limiter, args->infile, "pipex: file dup failed");
-	close(in_fd);
+	args->here_doc = TRUE;
+	write_here_doc(argv[1]);
+	set_input(args, "tmp");
 }
 
-static void	write_here_doc(t_arg *args)
+static void	set_non_here_doc(char *infile, t_arg *args)
 {
-	char	here_doc[4097];
-	int		len;
-	int		rd;
-
-	len = ft_strlen(args->limiter);
-	while (1)
-	{
-		rd = read(0, here_doc, 4096);
-		if (rd < 0)
-			single_free(args->limiter, args->infile, "pipex: read failed");
-		here_doc[rd] = 0;
-		if (rd == len + 1 && !(ft_strncmp(args->limiter, here_doc, len)))
-			break ;
-		write(1, here_doc, rd);
-	}
-	free(args->limiter);
-	args->limiter = NULL;
-}
-
-static void	set_arg(int argc, char **argv, t_arg *args)
-{
-	if (args->here_doc == TRUE)
-		write_here_doc(args);
-	else
-	{
-		args->infile = ft_strdup(argv[1]);
-		if (!args->infile)
-			error_handler("pipex: allocate failed", 1);
-	}
-	args->outfile = ft_strdup(argv[argc - 1]);
-	if (!args->outfile)
-		single_free(args->infile, 0, "pipex: allocate failed");
-	args->cnt = argc - 3;
-	args->cmd = NULL;
-	args->path = NULL;
-	args->flag = 0;
+	args->here_doc = FALSE;
+	set_input(args, infile);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	t_arg	args;
+	int		read_fd;
+	int		i;
 
 	if (argc < 5)
-	{
-		write(1, "pipex: too few arguments", 23);
-		return (0);
-	}
-	if (!ft_strncmp(argv[1], "here_doc", 9))
+		error_handler("pipex: too few options", EXIT_FAILURE);
+	if (!ft_strncmp(argv[1], "here_doc", 8))
 		set_here_doc(&argc, argv, &args);
 	else
+		set_non_here_doc(argv[1], &args);
+	set_path(&args, envp);
+	i = 1;
+	read_fd = STDIN_FILENO;
+	while (i++ < argc - 3)
 	{
-		args.here_doc = FALSE;
-		args.limiter = NULL;
+		set_cmd(&args, argv[i]);
+		read_fd = pipex(&args, envp, read_fd);
+		cmd_free(&args, 0, 0);
 	}
-	set_arg(argc, argv, &args);
-	multi_pipex(&args, argv, envp);
+	set_cmd(&args, argv[i]);
+	output(&args, argv[argc - 1], envp, read_fd);
 	all_free(&args, 0, 0);
 	return (0);
 }
+
+

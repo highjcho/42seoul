@@ -17,11 +17,11 @@ AR = ar -rcs
 RM = rm -f
 
 MAN_DIR = ./mandatory_srcs/
-MAN_FILES = main.c multi_pipex.c set_cmd.c direct.c free.c
+MAN_FILES = main.c pipex.c set_cmd.c free.c
 MAN_SRCS = $(addprefix $(MAN_DIR), $(MAN_FILES))
 MAN_OBJS = $(MAN_SRCS:.c=.o)
 BONUS_DIR = ./bonus_srcs/
-BONUS_FILES = main_bonus.c multi_pipex_bonus.c set_cmd_bonus.c direct_bonus.c free_bonus.c
+BONUS_FILES = main_bonus.c pipex_bonus.c set_cmd_bonus.c free_bonus.c
 BONUS_SRCS = $(addprefix $(BONUS_DIR), $(BONUS_FILES))
 BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 

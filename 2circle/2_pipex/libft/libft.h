@@ -16,7 +16,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 
-char	*get_next_line(void);
+# define BUFFER_SIZE 1024
+
+char	*get_next_line(int fd);
 size_t	ft_strlen(const char *str);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strdup(const char *s1);

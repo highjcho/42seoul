@@ -44,9 +44,9 @@ static void	ft_memmove(char *s, int len)
 
 	i = -1;
 	j = len;
-	while (++i < 10 - len)
+	while (++i < BUFFER_SIZE - len)
 		s[i] = s[j++];
-	while (i < 10)
+	while (i < BUFFER_SIZE)
 		s[i++] = 0;
 }
 
@@ -76,29 +76,29 @@ static char	*make_line(char *s1, char *s2)
 	return (new_ret);
 }
 
-char	*get_next_line(void)
+char	*get_next_line(int fd)
 {
-	static char	buf[11];
+	static char	buf[BUFFER_SIZE + 1];
 	char		*ret;
 	int			read_result;
 
 	ret = ft_calloc(1, sizeof(char));
 	if (!ret)
-		return (0);
-	while (!ft_strchr(ret))
+		return (NULL);
+	while (ft_strchr(ret))
 	{
 		if (!buf[0])
 		{
-			read_result = read(0, buf, 10);
+			read_result = read(fd, buf, BUFFER_SIZE);
 			if (!read_result && ret[0])
 				return (ret);
 			else if ((read_result < 0) || (!read_result && ret[0] == 0))
 			{
 				free(ret);
-				return (0);
+				return (NULL);
 			}
 		}
-		ret = make_line(buf, ret);
+		ret = make_line(ret, buf);
 	}
 	return (ret);
 }
