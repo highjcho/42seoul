@@ -77,9 +77,9 @@ void	output(t_arg *args, char *outfile, char **envp, int read_fd)
 		all_free(args, "pipex: fork failed", errno);
 	if (pid == 0)
 	{
-		set_out_file(args, outfile);
 		dup_fd(args, read_fd, STDIN_FILENO);
 		close(read_fd);
+		set_out_file(args, outfile);
 		if (execve(args->cmd_path, args->cmd, envp) < 0)
 		{
 			if (args->cmd_err == FALSE)
