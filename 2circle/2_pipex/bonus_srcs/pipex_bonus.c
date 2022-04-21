@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   multi_pipex_bonus.c                                :+:      :+:    :+:   */
+/*   pipex_bonus.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/19 09:12:09 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/04/19 09:12:10 by hyunjcho         ###   ########.fr       */
+/*   Created: 2022/04/21 10:52:38 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/04/21 10:52:58 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	dup_fd(t_arg *args, int from_fd, int to_fd)
 {
-	int dup_ret;
+	int	dup_ret;
 
 	dup_ret = dup2(from_fd, to_fd);
 	if (dup_ret < 0)

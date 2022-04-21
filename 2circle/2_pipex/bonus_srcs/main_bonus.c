@@ -12,7 +12,7 @@
 
 #include "pipex_bonus.h"
 
-static void set_input(t_arg *args, char *infile)
+static void	set_input(t_arg *args, char *infile)
 {
 	int	in_fd;
 	int	dup_ret;
@@ -30,6 +30,7 @@ static void set_input(t_arg *args, char *infile)
 	args->cmd_path = NULL;
 	args->cmd_err = FALSE;
 }
+
 static void	write_here_doc(char *limiter)
 {
 	char	*here_doc;

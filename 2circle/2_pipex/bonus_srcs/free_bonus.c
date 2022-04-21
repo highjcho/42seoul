@@ -42,7 +42,6 @@ void	all_free(t_arg *args, char *msg, int error_code)
 
 void	error_handler(char *msg, int error_code)
 {
-	dup2(STDOUT_FILENO, STDOUT_FILENO);
 	perror(msg);
 	exit(error_code);
 }

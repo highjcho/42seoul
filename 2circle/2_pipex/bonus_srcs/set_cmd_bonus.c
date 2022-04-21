@@ -14,11 +14,9 @@
 
 void	set_path(t_arg *args, char **envp)
 {
-	int		i;
-	int	j;
+	int	i;
 
 	i = -1;
-	j = -1;
 	args->path = NULL;
 	while (envp[++i])
 	{
@@ -31,7 +29,7 @@ void	set_path(t_arg *args, char **envp)
 		}
 	}
 	if (!args->path)
-		error_handler("pipex: wrong path", 1);
+		error_handler("pipex: wrong path", errno);
 }
 
 static int	check_cmd(t_arg *args)
