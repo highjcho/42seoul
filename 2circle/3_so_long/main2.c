@@ -38,3 +38,29 @@ int main()
 		}
 		printf("\n");
 	}
+
+
+	이동시에 할 거 
+	무브 카운트 증가
+	이전 P->0으로 바꾸고 
+	p x,y좌표 바꾸고
+	바뀐 좌표에 P로 바꾸고
+	print_map 다시 실행 <- 이건 계속 위에 그리는건가,,? 아예 이미지 파괴는 안되겠지
+	너무 다 그리는건 별론가;;? 걍 그 바뀐 두개만 바꿀까 그렇게 하자 ㅇㅇ
+
+	exit 면 검사 해야댐 아이템 그래서 아이템 안 먹었으면 걍 출구 위에 또 새로 그리는거만 ㅇㅇ
+
+
+void	print_move_count(t_game *game)
+{
+	game->p.move++;
+	printf("total moves: %d\n", game->p.move);
+	for (int i = 0; i < game->height; i++)
+	{
+		for (int j = 0; j < game->width; j++)
+		{
+			printf("%c", game->map[i][j]);
+		}
+		printf("\n");
+	}
+}

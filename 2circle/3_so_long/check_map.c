@@ -8,7 +8,7 @@ static void	check_outside(t_game *game)
 	while(++i < game->width)
 	{
 		if (game->map[0][i] != '1' || game->map[game->height - 1][i] != '1')
-			error_handler("Error\nso_long: invalid map format(not proper outside)", errno);
+			error_handler("Error\nso_long: invalid map format(not proper outside what)", errno);
 	}
 	i = -1;
 	while(++i < game->height)
@@ -31,9 +31,9 @@ static void	check_inside(t_game *game)
 		{
 			if (game->map[i][j] == 'P')
 			{
-				game->p++;
-				game->p_x = i;
-				game->p_y = j;
+				game->p.p++;
+				game->p.x = j;
+				game->p.y = i;
 			}
 			else if (game->map[i][j] == 'C')
 				game->item++;
@@ -49,6 +49,6 @@ void	check_map(t_game *game)
 {
 	check_outside(game);
 	check_inside(game);
-	if (game->p != 1 || !game->item || !game->exit)
+	if (game->p.p != 1 || !game->item || !game->exit)
 		error_handler("Error\nso_long: invalid map format(count fail)", errno);
 }

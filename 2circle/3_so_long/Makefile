@@ -18,7 +18,7 @@ AR = ar -rcs
 RM = rm -f
 
 MAN_DIR = ./
-MAN_FILES = so_long.c check_map.c get_next_line.c ft_split.c print_map.c utils.c
+MAN_FILES = so_long.c check_map.c get_next_line.c ft_split.c print_map.c play_game.c utils.c
 MAN_SRCS = $(addprefix $(MAN_DIR), $(MAN_FILES))
 OBJS = $(MAN_SRCS:.c=.o)
 # BONUS_DIR = ./bonus_srcs/
