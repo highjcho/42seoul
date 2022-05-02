@@ -82,8 +82,6 @@ char	**ft_split(t_game *game, char const *s, char c)
 	int		strs;
 	int		i;
 
-	if (!s)
-		return (NULL);
 	strs = 0;
 	i = 0;
 	while (s[i])
@@ -92,7 +90,7 @@ char	**ft_split(t_game *game, char const *s, char c)
 			strs++;
 		i++;
 	}
-	game->height = strs;
+	game->hei = strs;
 	new_strs = (char **)ft_calloc((strs + 1), sizeof(char *));
 	if (!new_strs)
 		return (NULL);

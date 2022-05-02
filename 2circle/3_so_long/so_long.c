@@ -10,7 +10,7 @@ static int	count_width(char *s)
 	return (i);
 }
 
-static void	set_map(t_game *game, char *file)
+static void	set_map(t_game *g, char *file)
 {
 	char	*tmp;
 	char	*line;
@@ -22,37 +22,39 @@ static void	set_map(t_game *game, char *file)
 	tmp = ft_calloc(1, sizeof(char));
 	if (!tmp)
 		error_handler("so_long: allocate failed", errno);
-	line = get_next_line(fd);
-	game->width = count_width(line);
+	line = get_next_line(fd, tmp);
+	g->wid = count_width(line);
 	while(line)
 	{
 		tmp = ft_strjoin(tmp, line);
-		line = get_next_line(fd);
-		if (line && game->width != count_width(line))
-			error_handler("Error\nso_long: invalid map format - not rec", errno);
+		if (!tmp)
+			error_free("so_long: allocate failed", line, NULL, errno);
+		line = get_next_line(fd, tmp);
+		if (line && g->wid != count_width(line))
+			error_handler("Error\nso_long: invalid map format", errno);
 	}
 	close(fd);
-	game->map = ft_split(game, tmp, '\n');
-	if (!game->map)
-		error_handler("so_long: allocate failed", errno);
+	g->map = ft_split(g, tmp, '\n');
+	if (!g->map)
+		error_free("so_long: allocate failed", tmp, NULL, errno);
 }
 
-static void	set_game(t_game *game)
+static void	set_game(t_game *g)
 {
-	game->p.p = 0;
-	game->p.x = 0;
-	game->p.y = 0;
-	game->p.move = 0;
-	game->exit = 0;
-	game->item = 0;
-	game->map = NULL;
+	g->p.p = 0;
+	g->p.x = 0;
+	g->p.y = 0;
+	g->p.move = 0;
+	g->exit = 0;
+	g->item = 0;
+	g->map = NULL;
 }
 
-int	exit_game(t_game *game)
+int	exit_game(t_game *g)
 {
-	double_free(game);
-	mlx_destroy_window(game->mlx, game->win);
-	printf("so_long: Escape success! You're total move count: %d", game->p.move);
+	map_free(g);
+	mlx_destroy_window(g->m, g->w);
+	printf("so_long: Escape uccess! You're total move count: %d", g->p.move);
 	exit(EXIT_SUCCESS);
 }
 
@@ -65,10 +67,15 @@ int	main(int ac, char **av)
 	set_game(&game);
 	set_map(&game, av[1]);
 	check_map(&game);
-	game.mlx = mlx_init();
-	game.win = mlx_new_window(game.mlx, game.width * 64, game.height * 64, "so_long");
+	game.m = mlx_init(); // 이건 무 처리가 있나..?
+	game.w = mlx_new_window(game.m, game.wid * 64, game.hei * 64, "so_long"); // 오류 처리 했눈지?
+	if (!game.w)
+	{
+		map_free(&game);
+		error_handler("so_long: window create fail", errno);
+	}
 	print_map(&game);
-	mlx_hook(game.win, PRESS_KEY, 0, &play_game, &game);
-	mlx_hook(game.win, MOUSE_EXIT, 0, &exit_game, &game);
-	mlx_loop(game.mlx);
+	mlx_hook(game.w, PRESS_KEY, 0, &play_game, &game);
+	mlx_hook(game.w, MOUSE_EXIT, 0, &exit_game, &game);
+	mlx_loop(game.m);
 }

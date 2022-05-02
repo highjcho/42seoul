@@ -40,15 +40,34 @@ int main()
 	}
 
 
-	이동시에 할 거 
-	무브 카운트 증가
-	이전 P->0으로 바꾸고 
-	p x,y좌표 바꾸고
-	바뀐 좌표에 P로 바꾸고
-	print_map 다시 실행 <- 이건 계속 위에 그리는건가,,? 아예 이미지 파괴는 안되겠지
-	너무 다 그리는건 별론가;;? 걍 그 바뀐 두개만 바꿀까 그렇게 하자 ㅇㅇ
+내일 할 거
+1. 42헤더 넣기
+2. 놈 오류 찾기
+3. 맵 오류 다 검사하기 
+	1. 0,1,C,E,P 외에 다른 글자 들어왔을 경우
+	2. 벽이 다 1로 둘러싸여있는지
+	3. player != 1, c > 0, e > 0 인지 확인
+	4. 직사각형인지
+4. 보너스 해볼까? 2개만?
+	void	ft_print_moves(t_game *game)
+{
+	char	*text;
+	int		moves;
 
-	exit 면 검사 해야댐 아이템 그래서 아이템 안 먹었으면 걍 출구 위에 또 새로 그리는거만 ㅇㅇ
+	moves = game->moves;
+	text = ft_itoa(moves);
+	game->text = text;
+	mlx_string_put(game->mlx_ptr, game->win_ptr, 48, 20, YELLOW, text);
+	free(text);
+}
+	strin_put함수 이용해서 text 찍어주는데 itoa 사용하면 됨. 48,20은 적당한 위치 찾아주면 될거 같고
+	적은 랜덤 위치 (지최님 경우 -> x % 7 = 3, y % 5 = 2 인 경우에 적 생성)에
+	좌표가 'C'라면 'V'로 바꾸고 이미지 그려주고
+	무브에서 if map == 'V'면 you died 찍고 게임 끝내는 것으로 ㅇㅇ.
+	이경우 변경해야 하는거
+	ft_itoa에 대한 에러처리(map free 해줘야함)
+	text 할당 오류에 대한 에러처리
+	구조체에 text 추가 해야함
 
 
 void	print_move_count(t_game *game)

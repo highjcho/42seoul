@@ -19,7 +19,7 @@ char	*ft_strjoin(char *s1, char *s2)
 	char	*new;
 
 	if (!s1 || !s2)
-		return (0);
+		return (NULL);
 	new = (char *)ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
 	if (!new)
 		return (NULL);

@@ -1,54 +1,54 @@
 #include "so_long.h"
 
-static void	check_outside(t_game *game)
+static void	check_outside(t_game *g)
 {
 	int	i;
 
 	i = -1;
-	while(++i < game->width)
+	while(++i < g->wid)
 	{
-		if (game->map[0][i] != '1' || game->map[game->height - 1][i] != '1')
-			error_handler("Error\nso_long: invalid map format(not proper outside what)", errno);
+		if (g->map[0][i] != '1' || g->map[g->hei - 1][i] != '1')
+			error_handler("Error\nso_long: invalid map format", errno);
 	}
-	i = -1;
-	while(++i < game->height)
+	i = 0;
+	while(++i < g->hei - 1) // 조건에 이상없는 지 확인 필요
 	{
-		if (game->map[i][0] != '1' || game->map[i][game->width - 1] != '1') // 벽 중복 되는 부분 검사 안할 지 확인 필요
-			error_handler("Error\nso_long: invaild map format(not proper outside)", errno);
+		if (g->map[i][0] != '1' || g->map[i][g->wid - 1] != '1')
+			error_handler("Error\nso_long: invaild map format", errno);
 	}
 }
 
-static void	check_inside(t_game *game)
+static void	check_inside(t_game *g)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (++i < game->height)
+	while (++i < g->hei)
 	{
 		j = 0;
-		while (++j < game->width)
+		while (++j < g->wid)
 		{
-			if (game->map[i][j] == 'P')
+			if (g->map[i][j] == 'P')
 			{
-				game->p.p++;
-				game->p.x = j;
-				game->p.y = i;
+				g->p.p++;
+				g->p.x = j;
+				g->p.y = i;
 			}
-			else if (game->map[i][j] == 'C')
-				game->item++;
-			else if (game->map[i][j] == 'E')
-				game->exit++;
-			else if (game->map[i][j] != '1' && game->map[i][j] != '0')
-				error_handler("Error\nso_long: invalid map format(invalid arguments)", errno);
+			else if (g->map[i][j] == 'C')
+				g->item++;
+			else if (g->map[i][j] == 'E')
+				g->exit++;
+			else if (g->map[i][j] != '1' && g->map[i][j] != '0')
+				error_handler("Error\nso_long: invalid map format", errno);
 		}
 	}
 }
 
-void	check_map(t_game *game)
+void	check_map(t_game *g)
 {
-	check_outside(game);
-	check_inside(game);
-	if (game->p.p != 1 || !game->item || !game->exit)
+	check_outside(g);
+	check_inside(g);
+	if (g->p.p != 1 || !g->item || !g->exit)
 		error_handler("Error\nso_long: invalid map format(count fail)", errno);
 }

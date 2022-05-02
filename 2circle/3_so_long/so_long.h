@@ -5,7 +5,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
-# include <mlx.h>
 # include <sys/errno.h> // 사용 가능한가?
 # include "libft/libft.h"
 
@@ -14,7 +13,7 @@
 # define S			1
 # define D			2
 # define ESC		53
-# define PRESS_KEY	3
+# define PRESS_KEY	2
 # define MOUSE_EXIT	17
 # define UP			6
 # define DOWN		7
@@ -33,10 +32,10 @@ typedef struct	s_p
 typedef struct	s_img
 {
 	void	*p;
-	void	*wall;
-	void	*path;
-	void	*item;
-	void	*exit;
+	void	*w;
+	void	*r;
+	void	*i;
+	void	*e;
 }	t_img;
 
 typedef struct	s_game
@@ -45,20 +44,22 @@ typedef struct	s_game
 	int		exit;
 	int		item;
 	char	**map;
-	void	*mlx;
-	void	*win;
-	int		width;
-	int		height;
+	void	*m;
+	void	*w;
+	int		wid;
+	int		hei;
+	t_img	i;
 }	t_game;
 
-void	check_map(t_game *game);
-char	*get_next_line(int fd);
-char	**ft_split(t_game *game, char const *s, char c);
-void	print_map(t_game *game);
-int		play_game(int key_code, t_game *game);
-void	print_new_p(t_game *game, t_game *img, int flag, int new_r);
-void	double_free(t_game *game);
+void	check_map(t_game *g);
+char	*get_next_line(int fd, char *s);
+char	**ft_split(t_game *g, char const *s, char c);
+void	print_map(t_game *g);
+int		play_game(int key_code, t_game *g);
+void	print_new_p(t_game *g, int flag, int new_r);
+void	map_free(t_game *g);
+void	error_free(char *msg, char *s1, char *s2, int err);
 void	error_handler(char *msg, int err);
-int	exit_game(t_game *game);
+int		exit_game(t_game *g);
 
 #endif

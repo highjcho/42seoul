@@ -49,7 +49,7 @@ static void	ft_memmove(char *s, int len)
 		s[i++] = 0;
 }
 
-static char	*make_line(char *s1, char *s2)
+static char	*make_line(char *s1, char *s2, char *s)
 {
 	char	*new_ret;
 	int		s1_len;
@@ -63,7 +63,7 @@ static char	*make_line(char *s1, char *s2)
 	if (!new_ret)
 	{
 		free(s1);
-		error_handler("so_long: allocate failed", errno);
+		error_free("so_long: allocate failed", s, NULL, errno);
 	}
 	i = -1;
 	while (++i < s1_len)
@@ -75,7 +75,7 @@ static char	*make_line(char *s1, char *s2)
 	return (new_ret);
 }
 
-char	*get_next_line(int fd) // 4줄 넘음.. 확인 필요..
+char	*get_next_line(int fd, char *s)
 {
 	static char	buf[BUFFER_SIZE + 1];
 	char		*ret;
@@ -83,7 +83,7 @@ char	*get_next_line(int fd) // 4줄 넘음.. 확인 필요..
 
 	ret = ft_calloc(1, sizeof(char));
 	if (!ret)
-		return (NULL);
+		error_free("so_long: allocate failed", s, NULL, errno);
 	while (ft_strchr(ret))
 	{
 		if (!buf[0])
@@ -97,12 +97,9 @@ char	*get_next_line(int fd) // 4줄 넘음.. 확인 필요..
 				return (NULL);
 			}
 			else if (read_result < 0)
-			{
-				free(ret);
-				error_handler("so_long: allocate failed", errno);
-			}
+				error_free("so_long: allocate failed", s, ret, errno);
 		}
-		ret = make_line(ret, buf);
+		ret = make_line(ret, buf, s);
 	}
 	return (ret);
 }
