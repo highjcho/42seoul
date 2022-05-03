@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   play_game.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/03 09:28:00 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/05/03 09:28:29 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static void	move_up_down(t_game *game, char map, int ny)
@@ -29,7 +41,7 @@ static void	set_up_down(t_game *g, int direction)
 	g->p.move++;
 	printf("moves: %d\n", g->p.move);
 	if (map == 'E' && !g->item)
-		exit_game(g);
+		win_game(g);
 	move_up_down(g, map, ny);
 }
 
@@ -62,14 +74,14 @@ static void	set_left_right(t_game *g, int direction)
 	g->p.move++;
 	printf("moves: %d\n", g->p.move);
 	if (map == 'E' && !g->item)
-		exit_game(g);
+		win_game(g);
 	move_left_right(g, map, nx);
 }
 
 int	play_game(int key_code, t_game *g)
 {
 	if (key_code == ESC)
-		exit_game(g);
+		force_quit(g);
 	else if (key_code == W)
 		set_up_down(g, UP);
 	else if (key_code == A)

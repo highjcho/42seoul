@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/03 09:29:24 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/05/03 09:29:35 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 void	print_new_p(t_game *g, int flag, int new_r)
@@ -25,7 +37,7 @@ static void	set_image(t_game *g) // 오류 반환값 확인 처리 했는지,,?
 	if (!g->i.p || !g->i.w || !g->i.r || !g->i.i || !g->i.e)
 	{
 		map_free(g);
-		mlx_destroy_window(g);
+		mlx_destroy_window(g->m, g->w);
 		error_handler("so_long: set image fail", errno);
 	}
 }

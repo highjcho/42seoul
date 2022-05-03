@@ -17,20 +17,20 @@ MFALG = -lmlx -framework OpenGL -framework AppKit -lz
 AR = ar -rcs
 RM = rm -f
 
-MAN_DIR = ./
+MAN_DIR = ./srcs/
 MAN_FILES = so_long.c check_map.c get_next_line.c ft_split.c print_map.c play_game.c utils.c
 MAN_SRCS = $(addprefix $(MAN_DIR), $(MAN_FILES))
-OBJS = $(MAN_SRCS:.c=.o)
-# BONUS_DIR = ./bonus_srcs/
-# BONUS_FILES = main_bonus.c pipex_bonus.c set_cmd_bonus.c free_bonus.c
-# BONUS_SRCS = $(addprefix $(BONUS_DIR), $(BONUS_FILES))
-# BONUS_OBJS = $(BONUS_SRCS:.c=.o)
+MAN_OBJS = $(MAN_SRCS:.c=.o)
+BONUS_DIR = ./bonus_srcs/
+BONUS_FILES = so_long_bonus.c check_map_bonus.c get_next_line_bonus.c ft_split_bonus.c print_map_bonus.c play_game_bonus.c effect_bonus.c utils_bonus.c
+BONUS_SRCS = $(addprefix $(BONUS_DIR), $(BONUS_FILES))
+BONUS_OBJS = $(BONUS_SRCS:.c=.o)
 
-# ifdef BONUS
-# 	OBJS = $(BONUS_OBJS)
-# else
-# 	OBJS = $(MAN_OBJS)
-# endif
+ifdef BONUS
+	OBJS = $(BONUS_OBJS)
+else
+	OBJS = $(MAN_OBJS)
+endif
 
 all : $(SO_LONG)
 
@@ -46,7 +46,7 @@ bonus :
 
 clean : 
 	make -C libft clean
-	$(RM) $(OBJS)
+	$(RM) $(MAN_OBJS) $(BONUS_OBJS)
 
 fclean : clean
 	$(RM) ./libft/libft.a

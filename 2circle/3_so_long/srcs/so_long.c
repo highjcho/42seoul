@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/03 09:30:05 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/05/03 09:30:06 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long.h"
 
 static int	count_width(char *s)
@@ -24,14 +36,14 @@ static void	set_map(t_game *g, char *file)
 		error_handler("so_long: allocate failed", errno);
 	line = get_next_line(fd, tmp);
 	g->wid = count_width(line);
-	while(line)
+	while (line)
 	{
 		tmp = ft_strjoin(tmp, line);
 		if (!tmp)
 			error_free("so_long: allocate failed", line, NULL, errno);
 		line = get_next_line(fd, tmp);
 		if (line && g->wid != count_width(line))
-			error_handler("Error\nso_long: invalid map format", errno);
+			map_error(g, "Error\nso_long: The map must be rectangular");
 	}
 	close(fd);
 	g->map = ft_split(g, tmp, '\n');
@@ -50,11 +62,15 @@ static void	set_game(t_game *g)
 	g->map = NULL;
 }
 
-int	exit_game(t_game *g)
+int	force_quit(t_game *g)
 {
 	map_free(g);
+	mlx_destroy_image(g->m, g->i.p);
+	mlx_destroy_image(g->m, g->i.w);
+	mlx_destroy_image(g->m, g->i.r);
+	mlx_destroy_image(g->m, g->i.i);
+	mlx_destroy_image(g->m, g->i.e);
 	mlx_destroy_window(g->m, g->w);
-	printf("so_long: Escape uccess! You're total move count: %d", g->p.move);
 	exit(EXIT_SUCCESS);
 }
 
@@ -76,6 +92,6 @@ int	main(int ac, char **av)
 	}
 	print_map(&game);
 	mlx_hook(game.w, PRESS_KEY, 0, &play_game, &game);
-	mlx_hook(game.w, MOUSE_EXIT, 0, &exit_game, &game);
+	mlx_hook(game.w, MOUSE_EXIT, 0, &force_quit, &game);
 	mlx_loop(game.m);
 }
