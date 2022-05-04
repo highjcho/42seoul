@@ -12,27 +12,6 @@
 
 #include "so_long.h"
 
-
-void	win_game(t_game *g)
-{
-	map_free(g);
-	mlx_destroy_image(g->m, g->i.p);
-	mlx_destroy_image(g->m, g->i.w);
-	mlx_destroy_image(g->m, g->i.r);
-	mlx_destroy_image(g->m, g->i.i);
-	mlx_destroy_image(g->m, g->i.e);
-	mlx_destroy_window(g->m, g->w);
-	printf("so_long: Escape uccess! You're total move count: %d", g->p.move);
-	exit(EXIT_SUCCESS);
-}
-
-void	map_error(t_game *g, char *msg)
-{
-	free(g->map);
-	printf("%s\n", msg);
-	exit(EXIT_FAILURE);
-}
-
 void	map_free(t_game *g)
 {
 	int	i;
@@ -44,6 +23,32 @@ void	map_free(t_game *g)
 		i++;
 	}
 	free(g->map);
+}
+
+void	map_error(t_game *g, char *msg)
+{
+	if (g->map)
+		map_free(g);
+	printf("%s\n", msg);
+	exit(EXIT_FAILURE);
+}
+
+void	destroy_all(t_game *g)
+{
+	map_free(g);
+	if (g->i.p)
+		mlx_destroy_image(g->m, g->i.p);
+	if (g->i.w)
+		mlx_destroy_image(g->m, g->i.w);
+	if (g->i.r)
+		mlx_destroy_image(g->m, g->i.r);
+	if (g->i.i)
+		mlx_destroy_image(g->m, g->i.i);
+	if (g->i.c)
+		mlx_destroy_image(g->m, g->i.c);
+	if (g->i.e)
+		mlx_destroy_image(g->m, g->i.e);
+	mlx_destroy_window(g->m, g->w);
 }
 
 void	error_free(char *msg, char *s1, char *s2, int err)
@@ -59,4 +64,3 @@ void	error_handler(char *msg, int err)
 	perror(msg);
 	exit(err);
 }
-

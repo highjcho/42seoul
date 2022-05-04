@@ -40,11 +40,11 @@ static void	set_up_down(t_game *g, int direction)
 	map = g->map[ny][g->p.x];
 	if (map == '1' || (map == 'E' && g->item))
 		return ;
-	g->p.move++;
+	g->p.moves++;
 	if (map == 'E' && !g->item)
 	{
 		destroy_all(g);
-		printf("so_long: Escape uccess! You're total move count: %d", g->p.move);
+		printf("so_long: Escape success! (total moves: %d)", g->p.moves);
 		exit(EXIT_SUCCESS);
 	}
 	move_up_down(g, map, ny);
@@ -79,11 +79,11 @@ static void	set_left_right(t_game *g, int direction)
 	map = g->map[g->p.y][nx];
 	if (map == '1' || (map == 'E' && g->item))
 		return ;
-	g->p.move++;
+	g->p.moves++;
 	if (map == 'E' && !g->item)
 	{
 		destroy_all(g);
-		printf("so_long: Escape uccess! You're total move count: %d", g->p.move);
+		printf("so_long: Escape success! (total moves: %d)", g->p.moves);
 		exit(EXIT_SUCCESS);
 	}
 	move_left_right(g, map, nx);
@@ -102,6 +102,5 @@ int	play_game(int key_code, t_game *g)
 		set_up_down(g, DOWN);
 	else if (key_code == D)
 		set_left_right(g, RIGHT);
-	
 	return (0);
 }

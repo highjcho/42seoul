@@ -1,9 +1,8 @@
 #include "so_long_bonus.h"
 
-void	print_moves(t_game *g)
+static void	redraw_img(t_game *g)
 {
-	g->text = ft_itoa(g->p.move);
-	if (g->p.move > 1)
+	if (g->p.moves > 1)
 	{
 		if (g->map[1][1] == '1')
 			mlx_put_image_to_window(g->m, g->w, g->i.w, 64, 64);
@@ -24,6 +23,17 @@ void	print_moves(t_game *g)
 		else if (g->map[1][1] == 'E' && !g->item)
 			mlx_put_image_to_window(g->m, g->w, g->i.e, 64, 64);
 	}
+}
+
+void	print_moves(t_game *g)
+{
+	g->text = ft_itoa(g->p.moves);
+	if (!g->text)
+	{
+		destroy_all(g);
+		error_handler("so_long: allocate failed", errno);
+	}
+	redraw_img(g);
 	mlx_string_put(g->m, g->w, 64,64, YELLOW, g->text);
 	free(g->text);
 }

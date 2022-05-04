@@ -1,11 +1,11 @@
-#ifndef SO_LONG_H
-#define SO_LONG_H
+#ifndef SO_LONG_BONUS_H
+#define SO_LONG_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
 # include <stdio.h>
-# include <sys/errno.h> // 사용 가능한가?
+# include <sys/errno.h>
 # include <mlx.h>
 # include "../libft/libft.h"
 
@@ -28,7 +28,7 @@ typedef struct	s_p
 	int	p;
 	int	x;
 	int	y;
-	int	move;
+	int	moves;
 }	t_p;
 
 typedef struct	s_img
@@ -55,12 +55,13 @@ typedef struct	s_game
 	t_img	i;
 }	t_game;
 
-int		force_quit(t_game *g);
 char	*get_next_line(int fd, char *s);
 char	**ft_split(t_game *g, char const *s, char c);
+void	check_rectangular(t_game *g, int wid, char *s1, char *s2);
 void	check_map(t_game *g);
 void	print_map(t_game *g);
 int		play_game(int key_code, t_game *g);
+int		force_quit(t_game *g);
 void	change_exit(t_game *g);
 void	print_moves(t_game *g);
 void	print_new_p(t_game *g, int flag, int new_r);

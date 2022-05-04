@@ -12,14 +12,6 @@
 
 #include "so_long_bonus.h"
 
-
-void	map_error(t_game *g, char *msg)
-{
-	free(g->map);
-	printf("%s\n", msg);
-	exit(EXIT_FAILURE);
-}
-
 void	map_free(t_game *g)
 {
 	int	i;
@@ -31,6 +23,14 @@ void	map_free(t_game *g)
 		i++;
 	}
 	free(g->map);
+}
+
+void	map_error(t_game *g, char *msg)
+{
+	if (g->map)
+		map_free(g);
+	printf("%s\n", msg);
+	exit(EXIT_FAILURE);
 }
 
 void	destroy_all(t_game *g)

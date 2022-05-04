@@ -18,11 +18,13 @@ char	*ft_strjoin(char *s1, char *s2)
 	size_t	j;
 	char	*new;
 
-	if (!s1 || !s2)
-		return (NULL);
 	new = (char *)ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
 	if (!new)
+	{
+		free(s1);
+		free(s2);
 		return (NULL);
+	}
 	i = -1;
 	while (++i < ft_strlen(s1))
 		new[i] = s1[i];

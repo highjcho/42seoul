@@ -12,6 +12,16 @@
 
 #include "so_long_bonus.h"
 
+void	check_rectangular(t_game *g, int wid, char *s1, char *s2)
+{
+	if (g->wid != wid)
+	{
+		free(s1);
+		free(s2);
+		map_error(g, "Error\nso_long: The map must be rectangular");
+	}
+}
+
 static void	check_outside(t_game *g)
 {
 	int	i;
@@ -23,10 +33,10 @@ static void	check_outside(t_game *g)
 			map_error(g, "Error\nso_long: The map must be closed by walls");
 	}
 	i = 0;
-	while (++i < g->hei - 1) // 조건에 이상없는 지 확인 필요
+	while (++i < g->hei - 1)
 	{
 		if (g->map[i][0] != '1' || g->map[i][g->wid - 1] != '1')
-			map_error(g, "Error\nso_long: The map must be closed by walls");
+			map_error(g, "Error\nso_lon: The map must be closed by walls");
 	}
 }
 
@@ -52,7 +62,7 @@ static void	check_inside(t_game *g)
 			else if (g->map[i][j] == 'E')
 				g->exit++;
 			else if (g->map[i][j] != '1' && g->map[i][j] != '0')
-				map_error(g, "Error\nso_long: The map contains invalid characters");
+				map_error(g, "Error\nThe map contains invalid characters");
 		}
 	}
 }
@@ -62,5 +72,5 @@ void	check_map(t_game *g)
 	check_outside(g);
 	check_inside(g);
 	if (g->p.p != 1 || !g->item || !g->exit)
-		map_error(g, "Error\nso_long: Invalid number of components in map");
+		map_error(g, "Error\nInvalid number of components on the map");
 }

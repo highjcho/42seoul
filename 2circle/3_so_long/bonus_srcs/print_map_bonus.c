@@ -24,12 +24,12 @@ void	print_new_p(t_game *g, int flag, int new_r)
 		mlx_put_image_to_window(g->m, g->w, g->i.p, g->p.x * 64, g->p.y * 64);
 }
 
-static void	set_image(t_game *g) // 오류 반환값 확인 처리 했는지,,?
+static void	set_image(t_game *g)
 {
 	int	w;
 	int	h;
 
-	g->i.p = mlx_xpm_file_to_image(g->m, "./imgs/player.xpm", &w, &h); // 할당 해제 해줘야 하나?
+	g->i.p = mlx_xpm_file_to_image(g->m, "./imgs/player.xpm", &w, &h);
 	g->i.w = mlx_xpm_file_to_image(g->m, "./imgs/wall.xpm", &w, &h);
 	g->i.r = mlx_xpm_file_to_image(g->m, "./imgs/road.xpm", &w, &h);
 	g->i.i = mlx_xpm_file_to_image(g->m, "./imgs/item.xpm", &w, &h);

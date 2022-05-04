@@ -12,18 +12,20 @@
 
 #include "so_long.h"
 
-static void	move_up_down(t_game *game, char map, int ny)
+static void	move_up_down(t_game *g, char map, int ny)
 {
-	game->map[game->p.y][game->p.x] = '0';
-	print_new_p(game, 1, 0);
+	g->map[g->p.y][g->p.x] = '0';
+	print_new_p(g, 1, 0);
 	if (map == 'C')
 	{
-		game->item--;
-		print_new_p(game, 2, ny);
+		g->item--;
+		if (!g->item)
+			change_exit(g);
+		print_new_p(g, 2, ny);
 	}
-	game->map[ny][game->p.x] = 'P';
-	game->p.y = ny;
-	print_new_p(game, 4, 0);
+	g->map[ny][g->p.x] = 'P';
+	g->p.y = ny;
+	print_new_p(g, 4, 0);
 }
 
 static void	set_up_down(t_game *g, int direction)
@@ -38,11 +40,15 @@ static void	set_up_down(t_game *g, int direction)
 	map = g->map[ny][g->p.x];
 	if (map == '1' || (map == 'E' && g->item))
 		return ;
-	g->p.move++;
-	printf("moves: %d\n", g->p.move);
+	g->p.moves++;
 	if (map == 'E' && !g->item)
-		win_game(g);
+	{
+		destroy_all(g);
+		printf("so_long: Escape success! (total moves: %d)", g->p.moves);
+		exit(EXIT_SUCCESS);
+	}
 	move_up_down(g, map, ny);
+	printf("moves: %d\n", g->p.moves);
 }
 
 static void	move_left_right(t_game *g, char map, int nx)
@@ -52,6 +58,8 @@ static void	move_left_right(t_game *g, char map, int nx)
 	if (map == 'C')
 	{
 		g->item--;
+		if (!g->item)
+			change_exit(g);
 		print_new_p(g, 3, nx);
 	}
 	g->map[g->p.y][nx] = 'P';
@@ -71,11 +79,15 @@ static void	set_left_right(t_game *g, int direction)
 	map = g->map[g->p.y][nx];
 	if (map == '1' || (map == 'E' && g->item))
 		return ;
-	g->p.move++;
-	printf("moves: %d\n", g->p.move);
+	g->p.moves++;
 	if (map == 'E' && !g->item)
-		win_game(g);
+	{
+		destroy_all(g);
+		printf("so_long: Escape success! (total moves: %d)", g->p.moves);
+		exit(EXIT_SUCCESS);
+	}
 	move_left_right(g, map, nx);
+	printf("moves: %d\n", g->p.moves);
 }
 
 int	play_game(int key_code, t_game *g)

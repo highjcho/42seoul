@@ -12,6 +12,24 @@
 
 #include "so_long_bonus.h"
 
+static void	init_game(t_game *g)
+{
+	g->p.p = 0;
+	g->p.x = 0;
+	g->p.y = 0;
+	g->p.moves = 0;
+	g->exit = 0;
+	g->item = 0;
+	g->map = NULL;
+	g->text = NULL;
+	g->i.p = NULL;
+	g->i.w = NULL;
+	g->i.r = NULL;
+	g->i.i = NULL;
+	g->i.c = NULL;
+	g->i.e = NULL;
+}
+
 static int	count_width(char *s)
 {
 	int	i;
@@ -40,38 +58,20 @@ static void	set_map(t_game *g, char *file)
 	{
 		tmp = ft_strjoin(tmp, line);
 		if (!tmp)
-			error_free("so_long: allocate failed", line, NULL, errno);
+			error_handler("so_long: allocate failed", errno);
 		line = get_next_line(fd, tmp);
-		if (line && g->wid != count_width(line))
-			map_error(g, "Error\nso_long: The map must be rectangular");
+		check_rectangular(g, count_width(line), tmp, line);
 	}
 	close(fd);
 	g->map = ft_split(g, tmp, '\n');
 	if (!g->map)
 		error_free("so_long: allocate failed", tmp, NULL, errno);
-}
-
-static void	set_game(t_game *g)
-{
-	g->p.p = 0;
-	g->p.x = 0;
-	g->p.y = 0;
-	g->p.move = 0;
-	g->exit = 0;
-	g->item = 0;
-	g->map = NULL;
-	g->text = NULL;
+	free(tmp);
 }
 
 int	force_quit(t_game *g)
 {
-	map_free(g);
-	mlx_destroy_image(g->m, g->i.p);
-	mlx_destroy_image(g->m, g->i.w);
-	mlx_destroy_image(g->m, g->i.r);
-	mlx_destroy_image(g->m, g->i.i);
-	mlx_destroy_image(g->m, g->i.e);
-	mlx_destroy_window(g->m, g->w);
+	destroy_all(g);
 	exit(EXIT_SUCCESS);
 }
 
@@ -80,17 +80,20 @@ int	main(int ac, char **av)
 	t_game	game;
 
 	if (ac != 2)
-		error_handler("so_long: invalid arguments", errno);
-	set_game(&game);
+		error_handler("so_long: invalid arguments", EXIT_FAILURE);
+	init_game(&game);
 	set_map(&game, av[1]);
 	check_map(&game);
 	game.m = mlx_init();
 	if (!game.m)
+	{
+		map_free(&game);
 		error_handler("so_long: mlx connect fail", errno);
+	}
 	game.w = mlx_new_window(game.m, game.wid * 64, game.hei * 64, "so_long");
 	if (!game.w)
 	{
-		destroy_all(&game);
+		map_free(&game);
 		error_handler("so_long: window create fail", errno);
 	}
 	print_map(&game);
