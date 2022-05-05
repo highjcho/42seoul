@@ -14,7 +14,6 @@ SO_LONG = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g3
 MFALG = -lmlx -framework OpenGL -framework AppKit -lz
-AR = ar -rcs
 RM = rm -f
 
 MAN_DIR = ./srcs/

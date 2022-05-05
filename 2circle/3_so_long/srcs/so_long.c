@@ -34,6 +34,8 @@ static int	count_width(char *s)
 	int	i;
 
 	i = 0;
+	if (!s)
+		return (0);
 	while (s[i] && s[i] != '\n')
 		i++;
 	return (i);
@@ -99,4 +101,5 @@ int	main(int ac, char **av)
 	mlx_hook(game.w, PRESS_KEY, 0, &play_game, &game);
 	mlx_hook(game.w, MOUSE_EXIT, 0, &force_quit, &game);
 	mlx_loop(game.m);
+	return (0);
 }

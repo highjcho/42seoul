@@ -14,6 +14,8 @@
 
 void	check_rectangular(t_game *g, int wid, char *s1, char *s2)
 {
+	if (!s2)
+		return ;
 	if (g->wid != wid)
 	{
 		free(s1);

@@ -24,6 +24,23 @@ void	print_new_p(t_game *g, int flag, int new_r)
 		mlx_put_image_to_window(g->m, g->w, g->i.p, g->p.x * 64, g->p.y * 64);
 }
 
+void	change_exit(t_game *g)
+{
+	int		i;
+	int		j;
+
+	i = -1;
+	while (++i < g->hei)
+	{
+		j = -1;
+		while (++j < g->wid)
+		{
+			if (g->map[i][j] == 'E')
+				mlx_put_image_to_window(g->m, g->w, g->i.e, j * 64, i * 64);
+		}
+	}
+}
+
 static void	set_image(t_game *g)
 {
 	int	w;

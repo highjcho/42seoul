@@ -72,6 +72,7 @@ static char	*make_line(char *s1, char *s2, char *s)
 	while (++j < s2_len)
 		new_ret[i + j] = s2[j];
 	ft_memmove(s2, s2_len);
+	free(s1);
 	return (new_ret);
 }
 

@@ -12,7 +12,7 @@
 
 #include "libft.h"
 
-static char	*into_a(char	*a, int n, int	last)
+static char	*into_a(char *a, int n, int last)
 {
 	if (n == -2147483648)
 	{
