@@ -33,7 +33,6 @@
 # define LEFT			8
 # define RIGHT			9
 # define BUFFER_SIZE	1024
-# define YELLOW			16770223
 
 typedef struct s_p
 {

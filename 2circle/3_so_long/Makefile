@@ -51,6 +51,8 @@ fclean : clean
 	$(RM) ./libft/libft.a
 	$(RM) $(SO_LONG) 
 
-re : fclean all
+re : 
+	make fclean
+	make all
 
 .PHONY : all bonus clean fclean re
