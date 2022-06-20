@@ -14,7 +14,6 @@ SO_LONG = so_long
 CC = gcc
 CFLAGS = -Wall -Wextra -Werror -g3
 MFALG = -lmlx -framework OpenGL -framework AppKit -lz
-AR = ar -rcs
 RM = rm -f
 
 MAN_DIR = ./srcs/
@@ -52,6 +51,8 @@ fclean : clean
 	$(RM) ./libft/libft.a
 	$(RM) $(SO_LONG) 
 
-re : fclean all
+re : 
+	make fclean
+	make all
 
 .PHONY : all bonus clean fclean re

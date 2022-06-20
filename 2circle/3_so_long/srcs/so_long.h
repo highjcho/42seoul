@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/05 14:54:39 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/05/05 14:54:41 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
-#define SO_LONG_H
+# define SO_LONG_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -21,9 +33,8 @@
 # define LEFT			8
 # define RIGHT			9
 # define BUFFER_SIZE	1024
-# define YELLOW			16770223
 
-typedef struct	s_p
+typedef struct s_p
 {
 	int	p;
 	int	x;
@@ -31,7 +42,7 @@ typedef struct	s_p
 	int	moves;
 }	t_p;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*p;
 	void	*w;
@@ -41,7 +52,7 @@ typedef struct	s_img
 	void	*e;
 }	t_img;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	t_p		p;
 	int		exit;

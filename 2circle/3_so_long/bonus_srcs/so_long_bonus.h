@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long_bonus.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/05 14:57:07 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/05/05 14:57:16 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_BONUS_H
-#define SO_LONG_BONUS_H
+# define SO_LONG_BONUS_H
 
 # include <unistd.h>
 # include <stdlib.h>
@@ -23,7 +35,7 @@
 # define BUFFER_SIZE	1024
 # define YELLOW			16770223
 
-typedef struct	s_p
+typedef struct s_p
 {
 	int	p;
 	int	x;
@@ -31,7 +43,7 @@ typedef struct	s_p
 	int	moves;
 }	t_p;
 
-typedef struct	s_img
+typedef struct s_img
 {
 	void	*p;
 	void	*w;
@@ -41,7 +53,7 @@ typedef struct	s_img
 	void	*e;
 }	t_img;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	t_p		p;
 	int		exit;

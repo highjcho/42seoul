@@ -44,6 +44,7 @@ static void	set_up_down(t_game *g, int direction)
 	if (map == 'E' && !g->item)
 	{
 		destroy_all(g);
+		printf("moves: %d\n", g->p.moves);
 		printf("so_long: Escape success! (total moves: %d)", g->p.moves);
 		exit(EXIT_SUCCESS);
 	}
@@ -83,6 +84,7 @@ static void	set_left_right(t_game *g, int direction)
 	if (map == 'E' && !g->item)
 	{
 		destroy_all(g);
+		printf("moves: %d\n", g->p.moves);
 		printf("so_long: Escape success! (total moves: %d)", g->p.moves);
 		exit(EXIT_SUCCESS);
 	}

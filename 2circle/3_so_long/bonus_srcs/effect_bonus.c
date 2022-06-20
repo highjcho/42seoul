@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   effect_bonus.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/05/05 14:55:50 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/05/05 14:55:51 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "so_long_bonus.h"
 
 static void	redraw_img(t_game *g)
@@ -34,24 +46,6 @@ void	print_moves(t_game *g)
 		error_handler("so_long: allocate failed", errno);
 	}
 	redraw_img(g);
-	mlx_string_put(g->m, g->w, 64,64, YELLOW, g->text);
+	mlx_string_put(g->m, g->w, 64, 64, YELLOW, g->text);
 	free(g->text);
-}
-
-void	change_exit(t_game *g)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	while (++i < g->hei)
-	{
-		j = -1;
-		while (++j < g->wid)
-		{
-			if (g->map[i][j] == 'E')
-				mlx_put_image_to_window(g->m, g->w, g->i.e, j * 64, i * 64);
-		}
-	}
-
 }
