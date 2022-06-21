@@ -22,7 +22,6 @@ static void	set_input(t_arg *args, char *infile)
 		error_handler("pipex: file open failed", errno);
 	dup_ret = dup2(in_fd, 0);
 	close(in_fd);
-	dup_ret = 0;
 	if (dup_ret < 0)
 		error_handler("pipex: file dup failed", errno);
 	args->path = NULL;

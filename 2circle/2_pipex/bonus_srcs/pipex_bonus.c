@@ -34,6 +34,7 @@ int	pipex(t_arg *args, char **envp, int read_fd)
 		all_free(args, "pipex: fork failed", errno);
 	if (pid == 0)
 	{
+		printf("read: %d, pipe_in: %d\n", read_fd, pipe_fd[0]);
 		close(pipe_fd[0]);
 		dup_fd(args, read_fd, STDIN_FILENO);
 		dup_fd(args, pipe_fd[1], STDOUT_FILENO);
