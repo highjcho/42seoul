@@ -6,11 +6,21 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:02 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/06/21 19:27:48 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/06/22 15:25:10 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+void	set_time()
+{
+	struct timeval	time;
+
+	if (gettimeofday(&time, NULL) != 0)
+		return ; // 에러처리 확인
+	time.tv_sec -= time.tv_sec;
+	time.tv_usec -= time.tv_usec;
+}
 
 long	get_cur_time()
 {

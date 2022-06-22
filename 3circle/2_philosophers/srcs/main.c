@@ -6,13 +6,13 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:59:46 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/06/21 20:18:28 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/06/22 16:52:19 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-static void	*set_time(void	*arg) // 반환값을 받아서 쓸게 없음;고민필
+void	*start_philo(void	*arg) // 반환값을 받아서 쓸게 없음;고민필
 {
 	t_info	*info;
 	t_philo	*philo;
@@ -20,28 +20,37 @@ static void	*set_time(void	*arg) // 반환값을 받아서 쓸게 없음;고민�
 	info = (t_info *)arg;
 	philo = &info->philos[info->id];
 	philo->id = info->id + 1;
-	philo->starve = info->start + info->t_die;
 	philo->alive = TRUE;
 	// printf("thread: id: %d, start: %ld, starve: %ld\n", philo->id, info->start, philo->starve);
 	while (philo->alive)
 	{
-		do_eat(); // do_ea
-		do_sleep();
-		do_think();
+		take_fork(info, philo);
+		do_eat(info, philo); // 잇 전에 포크 집는 거 먼저 하기 // 
+		do_sleep(info, philo);
+		do_think(info, philo);
+		if (get_cur_time() > philo->starve)
+			philo->alive = FALSE; 
 	}
 	return (NULL);
 }
 
 static int	init_task(t_info *info, int count)
 {
-	int	i;
+	int	check;
 
 	info->start = get_cur_time();
-	i = -1;
-	while (++i < count)
+	if (!make_forks(info))
+		return (FALSE);
+	if (!make_odd_philos(info))
+	{
+		make
+		return (FALSE);
+	}
+	if (!make_)
+	while (++i < count) // 뮤텍스 이닛 따로 처리하고 쓰레드 크리에이트를 짝홀로 나누기
 	{
 		info->id = i;
-		if (pthread_create(&(info->philos[i].philo), NULL, set_time, info) != 0)
+		if (pthread_create(&(info->philos[i].philo), NULL, start_philo, info) != 0)
 		{
 			printf("thread create fail\n");
 			return (FALSE);
@@ -51,7 +60,7 @@ static int	init_task(t_info *info, int count)
 			printf("mutex init fail\n");
 			return (FALSE);
 		}
-		// usleep(10);
+		usleep(5);
 	}
 	return (TRUE);
 }
@@ -100,8 +109,5 @@ int	main(int ac, char **av)
 	i = -1;
 	while (++i < info.count)
 		pthread_join(info.philos[i].philo, (void *)&status);
-	i = -1;
-	while (++i < info.count)
-		printf("%d philo: starve : %ld, id: %d\n", i, info.philos[i].starve, info.philos[i].id);
 	return (0);
 }

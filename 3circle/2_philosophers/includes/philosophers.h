@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:55:51 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/06/21 20:11:20 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/06/22 16:50:03 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ typedef struct	s_philo
 typedef struct	s_info
 {
 	int				count;
-	int				t_die;
+	int				t_die; // 롱형으로 바바꿀꿀지  생생각각
 	int				t_eat;
 	int				t_sleep;
 	int				must_eat;
@@ -46,8 +46,12 @@ typedef struct	s_info
 # define FALSE 0
 
 // void	*set_time(void *arg);
-int		do_task(t_info *info);
+void	*start_philo(void	*arg);
+void	do_eat(t_info *info, t_philo *philo);
+void	do_sleep(t_info *info, t_philo *philo);
+void	do_think(t_info *info, t_philo *philo);
 long	get_cur_time();
+void	set_time();
 int		ft_atoi(char *s);
 
 #endif
