@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:55:51 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/06/22 16:50:03 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/06/28 17:12:47 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,17 @@ typedef struct	s_info
 # define TRUE 1
 # define FALSE 0
 
-// void	*set_time(void *arg);
+int		make_forks(t_info *info);
+int		make_odd_philos(t_info *info);
+int		make_even_philos(t_info *info);
 void	*start_philo(void	*arg);
+void	take_fork(t_info *info, t_philo *philo);
 void	do_eat(t_info *info, t_philo *philo);
 void	do_sleep(t_info *info, t_philo *philo);
 void	do_think(t_info *info, t_philo *philo);
 long	get_cur_time();
 void	set_time();
+void	destroy_forks(t_info *info, int cnt);
 int		ft_atoi(char *s);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:59:46 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/06/22 16:52:19 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/06/28 19:24:18 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,42 +25,26 @@ void	*start_philo(void	*arg) // 반환값을 받아서 쓸게 없음;고민필
 	while (philo->alive)
 	{
 		take_fork(info, philo);
-		do_eat(info, philo); // 잇 전에 포크 집는 거 먼저 하기 // 
 		do_sleep(info, philo);
 		do_think(info, philo);
-		if (get_cur_time() > philo->starve)
-			philo->alive = FALSE; 
 	}
 	return (NULL);
 }
 
-static int	init_task(t_info *info, int count)
+static int	init_task(t_info *info)
 {
-	int	check;
-
 	info->start = get_cur_time();
 	if (!make_forks(info))
 		return (FALSE);
 	if (!make_odd_philos(info))
 	{
-		make
+		destroy_forks(info, info->count);
 		return (FALSE);
 	}
-	if (!make_)
-	while (++i < count) // 뮤텍스 이닛 따로 처리하고 쓰레드 크리에이트를 짝홀로 나누기
+	if (!make_even_philos(info))
 	{
-		info->id = i;
-		if (pthread_create(&(info->philos[i].philo), NULL, start_philo, info) != 0)
-		{
-			printf("thread create fail\n");
-			return (FALSE);
-		}
-		if (pthread_mutex_init(&info->forks[i], NULL) != 0)
-		{
-			printf("mutex init fail\n");
-			return (FALSE);
-		}
-		usleep(5);
+		destroy_forks(info, info->count);
+		return (FALSE); // 실패 시 쓰레드 없애는 거 반복문 돌면서 어케할지 생각 필요
 	}
 	return (TRUE);
 }
@@ -87,6 +71,32 @@ static int	init_info(t_info *info, char **av)
 	return (TRUE);
 }
 
+static void	check_status(t_info *info)
+{
+	t_philo	philo;
+	long	time;
+	int		i;
+	int		died;
+
+	died = 0;
+	while (died != info->count)
+	{
+		i = -1;
+		while (++i < info->count)
+		{
+			philo = info->philos[i];
+			if (philo.alive == FALSE && philo.id != FALSE)
+			{
+				time = get_cur_time() - info->start;
+				printf("%ld %d died\n", time, philo.id);
+				pthread_detach(philo.philo);
+				info->philos[i].id = FALSE; // philo.philo하면 값 안 바뀌나?
+				died++;
+			}
+		}
+	}
+}
+
 int	main(int ac, char **av)
 {
 	t_info	info;
@@ -95,19 +105,8 @@ int	main(int ac, char **av)
 		return (0);
 	if (!init_info(&info, av))
 		return (0);
-	if (!init_task(&info, info.count))
-	{
-		free(info.philos);
-		free(info.forks);
+	if (!init_task(&info))
 		return (0);
-	}
-	// usleep(500000);
-	// do_task(&info);
-	// monitor -> 각 철학자별로 죽었는지
-	int i;
-	int	status = 0;
-	i = -1;
-	while (++i < info.count)
-		pthread_join(info.philos[i].philo, (void *)&status);
+	check_status(&info);
 	return (0);
 }
