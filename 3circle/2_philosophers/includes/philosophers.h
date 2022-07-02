@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:55:51 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/06/28 17:12:47 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/02 20:39:22 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_philo
 {
 	int				id;
 	int				alive;
+	int				eat;
 	long			end_eat;
 	long			end_sleep;
 	long			starve;
@@ -37,6 +38,7 @@ typedef struct	s_info
 	int				t_sleep;
 	int				must_eat;
 	int				id;
+	int				full;
 	long			start;
 	pthread_mutex_t	*forks;
 	t_philo			*philos;
@@ -54,7 +56,7 @@ void	do_eat(t_info *info, t_philo *philo);
 void	do_sleep(t_info *info, t_philo *philo);
 void	do_think(t_info *info, t_philo *philo);
 long	get_cur_time();
-void	set_time();
+void	print_philo(t_philo *philo, long time, char *msg);
 void	destroy_forks(t_info *info, int cnt);
 int		ft_atoi(char *s);
 

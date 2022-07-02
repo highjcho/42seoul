@@ -6,20 +6,17 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:02 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/06/22 15:25:10 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/02 20:56:26 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void	set_time()
+void	print_philo(t_philo *philo, long time, char *msg)
 {
-	struct timeval	time;
-
-	if (gettimeofday(&time, NULL) != 0)
-		return ; // 에러처리 확인
-	time.tv_sec -= time.tv_sec;
-	time.tv_usec -= time.tv_usec;
+	if (!philo->alive)
+		return ;
+	printf("%ld %d %s\n", time, philo->id, msg);
 }
 
 long	get_cur_time()
@@ -38,7 +35,7 @@ int	ft_atoi(char *s)
 
 	result = 0;
 	if (!s)
-		return (result);
+		return (-2);
 	if (*s == '-')
 		return (-1);
 	if (*s == '+')
