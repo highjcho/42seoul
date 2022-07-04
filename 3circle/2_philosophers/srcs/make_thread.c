@@ -6,72 +6,65 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:44:21 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/02 21:04:16 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/04 18:59:03 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-int	make_forks(t_info *info)
+static int	make_philos(t_info *info)
 {
 	int	i;
 
 	i = -1;
 	while (++i < info->count)
 	{
-		if (pthread_mutex_init(&info->forks[i], NULL) != 0)
-		{
-			destroy_forks(info, i - 1);
-			printf("mutex init fail\n"); // 에러처리, 만든 부분까지
-			return (FALSE);
-		}
+		info->id = i;
+		if (pthread_create(&(info->philos[i].philo), NULL, \
+			start_philo, info) != 0)
+			return (print_error("create pthread fail"));
+		info->make++;
+		usleep(5);
 	}
 	return (TRUE);
 }
 
-void destroy_forks(t_info *info, int cnt)
+static void	*set_start_time(void *arg)
+{
+	t_info	*info;
+
+	info = (t_info *)arg;
+	pthread_mutex_lock(&info->done);
+	while (info->make < info->count)
+		continue ;
+	info->start = get_cur_time();
+	pthread_mutex_unlock(&info->done);
+	return (NULL);
+}
+
+int	make_thread(t_info *info)
+{	
+	if (pthread_create(&info->check, NULL, set_start_time, info) != 0)
+	{
+		destroy_all(info);
+		return (print_error("create pthread fail"));
+	}
+	pthread_detach(info->check);
+	usleep(10);
+	if (!make_philos(info))
+	{
+		join_thread(info, info->make - 2);
+		destroy_all(info);
+		return (FALSE);
+	}
+	return (TRUE);
+}
+
+void	join_thread(t_info *info, int cnt)
 {
 	int	i;
 
 	i = -1;
 	while (++i < cnt)
-		pthread_mutex_destroy(&info->forks[i]);
-}
-
-int	make_even_philos(t_info *info)
-{
-	int	i;
-
-	i = 0;
-	while (++i < info->count)
-	{
-		info->id = i;
-		if (pthread_create(&(info->philos[i].philo), NULL, start_philo, info) != 0)
-		{
-			printf("thread create fail\n");
-			return (FALSE);
-		}
-		i++;
-		usleep(5);
-	}
-	return (TRUE);
-}
-
-int	make_odd_philos(t_info *info)
-{
-	int	i;
-
-	i = -1;
-	while (++i < info->count)
-	{
-		info->id = i;
-		if (pthread_create(&(info->philos[i].philo), NULL, start_philo, info) != 0)
-		{
-			printf("thread create fail\n");
-			return (FALSE);
-		}
-		i++;
-		usleep(5);
-	}
-	return (TRUE);
+		pthread_join(info->philos[i].philo, NULL);
 }

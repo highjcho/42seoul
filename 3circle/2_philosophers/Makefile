@@ -6,17 +6,17 @@
 #    By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/20 15:39:52 by hyunjcho          #+#    #+#              #
-#    Updated: 2022/06/28 16:46:17 by hyunjcho         ###   ########.fr        #
+#    Updated: 2022/07/04 19:57:57 by hyunjcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 BLACK		= 	"\033[0;30m"
 GRAY		= 	"\033[1;30m"
-RED			=	"\033[0;31m"
+RED			=	"\033[1;31m"
 GREEN		=	"\033[0;32m"
 YELLOW		=	"\033[1;33m"
 PURPLE		=	"\033[0;35m"
-CYAN		=	"\033[0;36m"
+CYAN		=	"\033[1;36m"
 WHITE		=	"\033[1;37m"
 EOC			=	"\033[0;0m"
 LINE_CLEAR	=	"\x1b[1A\x1b[M"
@@ -32,9 +32,12 @@ FLAG = -Wall -Wextra -Werror -I $(INCLUDE_DIR)
 SRCS_DIR = ./srcs/
 
 SRCS = main.c \
-		philo.c \
+		init.c \
+		make_mutex.c \
 		make_thread.c \
-		utils.c
+		philo.c \
+		task.c \
+		utils.c \
 
 MAN_SRCS = $(addprefix $(SRCS_DIR), $(SRCS))
 
@@ -42,7 +45,7 @@ MAN_OBJS = $(MAN_SRCS:.c=.o)
 
 vpath %.c $(SRCS_DIR)
 
-all: $(LIBFT) $(NAME)
+all: $(NAME)
 
 %.o: %.c
 	@echo $(YELLOW) "Compiling...\t" $< $(EOC) $(LINE_CLEAR)	
@@ -56,14 +59,14 @@ $(NAME): $(MAN_OBJS)
 
 clean:
 	@$(RM) $(MAN_OBJS)
-	@echo "cleaning"
+	@echo $(CYAN) "Cleaning..."
 	
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "fcleaning"
+	@echo $(RED) "Fcleaning..."
 
 re:
-	make fclean
+	@make fclean
 	make all
 
 .PHONY: all re clean fclean

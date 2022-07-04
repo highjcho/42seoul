@@ -5,60 +5,51 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/21 12:25:43 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/02 21:22:28 by hyunjcho         ###   ########.fr       */
+/*   Created: 2022/07/04 16:57:26 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/07/04 19:09:19 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void	take_fork(t_info *info, t_philo *philo)
+static void	do_philo(t_info *info, t_philo *philo)
 {
-	pthread_mutex_lock(&info->forks[philo->id - 1]);
-	print_philo(philo, get_cur_time() - info->start, "has taken a fork");
-	pthread_mutex_lock(&info->forks[philo->id % info->count]);
-	print_philo(philo, get_cur_time() - info->start, "has taken a fork");
-	do_eat(info, philo);
-	while (get_cur_time() < philo->end_eat)
-		usleep(info->t_eat * 1);
-	pthread_mutex_unlock(&info->forks[philo->id - 1]);
-	pthread_mutex_unlock(&info->forks[philo->id % info->count]);
-}
-
-
-void	do_eat(t_info *info, t_philo *philo)
-{
-	long	time;
-	
-	time = get_cur_time();
-	philo->end_eat = time + info->t_eat;
-	philo->starve = time + info->t_die;
-	print_philo(philo, time - info->start, "is eating");
-	philo->eat++;
-	if (info->must_eat > 0 && info->must_eat == philo->eat)
+	while (info->play)
 	{
-		info->full++;
-		philo->alive = FALSE;
+		take_fork(info, philo);
+		do_sleep(info, philo);
+		do_think(info, philo);
 	}
 }
 
-void	do_sleep(t_info *info, t_philo *philo)
+static void	one_philo(t_info *info)
 {
-	long	time;
-	
-	if (!philo->alive)
-		return ;
-	time = get_cur_time();
-	philo->end_sleep = time + info->t_sleep;
-	print_philo(philo, time - info->start, "is sleeping");
-	while (get_cur_time() < philo->end_sleep)
-		usleep(info->t_sleep * 1);
+	t_philo	*philo;
+
+	philo = &(info->philos[0]);
+	pthread_mutex_lock(&info->forks[philo->first]);
+	print_philo(info, philo, get_cur_time() - info->start, 0);
+	pthread_mutex_unlock(&info->forks[philo->first]);
 }
 
-void	do_think(t_info *info, t_philo *philo)
+void	*start_philo(void *arg)
 {
-	long	time;
-	
-	time = get_cur_time();
-	print_philo(philo, time - info->start, "is thinking");
+	t_info	*info;
+	t_philo	*philo;
+
+	info = (t_info *)arg;
+	philo = &info->philos[info->id];
+	pthread_mutex_lock(&info->done);
+	pthread_mutex_unlock(&info->done);
+	philo->starve = info->start + info->t_die;
+	if (info->count == 1)
+		one_philo(info);
+	else if (philo->id % 2 == 0)
+		do_philo(info, philo);
+	else
+	{
+		usleep(5);
+		do_philo(info, philo);
+	}
+	return (NULL);
 }

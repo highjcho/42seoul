@@ -6,25 +6,42 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:02 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/02 20:56:26 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/04 19:56:49 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void	print_philo(t_philo *philo, long time, char *msg)
+void	print_philo(t_info *info, t_philo *philo, long time, int flag)
 {
-	if (!philo->alive)
+	pthread_mutex_lock(&info->print);
+	if (!info->play)
+	{
+		pthread_mutex_unlock(&info->print);
 		return ;
-	printf("%ld %d %s\n", time, philo->id, msg);
+	}
+	if (flag == 0)
+		printf("%s%ld %d has taken fork\n", FORK, time, philo->id);
+	else if (flag == 1)
+		printf("%s%ld %d is eating\n", EAT, time, philo->id);
+	else if (flag == 2)
+		printf("%s%ld %d is sleeping\n", SLEEP, time, philo->id);
+	else if (flag == 3)
+		printf("%s%ld %d is thinking\n", THINK, time, philo->id);
+	pthread_mutex_unlock(&info->print);
 }
 
-long	get_cur_time()
+int	print_error(char *msg)
+{
+	printf("%s\n", msg);
+	return (FALSE);
+}
+
+long	get_cur_time(void)
 {
 	struct timeval	time;
 
-	if (gettimeofday(&time, NULL) != 0)
-		return (FALSE); //에러처리 확인
+	gettimeofday(&time, NULL);
 	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }
 
@@ -35,7 +52,7 @@ int	ft_atoi(char *s)
 
 	result = 0;
 	if (!s)
-		return (-2);
+		return (-1);
 	if (*s == '-')
 		return (-1);
 	if (*s == '+')
@@ -47,7 +64,7 @@ int	ft_atoi(char *s)
 		tmp = result;
 		result = (result * 10) + (*s - '0');
 		if (result / 10 != tmp)
-			return (-1); // long넘어 섰을 경우? 처리?
+			return (-1);
 		s++;
 	}
 	return (result);
