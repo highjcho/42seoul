@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:57:26 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/04 19:09:19 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:19:58 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	*start_philo(void *arg)
 		do_philo(info, philo);
 	else
 	{
-		usleep(5);
+		usleep(info->t_eat * 500);
 		do_philo(info, philo);
 	}
 	return (NULL);

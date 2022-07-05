@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:55:51 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/04 19:50:41 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:15:22 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ typedef struct s_info
 	int				full;
 	int				make;
 	int				play;
+	int				die;
 	long			start;
 	t_philo			*philos;
 	pthread_mutex_t	*forks;
@@ -69,7 +70,7 @@ void	do_sleep(t_info *info, t_philo *philo);
 void	do_think(t_info *info, t_philo *philo);
 void	destroy_forks(t_info *info, int cnt);
 void	destroy_all(t_info *info);
-void	join_thread(t_info *info, int cnt);
+void	detach_thread(t_info *info, int cnt);
 void	print_philo(t_info *info, t_philo *philo, long time, int flag);
 int		print_error(char *msg);
 long	get_cur_time(void);

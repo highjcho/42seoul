@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:59:46 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/04 20:03:14 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:21:59 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,8 +63,10 @@ int	main(int ac, char **av)
 	if (!make_thread(&info))
 		exit(EXIT_FAILURE);
 	if (!check_status(&info))
-		join_thread(&info, info.count);
+		detach_thread(&info, info.count);
 	pthread_mutex_unlock(&info.print);
+	while (info.die != info.count)
+		continue ;
 	destroy_all(&info);
 	return (0);
 }

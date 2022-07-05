@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:57:08 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/04 19:03:38 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:15:00 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	init_info(t_info *info, char **av)
 	info->must_eat = ft_atoi(av[5]);
 	info->full = 0;
 	info->make = 0;
+	info->die = 0;
 	info->play = TRUE;
 	if (info->count < 1 || info->t_die < 1 || info->t_eat == -1 || \
 		info->t_sleep == -1 || info->must_eat == 0)

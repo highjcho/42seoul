@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:44:21 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/04 18:59:03 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/05 17:17:14 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,18 +53,21 @@ int	make_thread(t_info *info)
 	usleep(10);
 	if (!make_philos(info))
 	{
-		join_thread(info, info->make - 2);
+		detach_thread(info, info->make - 2);
 		destroy_all(info);
 		return (FALSE);
 	}
 	return (TRUE);
 }
 
-void	join_thread(t_info *info, int cnt)
+void	detach_thread(t_info *info, int cnt)
 {
 	int	i;
 
 	i = -1;
 	while (++i < cnt)
-		pthread_join(info->philos[i].philo, NULL);
+	{
+		pthread_detach(info->philos[i].philo);
+		info->die++;
+	}
 }
