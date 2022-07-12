@@ -6,11 +6,11 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:57:26 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/06 22:18:03 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/11 19:08:02 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "../includes/philosophers_bonus.h"
 
 static void	do_philo(t_info *info, t_philo *philo)
 {
@@ -37,8 +37,8 @@ void	*start_philo(void *arg)
 	t_info	*info;
 	t_philo	*philo;
 
-	info = (t_info *)arg;
-	philo = &info->philos[info->id];
+	philo = (t_philo *)arg;
+	info = philo->info;
 	pthread_mutex_lock(&info->done);
 	pthread_mutex_unlock(&info->done);
 	philo->starve = info->start + info->t_die;

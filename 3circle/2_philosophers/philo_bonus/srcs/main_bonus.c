@@ -6,11 +6,11 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:59:46 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/06 22:17:58 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:19:24 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "../includes/philosophers_bonus.h"
 
 static int	starve_check(t_info *info)
 {
@@ -27,7 +27,7 @@ static int	starve_check(t_info *info)
 		{
 			pthread_mutex_lock(&info->print);
 			info->play = FALSE;
-			usleep(100);
+			usleep(1000);
 			printf("%s%ld %d died\n", DIE, time - info->start, philo.id);
 			return (FALSE);
 		}
@@ -52,21 +52,19 @@ static int	check_status(t_info *info)
 
 int	main(int ac, char **av)
 {
-	t_info	info;
+	t_info	*info;
 
 	if (ac < 5)
 		return (0);
+	info = malloc(sizeof(t_info));
 	if (!init_info(&info, av))
-		exit(EXIT_FAILURE);
+		return(0);
 	if (!make_mutex(&info))
-		exit(EXIT_FAILURE);
+		return (0);
 	if (!make_thread(&info))
-		exit(EXIT_FAILURE);
+		return (0);
 	if (!check_status(&info))
-		detach_thread(&info, info.count);
-	pthread_mutex_unlock(&info.print);
-	while (info.die != info.count)
-		continue ;
+		detach_thread(&info, info->count);
 	destroy_all(&info);
 	return (0);
 }

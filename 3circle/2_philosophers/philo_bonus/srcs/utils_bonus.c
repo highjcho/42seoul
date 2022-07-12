@@ -6,11 +6,11 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:02 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/06 22:18:06 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/11 19:08:09 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "../includes/philosophers_bonus.h"
 
 void	print_philo(t_info *info, t_philo *philo, long time, int flag)
 {

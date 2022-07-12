@@ -6,7 +6,7 @@
 #    By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/20 15:39:52 by hyunjcho          #+#    #+#              #
-#    Updated: 2022/07/05 17:06:53 by hyunjcho         ###   ########.fr        #
+#    Updated: 2022/07/12 17:09:45 by hyunjcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ WHITE		=	"\033[1;37m"
 EOC			=	"\033[0;0m"
 LINE_CLEAR	=	"\x1b[1A\x1b[M"
 
-NAME = philo
+NAME = philo_bonus
 
 RM = rm -rf
 
@@ -31,13 +31,13 @@ FLAG = -Wall -Wextra -Werror -I $(INCLUDE_DIR)
 
 SRCS_DIR = ./srcs/
 
-SRCS = main.c \
-		init.c \
-		make_mutex.c \
-		make_thread.c \
-		philo.c \
-		task.c \
-		utils.c \
+SRCS = main_bonus.c \
+		init_bonus.c \
+		make_mutex_bonus.c \
+		make_thread_bonus.c \
+		philo_bonus.c \
+		task_bonus.c \
+		utils_bonus.c \
 
 MAN_SRCS = $(addprefix $(SRCS_DIR), $(SRCS))
 

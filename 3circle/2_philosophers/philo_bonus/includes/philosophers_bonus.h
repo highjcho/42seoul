@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:55:51 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/06 22:26:55 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:24:13 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,13 @@
 # include "stdlib.h"
 # include <sys/time.h>
 # include <pthread.h>
+# include <signal.h>
+# include <semaphore.h>
 
-typedef struct s_philo
-{
-	int				id;
-	int				eat;
-	int				first;
-	int				second;
-	long			end_eat;
-	long			end_sleep;
-	long			starve;
-	pthread_t		philo;
-}	t_philo;
+typedef struct s_philo t_philo;
 
 typedef struct s_info
 {
-	int				id;
 	int				count;
 	long			t_die;
 	long			t_eat;
@@ -42,15 +33,26 @@ typedef struct s_info
 	int				full;
 	int				make;
 	int				play;
-	int				die;
 	long			start;
-	t_philo			*philos;
-	pthread_mutex_t	*forks;
-	pthread_mutex_t	done;
-	pthread_mutex_t	full_check;
+	struct s_philo	*philos;
+	pid_t			*pid;
+	sem_t			*forks;
+	sem_t			full_check;
 	pthread_mutex_t	print;
 	pthread_t		check;
 }	t_info;
+
+typedef struct s_philo
+{
+	int		id;
+	int		eat;
+	long	end_eat;
+	long	end_sleep;
+	long	starve;
+	t_info	*info;
+}	t_philo;
+
+
 
 # define TRUE 1
 # define FALSE 0

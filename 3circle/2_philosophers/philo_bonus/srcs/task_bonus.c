@@ -6,11 +6,11 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/21 12:25:43 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/06 22:18:05 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/11 19:08:05 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "../includes/philosophers_bonus.h"
 
 void	take_fork(t_info *info, t_philo *philo)
 {
@@ -21,6 +21,13 @@ void	take_fork(t_info *info, t_philo *philo)
 	do_eat(info, philo);
 	while (get_cur_time() < philo->end_eat)
 		usleep(info->t_eat * 1);
+	philo->eat++;
+	if (info->must_eat == philo->eat)
+	{
+		pthread_mutex_lock(&info->full_check);
+		info->full++;
+		pthread_mutex_unlock(&info->full_check);
+	}
 	pthread_mutex_unlock(&info->forks[philo->first]);
 	pthread_mutex_unlock(&info->forks[philo->second]);
 }
@@ -33,13 +40,6 @@ void	do_eat(t_info *info, t_philo *philo)
 	philo->end_eat = time + info->t_eat;
 	philo->starve = time + info->t_die;
 	print_philo(info, philo, time - info->start, 1);
-	philo->eat++;
-	if (info->must_eat == philo->eat)
-	{
-		pthread_mutex_lock(&info->full_check);
-		info->full++;
-		pthread_mutex_unlock(&info->full_check);
-	}
 }
 
 void	do_sleep(t_info *info, t_philo *philo)

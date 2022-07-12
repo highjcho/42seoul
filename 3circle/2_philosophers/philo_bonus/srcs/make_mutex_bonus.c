@@ -6,11 +6,11 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:57:15 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/06 22:18:01 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/11 19:07:57 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/philosophers.h"
+#include "../includes/philosophers_bonus.h"
 
 static int	make_forks(t_info *info)
 {
