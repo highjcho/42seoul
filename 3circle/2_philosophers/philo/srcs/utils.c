@@ -6,36 +6,11 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 15:06:02 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/04 19:56:49 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/12 18:06:20 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
-void	print_philo(t_info *info, t_philo *philo, long time, int flag)
-{
-	pthread_mutex_lock(&info->print);
-	if (!info->play)
-	{
-		pthread_mutex_unlock(&info->print);
-		return ;
-	}
-	if (flag == 0)
-		printf("%s%ld %d has taken fork\n", FORK, time, philo->id);
-	else if (flag == 1)
-		printf("%s%ld %d is eating\n", EAT, time, philo->id);
-	else if (flag == 2)
-		printf("%s%ld %d is sleeping\n", SLEEP, time, philo->id);
-	else if (flag == 3)
-		printf("%s%ld %d is thinking\n", THINK, time, philo->id);
-	pthread_mutex_unlock(&info->print);
-}
-
-int	print_error(char *msg)
-{
-	printf("%s\n", msg);
-	return (FALSE);
-}
 
 long	get_cur_time(void)
 {

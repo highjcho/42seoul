@@ -6,7 +6,7 @@
 #    By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/06/20 15:39:52 by hyunjcho          #+#    #+#              #
-#    Updated: 2022/07/05 17:06:53 by hyunjcho         ###   ########.fr        #
+#    Updated: 2022/07/12 18:07:13 by hyunjcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRCS = main.c \
 		philo.c \
 		task.c \
 		utils.c \
+		print.c \
 
 MAN_SRCS = $(addprefix $(SRCS_DIR), $(SRCS))
 

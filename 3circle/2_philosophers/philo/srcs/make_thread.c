@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 16:44:21 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/05 17:17:14 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:18:21 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,10 @@ static int	make_philos(t_info *info)
 	i = -1;
 	while (++i < info->count)
 	{
-		info->id = i;
 		if (pthread_create(&(info->philos[i].philo), NULL, \
-			start_philo, info) != 0)
+			start_philo, &info->philos[i]) != 0)
 			return (print_error("create pthread fail"));
 		info->make++;
-		usleep(5);
 	}
 	return (TRUE);
 }
@@ -66,8 +64,5 @@ void	detach_thread(t_info *info, int cnt)
 
 	i = -1;
 	while (++i < cnt)
-	{
 		pthread_detach(info->philos[i].philo);
-		info->die++;
-	}
 }

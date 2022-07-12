@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:57:15 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/04 19:26:59 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/12 17:45:08 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	destroy_all(t_info *info)
 	destroy_forks(info, info->count);
 	pthread_mutex_destroy(&info->done);
 	pthread_mutex_destroy(&info->full_check);
-	pthread_mutex_destroy(&info->print);
+	// pthread_mutex_destroy(&info->print);
 	free(info->philos);
 	free(info->forks);
 }

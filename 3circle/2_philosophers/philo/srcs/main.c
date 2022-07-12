@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:59:46 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/05 17:21:59 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/12 19:08:54 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ static int	starve_check(t_info *info)
 		{
 			pthread_mutex_lock(&info->print);
 			info->play = FALSE;
-			usleep(100);
 			printf("%s%ld %d died\n", DIE, time - info->start, philo.id);
 			return (FALSE);
 		}
@@ -52,21 +51,22 @@ static int	check_status(t_info *info)
 
 int	main(int ac, char **av)
 {
-	t_info	info;
+	t_info	*info;
 
 	if (ac < 5)
 		return (0);
-	if (!init_info(&info, av))
-		exit(EXIT_FAILURE);
-	if (!make_mutex(&info))
-		exit(EXIT_FAILURE);
-	if (!make_thread(&info))
-		exit(EXIT_FAILURE);
-	if (!check_status(&info))
-		detach_thread(&info, info.count);
-	pthread_mutex_unlock(&info.print);
-	while (info.die != info.count)
-		continue ;
-	destroy_all(&info);
+	
+	info = malloc(sizeof(t_info));
+	if (!info)
+		return (EXIT_FAILURE);
+	if(!init_info(info, av))
+		return (EXIT_FAILURE);
+	if (!make_mutex(info))
+		return (EXIT_FAILURE);
+	if (!make_thread(info))
+		return (EXIT_FAILURE);
+	if (!check_status(info))
+		detach_thread(info, info->count);
+	destroy_all(info);
 	return (0);
 }

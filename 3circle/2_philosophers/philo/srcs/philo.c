@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 16:57:26 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/05 17:19:58 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/12 18:08:27 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static void	one_philo(t_info *info)
 
 	philo = &(info->philos[0]);
 	pthread_mutex_lock(&info->forks[philo->first]);
-	print_philo(info, philo, get_cur_time() - info->start, 0);
+	print_fork(info, philo, get_cur_time() - info->start);
 	pthread_mutex_unlock(&info->forks[philo->first]);
 }
 
@@ -37,8 +37,8 @@ void	*start_philo(void *arg)
 	t_info	*info;
 	t_philo	*philo;
 
-	info = (t_info *)arg;
-	philo = &info->philos[info->id];
+	philo = (t_philo *)arg;
+	info = philo->info;
 	pthread_mutex_lock(&info->done);
 	pthread_mutex_unlock(&info->done);
 	philo->starve = info->start + info->t_die;
