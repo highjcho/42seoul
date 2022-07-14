@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:59:46 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/12 19:08:54 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:29:25 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,10 @@ int	main(int ac, char **av)
 
 	if (ac < 5)
 		return (0);
-	
 	info = malloc(sizeof(t_info));
 	if (!info)
 		return (EXIT_FAILURE);
-	if(!init_info(info, av))
+	if (!init_info(info, av))
 		return (EXIT_FAILURE);
 	if (!make_mutex(info))
 		return (EXIT_FAILURE);

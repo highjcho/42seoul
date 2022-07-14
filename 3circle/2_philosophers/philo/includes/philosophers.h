@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/20 14:55:51 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/07/12 19:10:10 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/07/14 14:27:33 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <sys/time.h>
 # include <pthread.h>
 
-typedef struct s_philo t_philo;
+typedef struct s_philo	t_philo;
 
 typedef struct s_info
 {
@@ -52,8 +52,6 @@ typedef struct s_philo
 	pthread_t		philo;
 	t_info			*info;
 }	t_philo;
-
-
 
 # define TRUE 1
 # define FALSE 0
