@@ -1,0 +1,13 @@
+NO ./textures/blue.xpm
+SO ./textures/green.xpm
+WE ./textures/cream.xpm
+EA ./textures/grey.xpm
+
+F 213, 196, 229
+C 251, 236, 187
+
+111111111111
+100000100011
+101100N10111
+100100000001
+111111111111

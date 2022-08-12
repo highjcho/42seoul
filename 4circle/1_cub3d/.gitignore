@@ -1,0 +1,8 @@
+.DS_Store
+.vscode/
+a.out
+*.o
+libft.a
+cub3D.dSYM
+cub3D
+cub3D_map_tester/
