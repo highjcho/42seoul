@@ -9,18 +9,15 @@ WHITE		=	"\033[1;37m"
 EOC			=	"\033[0;0m"
 LINE_CLEAR	=	"\x1b[1A\x1b[M"
 
-NAME = Account
+NAME = Megaphone
 
 CC = c++
 
 FLAG = -Wall -Wextra -Werror -std=c++98
 
-SRCS_DIR = ./
+SRCS_DIR = ./srcs/
 
-FILES = tests.cpp \
-		Account.cpp \
-
-SRCS = $(addprefix $(SRCS_DIR), $(FILES))
+SRCS = Megaphone.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -34,7 +31,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo $(GREEN) "Source files are compiled!\n" $(EOC)
-	@echo $(WHITE) "Building $(NAME) for" $(YELLOW) "Account" $(WHITE) "..." $(EOC)
+	@echo $(WHITE) "Building $(NAME) for" $(YELLOW) "Megaphone" $(WHITE) "..." $(EOC)
 	@$(CC) $(FLAG) -o $@ $(OBJS)
 
 clean:
