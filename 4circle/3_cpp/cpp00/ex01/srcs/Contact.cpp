@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/28 19:13:28 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/09/28 19:34:58 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Contact.hpp"
 
 Contact::Contact() {
@@ -27,6 +39,6 @@ void	Contact::displayAllInfo() {
 }
 
 void	Contact::displayShortInfo(int idx) {
-	std::cout << std::setw(MAX_WIDTH) << idx << "| " 	<< std::setw(MAX_WIDTH) << truncate(_firstName) << "| " \
+	std::cout << std::setw(MAX_WIDTH) << idx << "| " << std::setw(MAX_WIDTH) << truncate(_firstName) << "| " \
 		<< std::setw(MAX_WIDTH) << truncate(_lastName) << "| " << std::setw(MAX_WIDTH) << truncate(_nickname) << std::endl;
 }

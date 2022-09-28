@@ -1,3 +1,15 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/26 16:58:47 by hyunjcho          #+#    #+#              #
+#    Updated: 2022/09/28 19:21:55 by hyunjcho         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 BLACK		= 	"\033[0;30m"
 GRAY		= 	"\033[1;30m"
 RED			=	"\033[1;31m"
@@ -9,15 +21,13 @@ WHITE		=	"\033[1;37m"
 EOC			=	"\033[0;0m"
 LINE_CLEAR	=	"\x1b[1A\x1b[M"
 
-NAME = Megaphone
+NAME = megaphone
 
 CC = c++
 
 FLAG = -Wall -Wextra -Werror -std=c++98
 
-SRCS_DIR = ./srcs/
-
-SRCS = Megaphone.cpp
+SRCS = megaphone.cpp
 
 OBJS = $(SRCS:.cpp=.o)
 
@@ -31,7 +41,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo $(GREEN) "Source files are compiled!\n" $(EOC)
-	@echo $(WHITE) "Building $(NAME) for" $(YELLOW) "Megaphone" $(WHITE) "..." $(EOC)
+	@echo $(WHITE) "Building for" $(YELLOW) "$(NAME)" $(WHITE) "..." $(EOC)
 	@$(CC) $(FLAG) -o $@ $(OBJS)
 
 clean:

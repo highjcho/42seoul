@@ -1,8 +1,38 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/28 19:13:42 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/09/28 19:13:46 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook() {
 	idx = 0;
 	len = 0;
+}
+
+int	PhoneBook::inputCommand(std::string cmd) {
+	unsigned long	i;
+
+	for (i = 0; i < cmd.size(); i++)
+		cmd[i] = toupper(cmd[i]);
+	if (cmd == "ADD") 
+		addContact();
+	else if (cmd == "SEARCH") 
+		searchContact();
+	else if (cmd == "EXIT") {
+		std::cout << "\nGoodbye~!\n";
+		return (0);
+	}
+	else
+		std::cout << "\nError: \"" << cmd << "\" Invaild command. <Usage: ADD, SEARCH, EXIT>\n\n";
+	return (1);
 }
 
 void	PhoneBook::addContact() {
@@ -13,12 +43,18 @@ void	PhoneBook::addContact() {
 	std::cout << "\n======== Fill the contact information =======\n";
 	for (i = 0; i < 5; i++) {
 		std::cout << msg[i];
-		if(!std::getline(std::cin, info[i])) {
-			std::cout << "An error occurred in the input. Please try again.\n";
+		if(!std::getline(std::cin >> std::ws, info[i]) || std::cin.eof()) {
+			if (std::cin.eof()) {
+				std::cout << "\nEOF: The information has not been saved.\n\n";
+				return ;
+			}
+			std::cout << "\nAn error occurred in the input. Please try again.\n";
 			std::cin.clear();
+			std::cin.ignore(4096, '\n');
 			i--;
+			continue;
 		}
-		if(info[i].compare("") == 0) {
+		if(info[i] == "") {
 			std::cout << "\n*Required* Please fill the information.\n\n";
 			i--;
 		}
@@ -36,21 +72,26 @@ void	PhoneBook::searchContact() {
 	int	search;
 
 	if (len < 1) {
-		std::cout << "Error: There is no contact. Please add contact first\n";
+		std::cout << "\nError: There is no contact. Please add contact first.\n\n";
 		return ;
 	}
-	displayPhoneBook();
-	std::cout << "Enter the index number(0 ~ " << len - 1 << "): ";
-	std::cin >> search;
-	std::cin.ignore();
-	if (search < 0 || search >= len) {
-		std::cout << "Error: Invalid number. Please try again\n";
-		return ;
+	while (true) {
+		displayPhoneBook();
+		std::cout << "Enter the index number(0 ~ " << len - 1 << "): ";
+		std::cin >> search;
+		if (std::cin.eof())
+			return ;
+		if (std::cin.fail() || search < 0 || search >= len) {
+			std::cout << "\nAn error occurred in the input. Please try again.\n";
+			std::cin.clear();
+			std::cin.ignore(4096, '\n');
+			continue;
+		}
+		break;
 	}
 	std::cout << "\n================== Contact [" << search << "] ==================\n";
 	contact[search].displayAllInfo();
-	std::cout << "=================================================\n";
-	
+	std::cout << "=================================================\n\n";
 }
 
 void	PhoneBook::displayPhoneBook() {
@@ -58,5 +99,5 @@ void	PhoneBook::displayPhoneBook() {
 	for(int i = 0; i < len; i++) {
 		contact[i].displayShortInfo(i);
 	}
-	std::cout << "=================================================\n";
+	std::cout << "=================================================\n\n";
 }

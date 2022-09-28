@@ -1,7 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/09/28 19:13:26 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/09/28 19:22:12 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHONEBOOK_HPP
 # define PHONEBOOK_HPP
 
 #include <iostream>
+#include <cctype>
 #include "Contact.hpp"
 
 class PhoneBook {
@@ -12,6 +25,7 @@ class PhoneBook {
 
 	public:
 		PhoneBook();
+		int		inputCommand(std::string cmd);
 		void	addContact();
 		void	searchContact();
 		void	displayPhoneBook();
