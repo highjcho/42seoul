@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/28 19:13:42 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/09/28 19:13:46 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/09/29 18:24:34 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,10 +43,10 @@ void	PhoneBook::addContact() {
 	std::cout << "\n======== Fill the contact information =======\n";
 	for (i = 0; i < 5; i++) {
 		std::cout << msg[i];
-		if(!std::getline(std::cin >> std::ws, info[i]) || std::cin.eof()) {
+		if(!std::getline(std::cin, info[i]) || std::cin.eof()) {
 			if (std::cin.eof()) {
-				std::cout << "\nEOF: The information has not been saved.\n\n";
-				return ;
+				std::cout << "\nEOF: The information has not been saved. Phonebook is closed.\n\n"; 
+				exit(EXIT_SUCCESS);
 			}
 			std::cout << "\nAn error occurred in the input. Please try again.\n";
 			std::cin.clear();
@@ -55,7 +55,7 @@ void	PhoneBook::addContact() {
 			continue;
 		}
 		if(info[i] == "") {
-			std::cout << "\n*Required* Please fill the information.\n\n";
+			std::cout << "\n*Required* Please fill the imnformation.\n\n";
 			i--;
 		}
 	}
