@@ -6,7 +6,7 @@
 #    By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 19:21:39 by hyunjcho          #+#    #+#              #
-#    Updated: 2022/10/04 13:47:03 by hyunjcho         ###   ########.fr        #
+#    Updated: 2022/10/04 14:43:07 by hyunjcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,8 +21,7 @@ WHITE		=	"\033[1;37m"
 EOC			=	"\033[0;0m"
 LINE_CLEAR	=	"\x1b[1A\x1b[M"
 
-NAME = phonebook
-
+NAME = zombieHorde
 CC = c++
 
 INCLUDE_DIR = ./includes/
@@ -32,8 +31,8 @@ FLAG = -Wall -Wextra -Werror -std=c++98 -I $(INCLUDE_DIR)
 SRCS_DIR = ./srcs/
 
 FILES = main.cpp \
-		PhoneBook.cpp \
-		Contact.cpp
+		Zombie.cpp \
+		zombieHorde.cpp
 
 SRCS = $(addprefix $(SRCS_DIR), $(FILES))
 

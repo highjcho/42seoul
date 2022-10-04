@@ -6,7 +6,7 @@
 #    By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/26 16:58:47 by hyunjcho          #+#    #+#              #
-#    Updated: 2022/09/28 19:21:55 by hyunjcho         ###   ########.fr        #
+#    Updated: 2022/10/04 14:57:29 by hyunjcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	@echo $(GREEN) "Source files are compiled!\n" $(EOC)
-	@echo $(WHITE) "Building for" $(YELLOW) "$(NAME)" $(WHITE) "..." $(EOC)
+	@echo $(WHITE) "Building for" $(YELLOW) $(NAME) $(WHITE) "..." $(EOC)
 	@$(CC) $(FLAG) -o $@ $(OBJS)
 
 clean:
