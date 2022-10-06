@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:56:04 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/04 14:56:04 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/05 18:54:23 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,10 @@ class Zombie {
 	public:
 		Zombie();
 		~Zombie();
-		void	setName(std::string name);
-		void	announce(void);
+		static Zombie* zombieHorde(int N, std::string name);
+		void setName(std::string name);
+		void announce(void);
 };
 
-Zombie*	zombieHorde(int N, std::string name);
 
 #endif

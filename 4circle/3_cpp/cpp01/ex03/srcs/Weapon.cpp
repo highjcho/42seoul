@@ -8,9 +8,9 @@ Weapon::Weapon(std::string type) {
 }
 
 std::string	Weapon::getType() {
-	return this->_type;
+	return _type;
 }
 
-void	Weapon::setType(std::string type) {
-	this->_type = type;
+void Weapon::setType(std::string type) {
+	_type = type;
 }
