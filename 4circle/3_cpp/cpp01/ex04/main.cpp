@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/07 16:02:13 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/10/07 17:17:28 by hyunjcho         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <iostream>
 #include <fstream>
 
-void replace_str(std::ofstream &outfile, std::string &str, std::string to_find, std::string replace) {
+void replaceStr(std::ofstream &outfile, std::string &str, std::string to_find, std::string replace) {
 	std::string search;
 	std::string new_str;
 	size_t r_size = replace.size();
@@ -35,7 +47,7 @@ int main(int ac, char** av) {
 	}
  	if (infile.is_open() && outfile.is_open()) {
 		while(std::getline(infile, str)) {
-			replace_str(outfile, str, av[2], av[3]);
+			replaceStr(outfile, str, av[2], av[3]);
 			if (!infile.eof())
 				outfile << "\n";
 		}

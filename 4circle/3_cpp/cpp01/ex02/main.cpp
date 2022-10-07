@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:56:35 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/05 19:36:03 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/07 15:54:54 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int main(void) {
 
 	std::cout << "============[VALUE]============\n";
 	std::cout << "1. original : " << original << std::endl;
-	std::cout << "2. stringPTR: " << stringPTR << std::endl;
+	std::cout << "2. stringPTR: " << *stringPTR << std::endl;
 	std::cout << "3. stringREF: " << stringREF << std::endl;
 	std::cout << std::setw(33) << std::setfill('=') << "\n\n";
 }

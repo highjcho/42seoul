@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   HumanA.cpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/07 16:02:26 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/07 16:02:26 by hyunjcho         ###   ########.fr       */
+/*   Created: 2022/10/07 16:30:09 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/10/07 17:20:46 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "HumanA.hpp"
+#ifndef HARL_HPP
+# define HARL_HPP
 
-HumanA::HumanA(std::string name, Weapon &weapon) 
-: _name(name), _weapon(weapon)
-{
-	std::cout << _name << " created. (weapon: " << _weapon.getType() << ")\n";
-}
+#include <iostream>
 
-void HumanA::attack() {
-	std::cout << _name << " attacks with their " << _weapon.getType() << std::endl;
-}
+class Harl {
+	private:
+		void debug();
+		void info();
+		void warning();
+		void error();
+
+	public:
+		void harlFilter(std::string level);
+};
+
+#endif
