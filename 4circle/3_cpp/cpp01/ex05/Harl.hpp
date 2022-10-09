@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:30:09 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/07 16:52:53 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/09 15:11:10 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ class Harl {
 		void error();
 
 	public:
-		void complain(std::string level);
+		void complain(const std::string level);
 };
 
 #endif

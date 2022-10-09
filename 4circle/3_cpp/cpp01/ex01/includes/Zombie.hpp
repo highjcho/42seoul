@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:56:04 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/05 18:54:23 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/09 14:40:38 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,16 @@
 # include <iostream>
 # include <sstream>
 
-# define MAX_WIDTH 10
-
 class Zombie {
 	private:
-		std::string	_name;
+		std::string _name;
 
 	public:
 		Zombie();
 		~Zombie();
-		static Zombie* zombieHorde(int N, std::string name);
-		void setName(std::string name);
-		void announce(void);
+		static Zombie* zombieHorde(const int N, const std::string name);
+		void setName(const std::string name);
+		void announce(void) const;
 };
-
 
 #endif

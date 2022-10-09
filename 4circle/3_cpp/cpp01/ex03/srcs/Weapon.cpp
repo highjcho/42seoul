@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:02:17 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/07 16:02:17 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/09 14:55:04 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 Weapon::Weapon() {
 }
 
-Weapon::Weapon(std::string type) {
+Weapon::Weapon(const std::string type) {
 	_type = type;
 }
 
-std::string	Weapon::getType() {
+std::string Weapon::getType() const{
 	return _type;
 }
 
-void Weapon::setType(std::string type) {
+void Weapon::setType(const std::string type) {
 	_type = type;
 }

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 17:32:04 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/07 17:32:04 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/09 15:13:59 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int main(int ac, char **av) {
 	Harl harl;
 	if (ac != 2) {
 		std::cout << "Usage: ./harlFilter LEVEL (DEBUG, INFO, WARNING, ERROR)\n";
-		exit(EXIT_SUCCESS);
+		exit(EXIT_FAILURE);
 	}
 	std::string level = upperLevel(av[1]);
 	harl.harlFilter(level);

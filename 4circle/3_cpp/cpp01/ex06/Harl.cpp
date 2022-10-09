@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:30:14 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/07 17:30:28 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/09 15:13:29 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void Harl::debug() {
 
 void Harl::info() {
 	std::cout << "[ INFO ]\n";
-	std::cout << "I was actually trying to type 'rm -o.*'\n\n";
+	std::cout << "I was actually trying to type 'rm *.o'\n\n";
 }
 
 void Harl::warning() {
@@ -29,10 +29,10 @@ void Harl::warning() {
 
 void Harl::error() {
 	std::cout << "[ ERROR ]\n";
-	std::cout << "NO. I NEED TO GET IT BACK!\n\n";
+	std::cout << "NO. I NEED TO GET IT BACK!\n";
 }
 
-void Harl::harlFilter(std::string level) {
+void Harl::harlFilter(const std::string level) {
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	void (Harl::*f_ptr[4])() = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	int i;

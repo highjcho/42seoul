@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:02:13 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/07 17:17:28 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/09 14:57:35 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ int main(int ac, char** av) {
 	std::string str;
 
 	if (ac != 4) {
-		std::cout << "We need more information! (usage: infile, to_find, replace)\n";
-		exit(EXIT_SUCCESS);
+		std::cout << "Input error. (Usage: ./sed infile, to_find, replace)\n";
+		exit(EXIT_FAILURE);
 	}
  	if (infile.is_open() && outfile.is_open()) {
 		while(std::getline(infile, str)) {

@@ -6,17 +6,20 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 14:55:31 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/05 18:55:54 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/09 14:34:14 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
 
 int main() {
-	Zombie* zombieA = Zombie::newZombie("heapZombieA");
-	zombieA->announce();
+	Zombie zombieA = Zombie("stackZombieA");
+	zombieA.announce();
 
-	Zombie::randomChump("stackZombieB");
+	Zombie* zombieB = Zombie::newZombie("heapZombieB");
+	zombieB->announce();
 
-	delete zombieA;
+	Zombie::randomChump("stackRandomChumpZombieC");
+
+	delete zombieB;
 }

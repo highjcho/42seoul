@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:02:32 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/07 16:02:33 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/09 14:48:56 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ class HumanA {
 		Weapon& _weapon;
 
 	public:
-		HumanA(std::string name, Weapon &weapon);
-		void attack();
+		HumanA(const std::string name, Weapon &weapon);
+		void attack() const;
 };
 
 #endif

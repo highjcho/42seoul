@@ -6,13 +6,13 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:02:23 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/07 16:02:24 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/09 14:52:24 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name)
+HumanB::HumanB(const std::string name)
 : _name(name), _weapon(NULL)
 {
 	std::cout << _name << " created. (Weapon: none)\n";
@@ -22,7 +22,7 @@ void HumanB::setWeapon(Weapon &weapon) {
 	_weapon = &weapon;
 }
 
-void HumanB::attack() {
+void HumanB::attack() const{
 	if (!_weapon)
 		std::cout << _name << " doesn' have a weapon yet!!!\n";
 	else
