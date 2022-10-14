@@ -6,7 +6,7 @@
 #    By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/28 19:21:09 by hyunjcho          #+#    #+#              #
-#    Updated: 2022/10/09 15:02:48 by hyunjcho         ###   ########.fr        #
+#    Updated: 2022/10/14 17:31:41 by hyunjcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ WHITE		=	"\033[1;37m"
 EOC			=	"\033[0;0m"
 LINE_CLEAR	=	"\x1b[1A\x1b[M"
 
-NAME = sed
+NAME = replace
 
 CC = c++
 

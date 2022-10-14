@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:02:13 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/09 14:57:35 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/14 17:34:13 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,20 @@
 #include <fstream>
 
 void replaceStr(std::ofstream &outfile, std::string &str, std::string to_find, std::string replace) {
-	std::string search;
 	std::string new_str;
-	size_t r_size = replace.size();
+	size_t size = to_find.size();
 	size_t idx = 0;
 	size_t n;
 
 	while (str[idx]) {
-		search = str.substr(idx);
-		n = search.find(to_find);
+		n = str.find(to_find, idx);
 		if (n != std::string::npos) {
-			new_str = search.substr(0, n);
+			new_str = str.substr(idx, n - idx);
 			outfile << new_str << replace;
-			idx += r_size + n;
+			idx = size + n;
 		}
 		else {
-			outfile << search;
+			outfile << str.substr(idx);
 			break;
 		}
 	}
