@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:20:40 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/18 19:54:56 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/20 01:44:19 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,5 @@ int Fixed::toInt() const {
 
 std::ostream& operator<<(std::ostream& ostream, const Fixed& obj)
 {
-  return ostream << obj.toFloat();
+	return ostream << obj.toFloat();
 }
