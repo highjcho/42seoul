@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:20:38 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/20 00:51:57 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/20 01:46:39 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,6 @@ class Fixed {
 		bool operator<=(const Fixed& obj);
 		bool operator==(const Fixed& obj);
 		bool operator!=(const Fixed& obj);
-
-
 
 		Fixed& operator++(void);
 		Fixed& operator--(void);
