@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:20:38 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/20 01:46:39 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/20 01:47:04 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,5 @@ Fixed operator-(const Fixed& obj1, const Fixed& obj2);
 Fixed operator+(const Fixed& obj1, const Fixed& obj2);
 Fixed operator*(const Fixed& obj1, const Fixed& obj2);
 Fixed operator/(const Fixed& obj1, const Fixed& obj2);
-
 
 #endif
