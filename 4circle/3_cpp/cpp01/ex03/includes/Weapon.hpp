@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:02:28 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/09 14:53:37 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/20 17:30:45 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Weapon {
 	public:
 		Weapon();
 		Weapon(const std::string type);
-		std::string getType() const;
+		const std::string& getType() const;
 		void setType(const std::string type);
 };
 

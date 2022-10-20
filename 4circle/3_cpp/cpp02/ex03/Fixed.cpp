@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 16:20:40 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/20 01:43:29 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/20 20:53:21 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,8 @@ bool Fixed::operator<=(const Fixed& obj) {
 	return _value <= obj.getRawBits();
 }
 
-bool Fixed::operator==(const Fixed& obj) {
-	return _value == obj.getRawBits();
+bool operator==(const Fixed& obj1, const Fixed& obj2) {
+	return obj1.getRawBits() == obj2.getRawBits();
 }
 
 bool Fixed::operator!=(const Fixed& obj) {

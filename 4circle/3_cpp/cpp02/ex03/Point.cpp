@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 00:02:39 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/10/20 01:23:46 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/10/20 20:56:44 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,10 @@ const Fixed& Point::getY() const{
 bool bsp(Point const a, Point const b, Point const c, Point const point) {
 	bool ret = false;
 
+	if ((a.getY() == b.getY() && a.getY() == point.getY()) || (a.getY() == c.getY() && a.getY() == point.getY()) || \
+		(b.getY() == c.getY() && b.getY() == point.getY()) || (b.getX() == c.getX() && b.getX() == point.getX()) || \
+		(a.getX() == b.getX() && a.getX() == point.getX()) || (a.getX() == c.getX() && a.getX() == point.getX()))
+			return (false);
 	if (a.getY() > point.getY() != b.getY() > point.getY()) {
 		if ((a.getX() - b.getX()) * (point.getY() - b.getY())
 		 / (a.getY() - b.getY()) + b.getX() > point.getX())
