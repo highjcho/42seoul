@@ -13,7 +13,7 @@
 #include "ClapTrap.hpp"
 
 int main() {
-	ClapTrap* mu = new ClapTrap("Mu");
+	ClapTrap* mu = new ClapTrap("Mu"); // new 써써도  되되는는지지
 	ClapTrap* samsak = new ClapTrap("Samsak");
 	ClapTrap* yatong = new ClapTrap("Yatong");
 
