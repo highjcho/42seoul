@@ -6,7 +6,7 @@
 #    By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 16:20:52 by hyunjcho          #+#    #+#              #
-#    Updated: 2022/10/20 01:41:05 by hyunjcho         ###   ########.fr        #
+#    Updated: 2022/12/19 14:38:50 by hyunjcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,7 @@ LINE_CLEAR	=	"\x1b[1A\x1b[M"
 
 NAME = overloading
 
-CC = c++
+CXX = c++
 
 FLAG = -Wall -Wextra -Werror -std=c++98
 
@@ -42,12 +42,12 @@ all: $(NAME)
 
 %.o: %.cpp 
 	@echo $(YELLOW) "Compiling...\t" $< $(EOC) $(LINE_CLEAR)
-	@$(CC) $(FLAG) -c $< -o $@
+	@$(CXX) $(FLAG) -c $< -o $@
 
 $(NAME): $(OBJS)
 	@echo $(GREEN) "Source files are compiled!\n" $(EOC)
 	@echo $(WHITE) "Building for" $(YELLOW) "$(NAME)" $(WHITE) "..." $(EOC)
-	@$(CC) $(FLAG) -o $@ $(OBJS)
+	@$(CXX) $(FLAG) -o $@ $(OBJS)
 
 clean:
 	@$(RM) $(OBJS)

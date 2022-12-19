@@ -6,7 +6,7 @@
 #    By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 16:20:52 by hyunjcho          #+#    #+#              #
-#    Updated: 2022/11/03 10:57:06 by hyunjcho         ###   ########.fr        #
+#    Updated: 2022/12/19 13:41:17 by hyunjcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,16 +21,17 @@ WHITE		=	"\033[1;37m"
 EOC			=	"\033[0;0m"
 LINE_CLEAR	=	"\x1b[1A\x1b[M"
 
-NAME = claptrap
+NAME = scavtrap
 
-CC = c++
+CXX = c++
 
 FLAG = -Wall -Wextra -Werror -std=c++98
 
 SRCS_DIR = ./
 
 FILES = main.cpp \
-		ClapTrap.cpp
+		ClapTrap.cpp \
+		ScavTrap.cpp
 
 SRCS = $(addprefix $(SRCS_DIR), $(FILES))
 
@@ -42,12 +43,12 @@ all: $(NAME)
 
 %.o: %.cpp 
 	@echo $(YELLOW) "Compiling...\t" $< $(EOC) $(LINE_CLEAR)
-	@$(CC) $(FLAG) -c $< -o $@
+	@$(CXX) $(FLAG) -c $< -o $@
 
 $(NAME): $(OBJS)
 	@echo $(GREEN) "Source files are compiled!\n" $(EOC)
 	@echo $(WHITE) "Building for" $(YELLOW) "$(NAME)" $(WHITE) "..." $(EOC)
-	@$(CC) $(FLAG) -o $@ $(OBJS)
+	@$(CXX) $(FLAG) -o $@ $(OBJS)
 
 clean:
 	@$(RM) $(OBJS)

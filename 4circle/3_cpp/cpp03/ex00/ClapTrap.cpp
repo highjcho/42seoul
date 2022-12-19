@@ -6,13 +6,13 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 11:01:35 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/11/03 14:50:38 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:44:48 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() { // 못부르게 해야 하나?
+ClapTrap::ClapTrap() {
 	std::cout << "You can't call this\n";
 }
 
@@ -45,7 +45,6 @@ void ClapTrap::attack(const std::string& target) {
 	if (_energy == 0) {
 		std::cout << _name << " has no more energy points..\n";
 		std::cout << "( Message ) " << _name << ": Sorry.. I can't attack anymore..\n\n";
-		delete this;
 	}
 	else {
 		_energy -= 1;		
@@ -59,7 +58,6 @@ void ClapTrap::takeDamage(unsigned int amount) {
 	if (_hit <= amount) {
 		std::cout << _name << " has no more hit points..\n";
 		std::cout << "( Message ) " << _name << ": Sorry.. I can't survive from this attack..\n\n";
-		delete this;
 	}
 	else {
 		_hit -= amount;
@@ -73,7 +71,6 @@ void ClapTrap::beRepaired(unsigned int amount) {
 	if (_energy == 0) {
 		std::cout << _name << " has no more energy points..\n";
 		std::cout << "( Message ) " << _name << ": Sorry.. I can't reapir anymore..\n\n";
-		delete this;
 	}
 	else {
 		_hit += amount;

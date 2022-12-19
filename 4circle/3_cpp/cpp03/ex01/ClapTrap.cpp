@@ -6,22 +6,21 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 11:01:35 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/11/03 14:14:19 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/12/19 19:46:55 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() { // 못부르게 해야 하나?
-	std::cout << "[Create] I'm in!\n";
+ClapTrap::ClapTrap() {
+	std::cout << "[Create] Hi, I'm a parent ClapTrap!\n";
 }
 
-ClapTrap::ClapTrap(const std::string name) 
+ClapTrap::ClapTrap(const std::string name)
 : _hit(10), _energy(10), _attackDamage(0)
 {
-
 	_name = name;
-	std::cout << "[Create] I'm " << name << "!! ";
+	std::cout << "[Create] I'm " << _name << "!! ";
 	std::cout << "But I'm a ClapTrap.. I can't give any damage to enemies. Do you really want me..?\n\n";
 }
 
@@ -39,7 +38,7 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &obj) {
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "[Died] Ooooops!! " << _name << " out!\n";
+	std::cout << "\n[Died] Ooooops!! Clap " << _name << " out too!!\n";
 }
 
 void ClapTrap::attack(const std::string& target) {
@@ -47,11 +46,11 @@ void ClapTrap::attack(const std::string& target) {
 	if (_energy == 0) {
 		std::cout << _name << " has no more energy points..\n";
 		std::cout << "( Message ) " << _name << ": Sorry.. I can't attack anymore..\n\n";
-		delete this;
 	}
 	else {
 		_energy -= 1;		
 		std::cout << _name << " attacks " << target << "!!, causing " << _attackDamage << " points of damage!!\n";
+		std::cout << "( Message ) I told you.. I can't give any damage to enemy..\n";
 		ClapTrap::showStatus();
 	}
 }
@@ -61,7 +60,6 @@ void ClapTrap::takeDamage(unsigned int amount) {
 	if (_hit <= amount) {
 		std::cout << _name << " has no more hit points..\n";
 		std::cout << "( Message ) " << _name << ": Sorry.. I can't survive from this attack..\n\n";
-		delete this;
 	}
 	else {
 		_hit -= amount;
@@ -75,7 +73,6 @@ void ClapTrap::beRepaired(unsigned int amount) {
 	if (_energy == 0) {
 		std::cout << _name << " has no more energy points..\n";
 		std::cout << "( Message ) " << _name << ": Sorry.. I can't reapir anymore..\n\n";
-		delete this;
 	}
 	else {
 		_hit += amount;

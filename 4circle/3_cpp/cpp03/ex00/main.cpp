@@ -6,14 +6,14 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:12:38 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/11/03 14:47:05 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/12/19 13:36:44 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 int main() {
-	ClapTrap* mu = new ClapTrap("Mu"); // new 써써도  되되는는지지
+	ClapTrap* mu = new ClapTrap("Mu");
 	ClapTrap* samsak = new ClapTrap("Samsak");
 	ClapTrap* yatong = new ClapTrap("Yatong");
 
@@ -25,4 +25,6 @@ int main() {
 	samsak->attack("Yatong");
 	yatong->takeDamage(samsak->getAttackDamage());
 	samsak->beRepaired(10);
+	delete samsak;
+	delete yatong;
 }
