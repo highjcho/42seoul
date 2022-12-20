@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:17:42 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/20 19:30:54 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:34:16 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ ScavTrap::~ScavTrap() {
 }
 
 void ScavTrap::attack(const std::string& target) {
-	std::cout << "\n[Attack] ";
+	std::cout << "[Attack] ";
 	if (_energy == 0 || _hit == 0) {
 		std::cout << _name << " has no more power..\n";
 		std::cout << "( Message ) " << _name << ": Sorry.. I can't attack anymore..\n\n";

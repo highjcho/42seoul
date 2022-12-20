@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 11:01:35 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/20 19:29:02 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:35:39 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void ClapTrap::attack(const std::string& target) {
 	}
 	else {
 		_energy -= 1;		
-		std::cout << _name << " attacks " << target << "!!, causing " << _attackDamage << " points of damage!!\n\n";
+		std::cout << _name << " attacks " << target << "!!, causing " << _attackDamage << " points of damage!!\n";
 		ClapTrap::showStatus();
 	}
 }
@@ -64,7 +64,7 @@ void ClapTrap::takeDamage(unsigned int amount) {
 	}
 	else {
 		_hit -= amount;
-		std::cout << _name << " got " << amount << " points damage!!\n\n";
+		std::cout << _name << " got " << amount << " points damage!!\n";
 		ClapTrap::showStatus();
 	}
 }
@@ -78,7 +78,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
 	else {
 		_hit += amount;
 		_energy -= 1;
-		std::cout << _name << " is repairing!!\n\n";
+		std::cout << _name << " is repairing!!\n";
 		ClapTrap::showStatus();
 	}
 }

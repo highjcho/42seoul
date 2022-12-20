@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 11:01:35 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/19 19:44:48 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/12/20 19:30:01 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,10 @@ ClapTrap::ClapTrap() {
 	std::cout << "You can't call this\n";
 }
 
-ClapTrap::ClapTrap(const std::string& name) 
+ClapTrap::ClapTrap(const std::string& name)
 : _name(name), _hit(10), _energy(10), _attackDamage(0)
 {
-	std::cout << "[Create] I'm " << name << "!! ";
+	std::cout << "[LOGIN] I'm " << _name << "!! ";
 	std::cout << "But I'm a ClapTrap.. I can't give any damage to enemies. Do you really want me..?\n\n";
 }
 
@@ -37,45 +37,46 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &obj) {
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "[Died] Ooooops!! " << _name << " out!\n";
+	std::cout << "[LOGOUT] Ooooops!! ClapTrap out!\n";
 }
 
 void ClapTrap::attack(const std::string& target) {
-	std::cout << "\n[Attack] ";
-	if (_energy == 0) {
-		std::cout << _name << " has no more energy points..\n";
+	std::cout << "[Attack] ";
+	if (_energy == 0 || _hit == 0) {
+		std::cout << _name << " has no more power..\n";
 		std::cout << "( Message ) " << _name << ": Sorry.. I can't attack anymore..\n\n";
 	}
 	else {
 		_energy -= 1;		
-		std::cout << _name << " attacks " << target << "!!, causing " << _attackDamage << " points of damage!!\n";
+		std::cout << _name << " attacks " << target << "!!, causing " << _attackDamage << " points of damage!!\n\n";
 		ClapTrap::showStatus();
 	}
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-	std::cout << "\n[Damage] ";
+	std::cout << "[Damage] ";
 	if (_hit <= amount) {
-		std::cout << _name << " has no more hit points..\n";
+		_hit = 0;
+		std::cout << _name << " has no more power..\n";
 		std::cout << "( Message ) " << _name << ": Sorry.. I can't survive from this attack..\n\n";
 	}
 	else {
 		_hit -= amount;
-		std::cout << _name << " got " << amount << " points damage!!\n";
+		std::cout << _name << " got " << amount << " points damage!!\n\n";
 		ClapTrap::showStatus();
 	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-	std::cout << "\n[Repair] ";
-	if (_energy == 0) {
-		std::cout << _name << " has no more energy points..\n";
+	std::cout << "[Repair] ";
+	if (_energy == 0 || _hit == 0) {
+		std::cout << _name << " has no more power..\n";
 		std::cout << "( Message ) " << _name << ": Sorry.. I can't reapir anymore..\n\n";
 	}
 	else {
 		_hit += amount;
 		_energy -= 1;
-		std::cout << _name << " is repairing!!\n";
+		std::cout << _name << " is repairing!!\n\n";
 		ClapTrap::showStatus();
 	}
 }
@@ -94,5 +95,5 @@ unsigned int ClapTrap::getAttackDamage() const {
 
 void ClapTrap::showStatus() const {
 	std::cout << "( " << _name << "'s status ) => ";
-	std::cout << "Hit points " << _hit << ", Energy points " << _energy << "\n";
+	std::cout << "Hit points " << _hit << ", Energy points " << _energy << "\n\n";
 }

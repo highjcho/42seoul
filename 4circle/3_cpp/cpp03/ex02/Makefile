@@ -6,7 +6,7 @@
 #    By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 16:20:52 by hyunjcho          #+#    #+#              #
-#    Updated: 2022/12/20 11:28:21 by hyunjcho         ###   ########.fr        #
+#    Updated: 2022/12/20 12:13:08 by hyunjcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ WHITE		=	"\033[1;37m"
 EOC			=	"\033[0;0m"
 LINE_CLEAR	=	"\x1b[1A\x1b[M"
 
-NAME = scavtrap
+NAME = fragtrap
 
 CXX = c++
 
@@ -31,7 +31,8 @@ SRCS_DIR = ./
 
 FILES = main.cpp \
 		ClapTrap.cpp \
-		ScavTrap.cpp
+		ScavTrap.cpp \
+		FragTrap.cpp
 
 SRCS = $(addprefix $(SRCS_DIR), $(FILES))
 

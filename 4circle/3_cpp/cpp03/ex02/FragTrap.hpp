@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   FragTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:17:39 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/20 11:08:11 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/12/20 12:11:51 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef FRAGTRAP_HPP
+# define FRAGTRAP_HPP
 
 #include "ClapTrap.hpp"
 
-class ScavTrap : public ClapTrap {
+class FragTrap : public ClapTrap {
 	private:
-		ScavTrap();
+		FragTrap();
 
 	public:
-		ScavTrap(const std::string &name);
-		ScavTrap(const ScavTrap &obj);
-		ScavTrap& operator=(const ScavTrap &obj);
-		~ScavTrap();
+		FragTrap(const std::string &name);
+		FragTrap(const FragTrap &obj);
+		FragTrap& operator=(const FragTrap &obj);
+		~FragTrap();
 
-		void attack(const std::string& target); // 상속인데 이게 왜  있있어어야야하하지?
-		void guardGate();
+		void attack(const std::string& target);
+		void highFivesGuys();
 };
 
 #endif
