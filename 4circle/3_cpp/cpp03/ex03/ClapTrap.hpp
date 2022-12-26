@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 10:57:14 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 16:07:32 by hyunjcho         ###   ########.fr       */
+/*   Created: 2022/12/26 11:16:19 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/12/26 14:38:14 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,20 +22,20 @@
 # define EOC	"\033[0;0m"
 
 class ClapTrap {
-	private:
+	protected:
+		ClapTrap();
 		std::string _name;
 		unsigned int _hit;
 		unsigned int _energy;
 		unsigned int _attackDamage;
 
 	public:
-		ClapTrap();
 		ClapTrap(const std::string& name);
 		ClapTrap(const ClapTrap &obj);
 		ClapTrap& operator=(const ClapTrap &obj);
-		~ClapTrap();
+		virtual ~ClapTrap();
 
-		void attack(const std::string& target);
+		virtual void attack(const std::string& target);
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 

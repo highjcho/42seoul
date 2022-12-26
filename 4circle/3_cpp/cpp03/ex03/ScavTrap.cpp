@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 14:17:42 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 16:09:55 by hyunjcho         ###   ########.fr       */
+/*   Created: 2022/12/26 11:16:55 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/12/26 14:42:50 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ ScavTrap::ScavTrap() {
 	_hit = 100;
 	_energy = 50;
 	_attackDamage = 20;
-	std::cout << SCAV << "[Create] Hi, I'm a default ScavTrap\n" << EOC;
+	std::cout << SCAV << "[Create] Hi, I'm a parent ScavTrap\n" << EOC;
 }
 
 ScavTrap::ScavTrap(const std::string& name)

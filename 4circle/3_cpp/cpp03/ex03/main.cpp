@@ -5,26 +5,26 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 12:12:38 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 16:15:02 by hyunjcho         ###   ########.fr       */
+/*   Created: 2022/12/26 11:16:41 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/12/26 14:08:40 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ScavTrap.hpp"
+#include "DiamondTrap.hpp"
 
 int main() {
 	ScavTrap mu = ScavTrap("Mu");
-	ScavTrap samsak = ScavTrap("Samsak");
-	ClapTrap yatong = ClapTrap("Yatong");
-	ClapTrap dodo = ClapTrap("Dodo");
-
+	FragTrap samsak = FragTrap("Samsak");
+	DiamondTrap raegi = DiamondTrap("Raegi");
+	
 	mu.attack("Samsak");
 	samsak.takeDamage(mu.getAttackDamage());
-	mu.attack("Samsak");
-	samsak.takeDamage(mu.getAttackDamage());
-	samsak.attack("Yatong");
-	yatong.takeDamage(samsak.getAttackDamage());
+	samsak.attack("raegi");
+	raegi.takeDamage(samsak.getAttackDamage());
+	mu.guardGate();
 	samsak.beRepaired(10);
-	samsak.guardGate();
-	dodo.attack("Mu");
+	samsak.highFivesGuys();
+	raegi.guardGate();
+	raegi.highFivesGuys();
+	raegi.whoAmI();
 }

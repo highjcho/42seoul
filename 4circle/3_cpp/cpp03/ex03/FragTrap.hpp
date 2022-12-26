@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 14:17:39 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 16:11:08 by hyunjcho         ###   ########.fr       */
+/*   Created: 2022/12/26 11:16:36 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/12/26 12:03:15 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "ClapTrap.hpp"
 
-class FragTrap : public ClapTrap {
+class FragTrap : virtual public ClapTrap {
 	public:
 		FragTrap();
 		FragTrap(const std::string &name);

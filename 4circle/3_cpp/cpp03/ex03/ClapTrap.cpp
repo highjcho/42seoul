@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 11:01:35 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 16:13:15 by hyunjcho         ###   ########.fr       */
+/*   Created: 2022/12/26 11:16:12 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/12/26 14:41:16 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,9 @@ ClapTrap::ClapTrap()
 }
 
 ClapTrap::ClapTrap(const std::string& name)
-: _name(name), _hit(10), _energy(10), _attackDamage(0)
+: _name(name + "_clap_name"), _hit(10), _energy(10), _attackDamage(0)
 {
-	std::cout << CLAP << "[LOGIN] I'm " << _name << "!! ";
-	std::cout << "But I'm a ClapTrap.. I can't give any damage to enemies. Do you really want me..?\n\n" << EOC;
+	std::cout << CLAP << "[Create] Hi, I'm a " << _name << "!\n" << EOC;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &obj) {

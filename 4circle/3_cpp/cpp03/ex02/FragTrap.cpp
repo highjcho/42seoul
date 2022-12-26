@@ -6,14 +6,17 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:17:42 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/20 19:36:02 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:10:52 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
 FragTrap::FragTrap() {
-	std::cout << "You can't call this";
+	_hit = 100;
+	_energy = 100;
+	_attackDamage = 30;
+	std::cout << FRAG << "[Create] Hi, I'm a default FragTrap!\n" << EOC;
 }
 
 FragTrap::FragTrap(const std::string& name)
@@ -23,8 +26,8 @@ FragTrap::FragTrap(const std::string& name)
 	_hit = 100;
 	_energy = 100;
 	_attackDamage = 30;
-	std::cout << "[LOGIN] I'm " << name << "!! ";
-	std::cout << "I'm a FragTrap. Keep your chin up guys!! \n\n";
+	std::cout << FRAG << "[LOGIN] I'm " << name << "!! ";
+	std::cout << "I'm a FragTrap. Keep your chin up guys!! \n\n" << EOC;
 }
 
 FragTrap::FragTrap(const FragTrap &obj) {
@@ -41,29 +44,29 @@ FragTrap& FragTrap::operator=(const FragTrap &obj) {
 }
 
 FragTrap::~FragTrap() {
-	std::cout << "\n[LOGOUT] Ooooops!! Frag " << _name << " out!\n";
+	std::cout << FRAG << "[LOGOUT] Ooooops!! Frag " << _name << " out!\n" << EOC;
 }
 
 void FragTrap::attack(const std::string& target) {
-	std::cout << "[Attack] ";
+	std::cout << FRAG << "[Attack] ";
 	if (_energy == 0 || _hit == 0) {
 		std::cout << _name << " has no more power..\n";
-		std::cout << "( Message ) " << _name << ": Sorry.. I can't attack anymore..\n\n";
+		std::cout << "( Message ) " << _name << ": Sorry.. I can't attack anymore..\n\n" << EOC;
 		delete this;
 	}
 	else {
 		_energy -= 1;		
 		std::cout << _name << " attacks " << target << "!!, causing " << _attackDamage << " points of damage!!\n";
-		std::cout << "( Message ) How about FragTrap's Taste???\n";
+		std::cout << "( Message ) How about FragTrap's Taste???\n" << EOC;
 		ClapTrap::showStatus();
 	}
 }
 
 void FragTrap::highFivesGuys() {
-	std::cout << "[Cheer Up Request] ";
+	std::cout << FRAG << "[Cheer Up Request] ";
 	if (_energy == 0 || _hit == 0) {
 		std::cout << _name << " has no more energy or hit point..\n";
-		std::cout << "( Message ) " << _name << ": Sorry.. I can't change mode.. Bye..\n\n";
+		std::cout << "( Message ) " << _name << ": Sorry.. I can't change mode.. Bye..\n\n" << EOC;
 	}
-	std::cout << "High Five With " << _name << "! Keep going guys!\n\n";
+	std::cout << "High Five With " << _name << "! Keep going guys!\n\n" << EOC;
 }

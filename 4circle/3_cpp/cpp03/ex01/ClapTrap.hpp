@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 10:57:14 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/20 19:29:08 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:02:28 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,12 @@
 # define CLAPTRAP_HPP
 
 #include <iostream>
+
+# define CLAP	"\033[0;32m"
+# define SCAV	"\033[1;31m"
+# define FRAG	"\033[1;33m"
+# define DIA	"\033[1;36m"
+# define EOC	"\033[0;0m"
 
 class ClapTrap {
 	protected:

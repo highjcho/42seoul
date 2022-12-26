@@ -6,21 +6,23 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 11:01:35 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/20 19:30:01 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/12/26 16:05:01 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
-ClapTrap::ClapTrap() {
-	std::cout << "You can't call this\n";
+ClapTrap::ClapTrap()
+: _hit(10), _energy(10), _attackDamage(0)
+{
+	std::cout << CLAP << "[Create] Hi, I'm a default ClapTrap!\n" << EOC;
 }
 
 ClapTrap::ClapTrap(const std::string& name)
 : _name(name), _hit(10), _energy(10), _attackDamage(0)
 {
-	std::cout << "[LOGIN] I'm " << _name << "!! ";
-	std::cout << "But I'm a ClapTrap.. I can't give any damage to enemies. Do you really want me..?\n\n";
+	std::cout << CLAP << "[LOGIN] I'm " << _name << "!! ";
+	std::cout << "But I'm a ClapTrap.. I can't give any damage to enemies. Do you really want me..?\n\n" << EOC;
 }
 
 ClapTrap::ClapTrap(const ClapTrap &obj) {
@@ -37,46 +39,46 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &obj) {
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "[LOGOUT] Ooooops!! ClapTrap out!\n";
+	std::cout << CLAP << "[LOGOUT] Ooooops!! Clap " << _name << " out!\n\n" << EOC;
 }
 
 void ClapTrap::attack(const std::string& target) {
-	std::cout << "[Attack] ";
+	std::cout << CLAP << "[Attack] ";
 	if (_energy == 0 || _hit == 0) {
 		std::cout << _name << " has no more power..\n";
-		std::cout << "( Message ) " << _name << ": Sorry.. I can't attack anymore..\n\n";
+		std::cout << "( Message ) " << _name << ": Sorry.. I can't attack anymore..\n\n" << EOC;
 	}
 	else {
 		_energy -= 1;		
-		std::cout << _name << " attacks " << target << "!!, causing " << _attackDamage << " points of damage!!\n\n";
+		std::cout << CLAP << _name << " attacks " << target << "!!, causing " << _attackDamage << " points of damage!!\n" << EOC;
 		ClapTrap::showStatus();
 	}
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-	std::cout << "[Damage] ";
+	std::cout << CLAP << "[Damage] ";
 	if (_hit <= amount) {
 		_hit = 0;
 		std::cout << _name << " has no more power..\n";
-		std::cout << "( Message ) " << _name << ": Sorry.. I can't survive from this attack..\n\n";
+		std::cout << "( Message ) " << _name << ": Sorry.. I can't survive from this attack..\n\n" << EOC;
 	}
 	else {
 		_hit -= amount;
-		std::cout << _name << " got " << amount << " points damage!!\n\n";
+		std::cout << CLAP << _name << " got " << amount << " points damage!!\n" << EOC;
 		ClapTrap::showStatus();
 	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-	std::cout << "[Repair] ";
+	std::cout << CLAP << "[Repair] ";
 	if (_energy == 0 || _hit == 0) {
 		std::cout << _name << " has no more power..\n";
-		std::cout << "( Message ) " << _name << ": Sorry.. I can't reapir anymore..\n\n";
+		std::cout << "( Message ) " << _name << ": Sorry.. I can't reapir anymore..\n\n" << EOC;
 	}
 	else {
 		_hit += amount;
 		_energy -= 1;
-		std::cout << _name << " is repairing!!\n\n";
+		std::cout << _name << " is repairing!!\n" << EOC;
 		ClapTrap::showStatus();
 	}
 }
