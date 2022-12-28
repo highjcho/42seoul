@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   ICharacter.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 14:17:39 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/28 11:28:08 by hyunjcho         ###   ########.fr       */
+/*   Created: 2022/12/28 16:18:51 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/12/28 18:03:47 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef ICHRACTER_HPP
+# define ICHARACTER_HPP
 
-#include "ClapTrap.hpp"
+#include "Amateria.hpp"
 
-class ScavTrap : public ClapTrap {
+class ICharacter {
+	protected:
+		std::string _name;
+		
 	public:
-		ScavTrap();
-		ScavTrap(const std::string &name);
-		ScavTrap(const ScavTrap &obj);
-		ScavTrap& operator=(const ScavTrap &obj);
-		~ScavTrap();
-
-		void attack(const std::string& target);
-		void guardGate();
+		virtual ~ICharacter() {}
+		virtual std::string const& getName() const = 0;
+		virtual void equip(AMateria* m) = 0;
+		virtual void unequip(int idx) = 0;
+		virtual void use(int idx, ICharacter& target) = 0;
 };
 
 #endif

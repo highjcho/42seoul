@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   Ice.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 14:17:39 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/28 11:28:08 by hyunjcho         ###   ########.fr       */
+/*   Created: 2022/12/28 17:50:25 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/12/28 18:29:39 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#include "Ice.hpp"
 
-#include "ClapTrap.hpp"
+Ice::Ice() {
+	name = "ice";
+	std::cout << ICE << "[Create] Ice Materia\n\n" << EOC;
+}
 
-class ScavTrap : public ClapTrap {
-	public:
-		ScavTrap();
-		ScavTrap(const std::string &name);
-		ScavTrap(const ScavTrap &obj);
-		ScavTrap& operator=(const ScavTrap &obj);
-		~ScavTrap();
+AMateria* Ice::clone() const {
+	return new Ice();
+}
 
-		void attack(const std::string& target);
-		void guardGate();
-};
+void Ice::use(ICharacter& target) {
+	std::cout << ICE << "* shoots an ice bolt at " << target.getName() << " *\n\n" << EOC;
+}
 
-#endif
+Ice::~Ice() {
+	std::cout << ICE << "[Destroy] Ice\n\n" << EOC;
+}

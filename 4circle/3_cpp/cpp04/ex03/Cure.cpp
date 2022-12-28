@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ScavTrap.hpp                                       :+:      :+:    :+:   */
+/*   Cure.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/03 14:17:39 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/28 11:28:08 by hyunjcho         ###   ########.fr       */
+/*   Created: 2022/12/28 18:40:09 by hyunjcho          #+#    #+#             */
+/*   Updated: 2022/12/28 18:42:04 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#include "Cure.hpp"
 
-#include "ClapTrap.hpp"
+Cure::Cure() {
+	name = "Cure";
+	std::cout << CURE << "[Create] Cure Materia\n\n" << EOC;
+}
 
-class ScavTrap : public ClapTrap {
-	public:
-		ScavTrap();
-		ScavTrap(const std::string &name);
-		ScavTrap(const ScavTrap &obj);
-		ScavTrap& operator=(const ScavTrap &obj);
-		~ScavTrap();
+AMateria* Cure::clone() const {
+	return new Cure();
+}
 
-		void attack(const std::string& target);
-		void guardGate();
-};
+void Cure::use(ICharacter& target) {
+	std::cout << CURE << "* heals " << target.getName() << "'s wounds *\n\n" << EOC;
+}
 
-#endif
+Cure::~Cure() {
+	std::cout << CURE << "[Destroy] Cure\n\n" << EOC;
+}

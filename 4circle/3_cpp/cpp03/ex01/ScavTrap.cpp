@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:17:42 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 16:09:55 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/12/28 11:40:53 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ ScavTrap::ScavTrap() {
 	std::cout << SCAV << "[Create] Hi, I'm a default ScavTrap\n" << EOC;
 }
 
-ScavTrap::ScavTrap(const std::string& name)
-: ClapTrap()
-{
+ScavTrap::ScavTrap(const std::string& name) {
 	_name = name;
 	_hit = 100;
 	_energy = 50;

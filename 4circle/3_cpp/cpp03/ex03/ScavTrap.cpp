@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:55 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 14:42:50 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2022/12/28 11:41:03 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ ScavTrap::ScavTrap() {
 	std::cout << SCAV << "[Create] Hi, I'm a parent ScavTrap\n" << EOC;
 }
 
-ScavTrap::ScavTrap(const std::string& name)
-: ClapTrap()
-{
+ScavTrap::ScavTrap(const std::string& name) s{
 	_name = name;
 	_hit = 100;
 	_energy = 50;
