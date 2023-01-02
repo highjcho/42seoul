@@ -6,14 +6,14 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:18:51 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/28 18:03:47 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:26:33 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ICHRACTER_HPP
+#ifndef ICHARACTER_HPP
 # define ICHARACTER_HPP
 
-#include "Amateria.hpp"
+#include "AMateria.hpp"
 
 class ICharacter {
 	protected:

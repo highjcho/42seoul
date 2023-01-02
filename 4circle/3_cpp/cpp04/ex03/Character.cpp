@@ -6,13 +6,15 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:56:20 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/28 17:56:04 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:37:57 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
 Character::Character() {
+	for (int i = 0; i < SLOT; i++)
+		_inventory[i] = NULL;
 	_quantity = 0;
 	std::cout << CHARACTER << "[CREATE] Chracter\n\n" << EOC; 
 }
@@ -63,7 +65,7 @@ void Character::unequip(int idx) {
 }
 
 void Character::use(int idx, ICharacter& target) {
-	std::cout << CHARACTER << "[USE] " << _name;
+	std::cout << CHARACTER << "[USE] " << _name << " ";
 	if (_quantity == 0) {
 		std::cout << " doesn't have any materia yet\n\n" << EOC;
 		return ;
@@ -76,10 +78,12 @@ void Character::use(int idx, ICharacter& target) {
 }
 
 int Character::findIdx() {
-	for (int i = 0; i < SLOT; i++) {
+	int i;
+	for (i = 0; i < SLOT; i++) {
 		if (_inventory[i] == NULL)
-			return i;
+			break;
 	}
+	return i;
 }
 
 void Character::showMateriaStatus() {
@@ -92,4 +96,8 @@ void Character::showMateriaStatus() {
 			std::cout << "empty\n";
 	}
 	std::cout << EOC << std::endl;
+}
+
+Character::~Character() {
+	std::cout << "[DELETE] character\n\n";
 }

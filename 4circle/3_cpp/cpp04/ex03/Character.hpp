@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:36:16 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/28 17:50:16 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:17:16 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ class Character : public ICharacter {
 		Character();
 		Character(std::string const name);
 		Character(const Character &obj);
-		Character& operator=(const Character *obj);
+		Character& operator=(const Character &obj);
 		~Character();
 
 		std::string const& getName() const;

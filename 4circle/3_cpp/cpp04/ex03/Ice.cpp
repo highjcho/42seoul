@@ -6,14 +6,16 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:50:25 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/28 18:29:39 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:37:13 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Ice.hpp"
+#include "ICharacter.hpp"
 
 Ice::Ice() {
-	name = "ice";
+	name = "Ice";
+	type = "ice";
 	std::cout << ICE << "[Create] Ice Materia\n\n" << EOC;
 }
 

@@ -6,12 +6,12 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:43:53 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/28 18:20:19 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:24:00 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AMATERIA_HPP
-# define AMETERIA_HPP
+# define AMATERIA_HPP
 
 #include <iostream>
 
@@ -35,7 +35,7 @@ class AMateria {
 		AMateria& operator=(const AMateria &obj);
 		virtual ~AMateria();
 
-		std::string const& getType() const;
+		virtual std::string const& getType() const;
 		virtual AMateria* clone() const = 0;
 		virtual void use(ICharacter& target);
 };

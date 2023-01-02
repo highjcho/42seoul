@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:49:04 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/28 17:26:24 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/02 19:11:59 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 
 class Cure : public AMateria {
 	public:
+		Cure();
+		~Cure();
 		AMateria* clone() const;
 		void use(ICharacter& target);
 };
