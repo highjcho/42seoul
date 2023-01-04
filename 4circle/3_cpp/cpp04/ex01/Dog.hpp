@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:44:40 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/27 18:31:37 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:36:42 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ class Dog : public Animal{
 		~Dog();
 
 		void makeSound() const;
-		std::string getType() const;
 		Brain* getBrain() const;
 };
 

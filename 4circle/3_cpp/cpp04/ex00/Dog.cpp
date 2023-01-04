@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:48:30 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/27 16:53:40 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:44:59 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Dog::Dog()
 {
-	type = "강아지";
+	type = "Dog";
 	std::cout << DOG << "안녕, 나는 강아지야\n\n" << EOC;
 }
 
@@ -32,10 +32,6 @@ void Dog::makeSound() const{
 	std::cout << DOG << "멍멍\n\n" << EOC;
 }
 
-std::string Dog::getType() const{
-	return type;
-}
-
 Dog::~Dog() {
-	std::cout << DOG << "안녕! " << type << "는 이만 간다!\n" << EOC;
+	std::cout << DOG << "안녕! 강아지는 이만 간다!\n" << EOC;
 }

@@ -32,10 +32,6 @@ void WrongCat::makeSound() const{
 	std::cout << CAT << "이얏호응\n\n" << EOC;
 }
 
-std::string WrongCat::getType() const{
-	return type;
-}
-
 WrongCat::~WrongCat() {
 	std::cout << CAT << "안녕! " << type << "는 이만 간다!\n" << EOC;
 }

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 11:51:10 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/27 16:37:19 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:39:13 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class WrongAnimal {
 		virtual ~WrongAnimal();
 
 		void makeSound() const;
-		virtual std::string getType() const;
+		std::string getType() const;
 };
 
 #endif

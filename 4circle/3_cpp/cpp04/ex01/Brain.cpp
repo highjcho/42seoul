@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:05:13 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/27 18:03:50 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/04 12:48:01 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 Brain::Brain() : _idx(0) {
 	std::cout << "이제 나는 생각할 수 있어!\n";
+	for (int i = 0; i < 100; i++)
+		_ideas[i] = NULL;
 }
 
 Brain::Brain(const Brain &obj) {
@@ -41,4 +43,5 @@ std::string Brain::getIdea(int i) const{
 
 Brain::~Brain() {
 	std::cout << "이제 나는 생각할 수 없어..\n";
+	delete[] _ideas;
 }

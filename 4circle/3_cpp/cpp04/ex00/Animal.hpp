@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 11:51:10 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/27 16:11:09 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:38:42 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ class Animal {
 		virtual ~Animal();
 
 		virtual void makeSound() const;
-		virtual std::string getType() const;
+		std::string getType() const;
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:44:40 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/27 16:38:34 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/04 11:39:31 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "WrongAnimal.hpp"
 
-class WrongCat : public WrongAnimal{
+class WrongCat : public WrongAnimal {
 	public:
 		WrongCat();
 		WrongCat(const WrongCat &obj);
@@ -23,7 +23,6 @@ class WrongCat : public WrongAnimal{
 		~WrongCat();
 
 		void makeSound() const;
-		std::string getType() const;
 };
 
 #endif
