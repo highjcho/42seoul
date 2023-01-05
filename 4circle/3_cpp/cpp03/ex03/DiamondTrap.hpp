@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:18:13 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 12:09:39 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:43:53 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include "ScavTrap.hpp"
 #include "FragTrap.hpp"
 
-class DiamondTrap : public ScavTrap, public FragTrap {
+class DiamondTrap : public FragTrap, public ScavTrap {
 	private:
 		DiamondTrap();
 		std::string _name;

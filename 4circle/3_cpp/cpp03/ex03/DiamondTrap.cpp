@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:55 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 14:44:22 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:52:15 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ DiamondTrap::DiamondTrap() {
 DiamondTrap::DiamondTrap(const std::string& name)
 : ClapTrap(name)
 {
-	_name = name;
-	_hit = FragTrap::_hit;
-	_energy = ScavTrap::_energy;
-	_attackDamage = FragTrap::_attackDamage;
-	std::cout << DIA << "[LOGIN] I'm " << name << "!! ";
+	_name = "_name";
+	_hit = F_HIT;
+	_energy = S_ENERGY;
+	_attackDamage = F_ATTACK;
+	std::cout << DIA << "[LOGIN] I'm " << _name << "!! ";
 	std::cout << "I'm a DiamondTrap. I'm very confused. Who am I?? \n\n" << EOC;
 }
 

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 12:12:38 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 16:15:02 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:21:44 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,6 @@ int main() {
 	ClapTrap yatong = ClapTrap("Yatong");
 	ClapTrap dodo = ClapTrap("Dodo");
 
-	mu.attack("Samsak");
-	samsak.takeDamage(mu.getAttackDamage());
 	mu.attack("Samsak");
 	samsak.takeDamage(mu.getAttackDamage());
 	samsak.attack("Yatong");

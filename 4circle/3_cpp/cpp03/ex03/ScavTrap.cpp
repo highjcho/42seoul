@@ -6,24 +6,24 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:55 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/28 11:41:03 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:47:24 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScavTrap.hpp"
 
 ScavTrap::ScavTrap() {
-	_hit = 100;
-	_energy = 50;
-	_attackDamage = 20;
+	_hit = S_HIT;
+	_energy = S_ENERGY;
+	_attackDamage = S_ATTACK;
 	std::cout << SCAV << "[Create] Hi, I'm a parent ScavTrap\n" << EOC;
 }
 
-ScavTrap::ScavTrap(const std::string& name) s{
+ScavTrap::ScavTrap(const std::string& name) {
 	_name = name;
-	_hit = 100;
-	_energy = 50;
-	_attackDamage = 20;
+	_hit = S_HIT;
+	_energy = S_ENERGY;
+	_attackDamage = S_ATTACK;
 	std::cout << SCAV << "[LOGIN] I'm " << name << "!! ";
 	std::cout << "I'm a ScavTrap. I can be a gate keeper as well! Go! Go! \n\n" << EOC;
 }

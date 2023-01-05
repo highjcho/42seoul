@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 10:57:14 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 16:02:20 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:24:47 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # define CLAP	"\033[0;32m"
 # define SCAV	"\033[1;31m"
 # define FRAG	"\033[1;33m"
-# define DIA	"\033[1;36m"
 # define EOC	"\033[0;0m"
 
 class ClapTrap {

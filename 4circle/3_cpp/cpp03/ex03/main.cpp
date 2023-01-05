@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:41 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 14:08:40 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:38:34 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int main() {
 	samsak.attack("raegi");
 	raegi.takeDamage(samsak.getAttackDamage());
 	mu.guardGate();
+	raegi.attack("samsak");
+	samsak.takeDamage(raegi.getAttackDamage());
 	samsak.beRepaired(10);
 	samsak.highFivesGuys();
-	raegi.guardGate();
-	raegi.highFivesGuys();
 	raegi.whoAmI();
 }

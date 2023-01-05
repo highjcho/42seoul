@@ -6,16 +6,16 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:29 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 14:46:28 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:48:21 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
 FragTrap::FragTrap() {
-	_hit = 100;
-	_energy = 100;
-	_attackDamage = 30;
+	_hit = F_HIT;
+	_energy = F_ENERGY;
+	_attackDamage = F_ATTACK;
 	std::cout << FRAG << "[Create] Hi, I'm a parent FragTrap!\n" << EOC;
 }
 
@@ -23,9 +23,9 @@ FragTrap::FragTrap(const std::string& name)
 : ClapTrap()
 {
 	_name = name;
-	_hit = 100;
-	_energy = 100;
-	_attackDamage = 30;
+	_hit = F_HIT;
+	_energy = F_ENERGY;
+	_attackDamage = F_ATTACK;
 	std::cout << FRAG << "[LOGIN] I'm " << name << "!! ";
 	std::cout << "I'm a FragTrap. Keep your chin up guys!! \n\n" << EOC;
 }
@@ -66,7 +66,7 @@ void FragTrap::highFivesGuys() {
 	std::cout << FRAG << "[Cheer Up Request] ";
 	if (_energy == 0 || _hit == 0) {
 		std::cout << _name << " has no more energy or hit point..\n";
-		std::cout << "( Message ) " << _name << ": Sorry.. I can't change mode.. Bye..\n\n" << EOC;
+		std::cout << "( Message ) " << _name << ": Sorry.. I can't highfive Bye..\n\n" << EOC;
 	}
 	std::cout << "High Five With " << _name << "! Keep going guys!\n\n" << EOC;
 }

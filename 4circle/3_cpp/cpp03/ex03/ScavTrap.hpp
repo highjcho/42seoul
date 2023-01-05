@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:17:01 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 12:03:01 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:47:15 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 # define SCAVTRAP_HPP
 
 #include "ClapTrap.hpp"
+
+# define S_HIT 100
+# define S_ENERGY 50
+# define S_ATTACK 20
 
 class ScavTrap : virtual public ClapTrap {
 	public:

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 11:01:35 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/28 16:19:27 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:24:28 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,21 +56,21 @@ void ClapTrap::attack(const std::string& target) {
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-	std::cout << CLAP << "[Damage] ";
+	std::cout << "[Damage] ";
 	if (_hit <= amount) {
 		_hit = 0;
 		std::cout << _name << " has no more power..\n";
-		std::cout << "( Message ) " << _name << ": Sorry.. I can't survive from this attack..\n\n" << EOC;
+		std::cout << "( Message ) " << _name << ": Sorry.. I can't survive from this attack..\n\n";
 	}
 	else {
 		_hit -= amount;
-		std::cout << CLAP << _name << " got " << amount << " points damage!!\n" << EOC;
+		std::cout << _name << " got " << amount << " points damage!!\n";
 		ClapTrap::showStatus();
 	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-	std::cout << CLAP << "[Repair] ";
+	std::cout << "[Repair] ";
 	if (_energy == 0 || _hit == 0) {
 		std::cout << _name << " has no more power..\n";
 		std::cout << "( Message ) " << _name << ": Sorry.. I can't reapir anymore..\n\n" << EOC;
@@ -78,7 +78,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
 	else {
 		_hit += amount;
 		_energy -= 1;
-		std::cout << _name << " is repairing!!\n" << EOC;
+		std::cout << _name << " is repairing!!\n";
 		ClapTrap::showStatus();
 	}
 }

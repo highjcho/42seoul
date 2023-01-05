@@ -6,20 +6,20 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:12 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/26 14:41:16 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 00:48:01 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap()
-: _hit(10), _energy(10), _attackDamage(0)
+: _hit(C_HIT), _energy(C_ENERGY), _attackDamage(C_ATTACK)
 {
 	std::cout << CLAP << "[Create] Hi, I'm a parent ClapTrap!\n" << EOC;
 }
 
 ClapTrap::ClapTrap(const std::string& name)
-: _name(name + "_clap_name"), _hit(10), _energy(10), _attackDamage(0)
+: _name(name + "_clap_name"), _hit(C_HIT), _energy(C_ENERGY), _attackDamage(C_ATTACK)
 {
 	std::cout << CLAP << "[Create] Hi, I'm a " << _name << "!\n" << EOC;
 }
@@ -55,29 +55,29 @@ void ClapTrap::attack(const std::string& target) {
 }
 
 void ClapTrap::takeDamage(unsigned int amount) {
-	std::cout << CLAP << "[Damage] ";
+	std::cout << "[Damage] ";
 	if (_hit <= amount) {
 		_hit = 0;
 		std::cout << _name << " has no more power..\n";
-		std::cout << "( Message ) " << _name << ": Sorry.. I can't survive from this attack..\n\n" << EOC;
+		std::cout << "( Message ) " << _name << ": Sorry.. I can't survive from this attack..\n\n";
 	}
 	else {
 		_hit -= amount;
-		std::cout << CLAP << _name << " got " << amount << " points damage!!\n" << EOC;
+		std::cout << _name << " got " << amount << " points damage!!\n";
 		ClapTrap::showStatus();
 	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount) {
-	std::cout << CLAP << "[Repair] ";
+	std::cout << "[Repair] ";
 	if (_energy == 0 || _hit == 0) {
 		std::cout << _name << " has no more power..\n";
-		std::cout << "( Message ) " << _name << ": Sorry.. I can't reapir anymore..\n\n" << EOC;
+		std::cout << "( Message ) " << _name << ": Sorry.. I can't reapir anymore..\n\n";
 	}
 	else {
 		_hit += amount;
 		_energy -= 1;
-		std::cout << _name << " is repairing!!\n" << EOC;
+		std::cout << _name << " is repairing!!\n";
 		ClapTrap::showStatus();
 	}
 }
