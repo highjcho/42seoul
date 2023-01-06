@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:45:59 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/04 12:43:50 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 11:59:55 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ Cat::Cat(const Cat &obj) {
 }
 
 Cat& Cat::operator=(const Cat &obj) {
-	if (this != &obj)
+	if (this != &obj) {
 		type = obj.getType();
+		_brain = new Brain(*obj.getBrain());
+	}
 	return *this;
 }
 
@@ -37,6 +39,7 @@ Brain* Cat::getBrain() const {
 }
 
 Cat::~Cat() {
+	
 	delete _brain;
 	std::cout << CAT << "안녕! 고양이는 이만 간다!\n" << EOC;
 }

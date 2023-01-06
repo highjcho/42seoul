@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:19 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 00:45:34 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:46:07 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ class ClapTrap {
 		void takeDamage(unsigned int amount);
 		void beRepaired(unsigned int amount);
 
+		virtual std::string getName() const;
 		unsigned int getHit() const;
 		unsigned int getEnergy() const ;
 		unsigned int getAttackDamage() const;

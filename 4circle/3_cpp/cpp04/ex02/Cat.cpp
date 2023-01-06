@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:45:59 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/27 18:29:38 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 11:59:57 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ Cat::Cat(const Cat &obj) {
 }
 
 Cat& Cat::operator=(const Cat &obj) {
-	if (this != &obj)
+	if (this != &obj) {
 		type = obj.getType();
+		_brain = new Brain(*obj.getBrain());
+	}
 	return *this;
 }
 

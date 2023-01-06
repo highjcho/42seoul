@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:18:13 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 00:43:53 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 09:38:39 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class DiamondTrap : public FragTrap, public ScavTrap {
 
 		void attack(const std::string& target);
 		void whoAmI();
+		std::string getName() const;
 };
 
 #endif

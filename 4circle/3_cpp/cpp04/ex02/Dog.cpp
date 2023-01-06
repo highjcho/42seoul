@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:48:30 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/27 18:08:29 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 11:54:34 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ Dog::Dog(const Dog &obj) {
 }
 
 Dog& Dog::operator=(const Dog &obj) {
-	if (this != &obj)
+	if (this != &obj) {
 		type = obj.getType();
+		_brain = new Brain(*obj.getBrain());
+	}
 	return *this;
 }
 

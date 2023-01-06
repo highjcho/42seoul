@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 11:43:53 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/02 19:24:00 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 14:10:49 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # define ICE		"\033[1;33m"
 # define CURE		"\033[1;36m"
 # define CHARACTER	"\033[0;35m"
+# define SOURCE		"\033[1;30m"
 # define EOC		"\033[0;0m"
 
 class ICharacter;
 
 class AMateria {
 	protected:
-		std::string name;
 		std::string type;
 
 	public:

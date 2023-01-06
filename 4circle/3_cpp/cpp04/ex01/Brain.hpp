@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:47:04 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/04 12:36:31 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:07:44 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include <iostream>
 
-# define MAX 10
+# define MAX 100
 
 class Brain {
 	private:

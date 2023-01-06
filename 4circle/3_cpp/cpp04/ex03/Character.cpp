@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:56:20 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/02 19:37:57 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:41:08 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,15 @@ Character::Character() {
 	for (int i = 0; i < SLOT; i++)
 		_inventory[i] = NULL;
 	_quantity = 0;
-	std::cout << CHARACTER << "[CREATE] Chracter\n\n" << EOC; 
+	std::cout << CHARACTER << "[Create] Chracter\n\n" << EOC; 
 }
 
-Character::Character(const std::string name) {
+Character::Character(const std::string &name) {
 	_name = name;
-	std::cout << CHARACTER << "[LOGIN] HI, I'm " << _name << "\n\n" << EOC; 
+	for (int i = 0; i < SLOT; i++)
+		_inventory[i] = NULL;
+	_quantity = 0;
+	std::cout << CHARACTER << "[Login] HI, I'm " << _name << "\n\n" << EOC; 
 }
 
 Character::Character(const Character &obj) {
@@ -29,34 +32,49 @@ Character::Character(const Character &obj) {
 }
 
 Character& Character::operator=(const Character &obj) {
-	if (this != &obj)
+	if (this != &obj) {
 		_name = obj.getName();
+		for (int i = 0; i < SLOT; i++) {
+			if (_inventory[i]) {	
+				delete _inventory[i];
+				_inventory[i] = NULL;
+			}
+			AMateria* materia = obj.getMateria(i);
+			if (materia)
+				_inventory[i] = materia->clone();
+		}
+		_quantity = obj.getQuantity();
+	}
+	std::cout << CHARACTER << "[Create] Chracter COPY\n\n" << EOC; 
 	return *this;
 }
 
-std::string const& Character::getName() const {
-	return _name;
-}
-
 void Character::equip(AMateria* m) {
-	std::cout << CHARACTER << "[EQUIP] " << _name;
+	if (!m) {
+		std::cout << "[Error] Materia is null\n";
+		return ;
+	}
+	std::cout << CHARACTER << "[Equip] " << _name;
 	if (_quantity == SLOT) {
 		std::cout << "'s inventory is full!\n\n" << EOC;
 		return ;
 	}
 	_inventory[Character::findIdx()] = m;
 	_quantity++;
-	std::cout << " has " << m->getType() << "!\n\n" << EOC;
+	std::cout << " has a " << m->getType() << "!\n\n" << EOC;
 }
 
 void Character::unequip(int idx) {
-	std::cout << CHARACTER << "[UNEQUIP] " << _name;
+	if (idx < 0 || idx > SLOT) {
+		std::cout << "[Error] You got the wrong number\n\n";
+		return ;
+	}
+	std::cout << CHARACTER << "[Unequip] " << _name;
 	if (_quantity == 0) {
 		std::cout << " doesn't have any materia yet\n\n" << EOC;
 		return ;
-	}
-	if (_inventory[idx] == NULL) {
-		std::cout << " doesn't have materia in this slot\n\n" << EOC;
+	} else if (_inventory[idx] == NULL) {
+		std::cout << " doesn't have materia in slot " << idx << "\n\n" << EOC;
 		return ;
 	}
 	std::cout << " drop the " << _inventory[idx]->getType() << " materia\n\n" << EOC;
@@ -65,13 +83,16 @@ void Character::unequip(int idx) {
 }
 
 void Character::use(int idx, ICharacter& target) {
-	std::cout << CHARACTER << "[USE] " << _name << " ";
-	if (_quantity == 0) {
-		std::cout << " doesn't have any materia yet\n\n" << EOC;
+	if (idx < 0 || idx > SLOT) {
+		std::cout << "[Error] You got the wrong number\n\n";
 		return ;
 	}
-	if (_inventory[idx] == NULL) {
-		std::cout << " doesn't have materia in this slot\n\n" << EOC;
+	std::cout << CHARACTER << "[Use] " << _name << " ";
+	if (_quantity == 0) {
+		std::cout << "doesn't have any materia yet\n\n" << EOC;
+		return ;
+	} else if (_inventory[idx] == NULL) {
+		std::cout << "doesn't have materia in slot " << idx << "\n\n" << EOC;
 		return ;
 	}
 	_inventory[idx]->use(target);
@@ -90,7 +111,7 @@ void Character::showMateriaStatus() {
 	std::cout << CHARACTER << "[ " << _name << "'s inventory ]\n\n";
 	for (int i = 0; i < SLOT; i++) {
 		std::cout << "- slot [" << i << "] : ";
-		if (_inventory[i] != NULL)
+		if (_inventory[i])
 			std::cout << _inventory[i]->getType() << "\n";
 		else
 			std::cout << "empty\n";
@@ -98,6 +119,22 @@ void Character::showMateriaStatus() {
 	std::cout << EOC << std::endl;
 }
 
+std::string const& Character::getName() const {
+	return _name;
+}
+
+AMateria* Character::getMateria(const int i) const {
+	return _inventory[i];
+}
+
+int Character::getQuantity() const {
+	return _quantity;
+}
+
 Character::~Character() {
-	std::cout << "[DELETE] character\n\n";
+	for (int i = 0; i < SLOT; i++) {
+		if (_inventory[i])
+			delete _inventory[i];
+	}
+	std::cout << "[Destroy] character\n\n";
 }

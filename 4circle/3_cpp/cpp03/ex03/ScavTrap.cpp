@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:55 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 00:47:24 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:49:09 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ ScavTrap::ScavTrap(const ScavTrap &obj) {
 
 ScavTrap& ScavTrap::operator=(const ScavTrap &obj) {
 	if (this != &obj) {
+		_name = obj.getName();
 		_hit = obj.getHit();
 		_energy = obj.getEnergy();
 		_attackDamage = obj.getAttackDamage();

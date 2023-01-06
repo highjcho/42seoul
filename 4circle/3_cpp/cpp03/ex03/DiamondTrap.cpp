@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:55 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 00:52:15 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:49:43 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ DiamondTrap::DiamondTrap() {
 DiamondTrap::DiamondTrap(const std::string& name)
 : ClapTrap(name)
 {
-	_name = "_name";
+	_name = name;
 	_hit = F_HIT;
 	_energy = S_ENERGY;
 	_attackDamage = F_ATTACK;
@@ -33,6 +33,7 @@ DiamondTrap::DiamondTrap(const DiamondTrap &obj) {
 
 DiamondTrap& DiamondTrap::operator=(const DiamondTrap &obj) {
 	if (this != &obj) {
+		_name = obj.getName();
 		_hit = obj.getHit();
 		_energy = obj.getEnergy();
 		_attackDamage = obj.getAttackDamage();
@@ -50,4 +51,8 @@ void DiamondTrap::attack(const std::string& target) {
 
 void DiamondTrap::whoAmI() {
 	std::cout << DIA << "[CONFUSED] I have 2 names. Frist is " << ClapTrap::_name << " and second is " << _name << ". Who am I?\n\n" << EOC;
+}
+
+std::string DiamondTrap::getName() const{
+	return _name;
 }

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:12 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 00:48:01 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:48:18 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ ClapTrap::ClapTrap(const ClapTrap &obj) {
 
 ClapTrap& ClapTrap::operator=(const ClapTrap &obj) {
 	if (this != &obj) {
+		_name = obj.getName();
 		_hit = obj.getHit();
 		_energy = obj.getEnergy();
 		_attackDamage = obj.getAttackDamage();
@@ -80,6 +81,10 @@ void ClapTrap::beRepaired(unsigned int amount) {
 		std::cout << _name << " is repairing!!\n";
 		ClapTrap::showStatus();
 	}
+}
+
+std::string ClapTrap::getName() const {
+	return _name;
 }
 
 unsigned int ClapTrap::getHit() const {

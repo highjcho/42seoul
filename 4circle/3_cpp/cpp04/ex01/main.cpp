@@ -6,14 +6,14 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:51:41 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/27 18:24:34 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:09:31 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 #include "Dog.hpp"
 #include <cstdlib>
-#include <ctime> // 11 없는지 찾아보기
+#include <ctime>
 
 int main()
 {
@@ -31,7 +31,7 @@ int main()
 	for (i = 0; i < 4; i++)
 		delete animals[i];
 
-	std::cout << "\n=====================================================\n\n"; // setfill
+	std::cout << "\n=====================================================\n\n";
 	Dog* dog = new Dog();
 	srand(time(NULL));
 	for (i = 0; i < 5; i++) {
@@ -47,6 +47,5 @@ int main()
 	std::cout << EOC << "\n\n";
 
 	delete dog;
-
 	return 0;
 }

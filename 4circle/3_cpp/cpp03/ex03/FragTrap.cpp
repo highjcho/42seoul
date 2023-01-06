@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:29 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 00:48:21 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:48:57 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ FragTrap::FragTrap(const FragTrap &obj) {
 
 FragTrap& FragTrap::operator=(const FragTrap &obj) {
 	if (this != &obj) {
+		_name = obj.getName();
 		_hit = obj.getHit();
 		_energy = obj.getEnergy();
 		_attackDamage = obj.getAttackDamage();

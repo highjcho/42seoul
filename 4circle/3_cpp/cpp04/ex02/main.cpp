@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:51:41 by hyunjcho          #+#    #+#             */
-/*   Updated: 2022/12/28 11:40:35 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 12:25:05 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int main()
 	std::cout << DOG << dog->getBrain()->getIdea(0);
 	std::cout << CAT << cat->getBrain()->getIdea(0) << EOC;
 
+	delete animal;
 	delete dog;
 	delete cat;
 

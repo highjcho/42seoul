@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 17:50:25 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/02 19:37:13 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/06 17:22:49 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,18 @@
 #include "ICharacter.hpp"
 
 Ice::Ice() {
-	name = "Ice";
 	type = "ice";
 	std::cout << ICE << "[Create] Ice Materia\n\n" << EOC;
+}
+
+Ice::Ice(const Ice &obj) {
+	*this = obj;
+}
+
+Ice& Ice::operator=(const Ice &obj) {
+	if (this != &obj)
+		type = obj.getType();
+	return *this;
 }
 
 AMateria* Ice::clone() const {
@@ -28,5 +37,5 @@ void Ice::use(ICharacter& target) {
 }
 
 Ice::~Ice() {
-	std::cout << ICE << "[Destroy] Ice\n\n" << EOC;
+	std::cout << ICE << "[Destroy] Ice\n" << EOC;
 }
