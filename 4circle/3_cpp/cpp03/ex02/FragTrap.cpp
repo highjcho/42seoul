@@ -6,13 +6,14 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 14:17:42 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 12:45:23 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 11:54:24 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "FragTrap.hpp"
 
 FragTrap::FragTrap() {
+	_name = "FRAG";
 	_hit = 100;
 	_energy = 100;
 	_attackDamage = 30;

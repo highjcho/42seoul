@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:19 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 12:46:07 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 11:53:30 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define C_HIT	10
 # define C_ENERGY 10
 # define C_ATTACK 0
+# define C_NAME "CLAP"
 
 class ClapTrap {
 	protected:

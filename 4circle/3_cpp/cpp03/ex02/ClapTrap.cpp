@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/03 11:01:35 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 12:45:12 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:16:35 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
 	std::cout << "[Repair] ";
 	if (_energy == 0 || _hit == 0) {
 		std::cout << _name << " has no more power..\n";
-		std::cout << "( Message ) " << _name << ": Sorry.. I can't reapir anymore..\n\n" << EOC;
+		std::cout << "( Message ) " << _name << ": Sorry.. I can't repair anymore..\n\n" << EOC;
 	}
 	else {
 		_hit += amount;

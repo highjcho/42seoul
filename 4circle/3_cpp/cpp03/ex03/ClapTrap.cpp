@@ -6,14 +6,14 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:12 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 12:48:18 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:18:24 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap()
-: _hit(C_HIT), _energy(C_ENERGY), _attackDamage(C_ATTACK)
+: _name(C_NAME), _hit(C_HIT), _energy(C_ENERGY), _attackDamage(C_ATTACK)
 {
 	std::cout << CLAP << "[Create] Hi, I'm a parent ClapTrap!\n" << EOC;
 }
@@ -73,7 +73,7 @@ void ClapTrap::beRepaired(unsigned int amount) {
 	std::cout << "[Repair] ";
 	if (_energy == 0 || _hit == 0) {
 		std::cout << _name << " has no more power..\n";
-		std::cout << "( Message ) " << _name << ": Sorry.. I can't reapir anymore..\n\n";
+		std::cout << "( Message ) " << _name << ": Sorry.. I can't repair anymore..\n\n";
 	}
 	else {
 		_hit += amount;

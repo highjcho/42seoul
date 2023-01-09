@@ -6,14 +6,20 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/26 11:16:55 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 12:49:43 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:18:17 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "DiamondTrap.hpp"
 
-DiamondTrap::DiamondTrap() {
-	std::cout << DIA << "You can't call this" << EOC;
+DiamondTrap::DiamondTrap()
+: ClapTrap("DIA")
+{
+	_name = "DIA";
+	_hit = F_HIT;
+	_energy = S_ENERGY;
+	_attackDamage = F_ATTACK;
+	std::cout << DIA << "[Create] Hi, I'm a default diamond!\n" << EOC;
 }
 
 DiamondTrap::DiamondTrap(const std::string& name)
