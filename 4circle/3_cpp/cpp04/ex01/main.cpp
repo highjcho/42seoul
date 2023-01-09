@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 12:51:41 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 12:09:31 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:56:38 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ int main()
 	std::string ideas[8] = {"밥먹자", "산책가자", "잘래", "내 이름은 뭐야", "어디가", "신난다", "빨리와", "보고싶어"};
 
 	for (i = 0; i < 4; i++) {
-		if (i % 2 != 0)
-			animals[i] = new Dog();
-		else
+		if (i % 2 == 0)
 			animals[i] = new Cat();
+		else
+			animals[i] = new Dog();
 	}
 
 	for (i = 0; i < 4; i++)

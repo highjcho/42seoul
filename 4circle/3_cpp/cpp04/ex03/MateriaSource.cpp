@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:24:11 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 17:39:53 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:43:26 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void MateriaSource::learnMateria(AMateria* materia) {
 	}
 	if (_quantity == SLOT) {
 		std::cout << "[Error] MateriaSource is full \n\n";
+		delete materia;
 		return ;
 	}
 	_materias[_quantity] = materia;
@@ -59,7 +60,7 @@ AMateria* MateriaSource::createMateria(std::string const& type) {
 	AMateria* materia = MateriaSource::findMateria(type);
 	if (!materia) {
 		std::cout << "[Error] There is no " << type << " meteria\n\n";
-		return NULL;
+		return 0;
 	}
 	return materia->clone();
 }

@@ -6,13 +6,14 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/28 16:56:20 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 17:41:08 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:34:39 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Character.hpp"
 
 Character::Character() {
+	_name = "default";
 	for (int i = 0; i < SLOT; i++)
 		_inventory[i] = NULL;
 	_quantity = 0;
@@ -64,8 +65,17 @@ void Character::equip(AMateria* m) {
 	std::cout << " has a " << m->getType() << "!\n\n" << EOC;
 }
 
+int Character::findIdx() {
+	int i;
+	for (i = 0; i < SLOT; i++) {
+		if (_inventory[i] == NULL)
+			break;
+	}
+	return i;
+}
+
 void Character::unequip(int idx) {
-	if (idx < 0 || idx > SLOT) {
+	if (idx < 0 || idx >= SLOT) {
 		std::cout << "[Error] You got the wrong number\n\n";
 		return ;
 	}
@@ -83,7 +93,7 @@ void Character::unequip(int idx) {
 }
 
 void Character::use(int idx, ICharacter& target) {
-	if (idx < 0 || idx > SLOT) {
+	if (idx < 0 || idx >= SLOT) {
 		std::cout << "[Error] You got the wrong number\n\n";
 		return ;
 	}
@@ -96,15 +106,6 @@ void Character::use(int idx, ICharacter& target) {
 		return ;
 	}
 	_inventory[idx]->use(target);
-}
-
-int Character::findIdx() {
-	int i;
-	for (i = 0; i < SLOT; i++) {
-		if (_inventory[i] == NULL)
-			break;
-	}
-	return i;
 }
 
 void Character::showMateriaStatus() {

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 16:47:04 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 12:23:18 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:15:53 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 
 class Brain {
 	private:
-		std::string _ideas[100];
+		std::string _ideas[MAX];
 		int _idx;
 	
 	public :

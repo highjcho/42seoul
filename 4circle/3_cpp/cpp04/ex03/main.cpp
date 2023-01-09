@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/02 18:59:26 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 17:37:59 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:53:57 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,13 @@ int main()
 	ICharacter* bob = new Character("bob");
 	
 	me->use(0, *bob);
+	AMateria* ice;
+	AMateria* cure;
 	AMateria* tmp;
-	tmp = src->createMateria("ice");
-	me->equip(tmp);
-	tmp = src->createMateria("cure");
-	me->equip(tmp);
+	ice = src->createMateria("ice");
+	me->equip(ice);
+	cure = src->createMateria("cure");
+	me->equip(cure);
 	tmp = src->createMateria("nothing");
 	me->showMateriaStatus();
 	me->unequip(3);
@@ -47,6 +49,7 @@ int main()
 	me->use(2, *bob);
 	me->use(7, *bob);
 	
+	delete ice;
 	delete bob;
 	delete me;
 	delete src;

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:05:13 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/06 10:25:51 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:15:26 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 Brain::Brain() : _idx(0) {
 	std::cout << "이제 나는 생각할 수 있어!\n";
-	for (int i = 0; i < 100; i++)
+	for (int i = 0; i < MAX; i++)
 		_ideas[i] = "";
 }
 
