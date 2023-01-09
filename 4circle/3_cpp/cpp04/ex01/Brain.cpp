@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/27 17:05:13 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/09 16:15:26 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 19:09:38 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ Brain& Brain::operator=(const Brain &obj) {
 	if (this != &obj) {
 		for (int i = 0; i < MAX; i++)
 			_ideas[i] = obj.getIdea(i);
+		_idx = obj.getIdx();
 	}
 	return *this;
 }
@@ -39,6 +40,10 @@ void Brain::setIdea(const std::string &idea) {
 
 std::string Brain::getIdea(int i) const{
 	return _ideas[i];
+}
+
+int Brain::getIdx() const {
+	return _idx;
 }
 
 Brain::~Brain() {
