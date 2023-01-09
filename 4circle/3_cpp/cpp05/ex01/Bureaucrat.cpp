@@ -6,11 +6,12 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 21:30:59 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/09 19:58:28 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:11:36 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat() {
 	std::cout << "You can't call this\n";
@@ -37,6 +38,15 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &obj) {
 	}
 	return *this;
 };
+
+void Bureaucrat::signForm(const Form& form) const{
+	try {
+		(*const_cast<Form*>(&form)).beSigned(*this); // 왜왜뜨냐~
+		std::cout << _name << " signed " << form.getName();
+	} catch (std::exception e) {
+		std:: cout << _name << " couldn't sign " << form.getName() << " becasue " << e.what() << "\n\n";
+	}
+}
 
 const std::string& Bureaucrat::getName() const {
 	return _name;

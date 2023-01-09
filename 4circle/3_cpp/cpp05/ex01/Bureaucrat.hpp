@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 21:31:34 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/09 17:42:58 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/09 20:03:35 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # define MAX 1
 # define MIN 150
 
+class Form;
+
 class Bureaucrat {
 	private :
 		const std::string _name;
@@ -33,6 +35,8 @@ class Bureaucrat {
 		Bureaucrat& operator=(Bureaucrat const &other);
 		~Bureaucrat();
 
+		void signForm(const Form& form) const;
+		
 		const std::string& getName() const;
 		int getGrade() const;
 		void increment();
