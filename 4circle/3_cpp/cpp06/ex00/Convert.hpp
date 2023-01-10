@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:04:44 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 20:19:14 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/10 22:26:09 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,45 @@ class Convert {
 		std::string _input;
 		double _value;
 		bool _flag;
+		bool _isNan;
+		bool _isInf;
 		Convert();
 
 	public:
-		Convert(std::string& input);
+		Convert(std::string input);
 		Convert(const Convert& obj);
 		Convert& operator=(const Convert &obj);
 		~Convert();
 
+		char toChar();
+		int toInt();
+		float toFloat();
+		double toDouble();
+
+		void print();
+		void printChar();
+		void printInt();
+		void printFloat();
+		void printDouble();
+
 		std::string getInput() const;
 		double getValue() const;
 		bool getFlag() const;
+		bool getNan() const;
+		bool getInf() const;
+
+		class ImpossibleException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
+		class NonDisplayableException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
+		class NotInRangeException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
 };
 
 #endif
