@@ -1,21 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Form.hpp                                           :+:      :+:    :+:   */
+/*   AForm.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/09 17:24:00 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 15:51:31 by hyunjcho         ###   ########.fr       */
+/*   Created: 2023/01/10 11:18:20 by hyunjcho          #+#    #+#             */
+/*   Updated: 2023/01/10 16:44:19 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FORM_H
-# define FORM_H
+#ifndef AFORM_H
+# define AFORM_H
 
 #include "Bureaucrat.hpp"
 
-class Form {
+# define FORM "\033[1;33m"
+# define SHRUBBERY "\033[1;32m"
+# define ROBOT "\033[1;36m"
+# define PARDON "\033[1;35m"
+
+class AForm {
 	private:
 		const std::string _name;
 		bool _flag;
@@ -23,14 +28,16 @@ class Form {
 		const int _execute;
 
 	public:
-		Form();
-		Form(const std::string name, const int sign, const int execute);
-		Form(const Form& obj);
-		Form& operator=(const Form &obj);
-		~Form();
+		AForm();
+		AForm(const std::string name, const int sign, const int execute);
+		AForm(const AForm& obj);
+		AForm& operator=(const AForm &obj);
+		virtual ~AForm();
 
 		void beSigned(const Bureaucrat& bureaucrat);
-		
+		virtual void execute(const Bureaucrat& bureaucrat) const = 0;
+		void checkExecute(const Bureaucrat& Bureaucrat) const;
+
 		const std::string& getName() const;
 		bool getFlag() const;
 		const int& getSign() const;
@@ -44,9 +51,16 @@ class Form {
 			public:
 				const char* what() const throw();
 		};
-
+		class RequiredSignException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
+		class FileErrorException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
 };
 
-std::ostream& operator<<(std::ostream& o, const Form& obj);
+std::ostream& operator<<(std::ostream& o, const AForm& obj);
 
 #endif

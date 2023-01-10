@@ -6,7 +6,7 @@
 #    By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/17 16:20:52 by hyunjcho          #+#    #+#              #
-#    Updated: 2023/01/10 10:27:26 by hyunjcho         ###   ########.fr        #
+#    Updated: 2023/01/10 16:53:19 by hyunjcho         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,7 +21,7 @@ WHITE		=	"\033[1;37m"
 EOC			=	"\033[0;0m"
 LINE_CLEAR	=	"\x1b[1A\x1b[M"
 
-NAME = form
+NAME = polyform
 
 CXX = c++
 
@@ -31,7 +31,10 @@ SRCS_DIR = ./
 
 FILES = main.cpp \
 		Bureaucrat.cpp \
-		Form.cpp
+		AForm.cpp \
+		ShrubberyCreationForm.cpp \
+		RobotomyRequestForm.cpp \
+		PresidentialPardonForm.cpp
 
 SRCS = $(addprefix $(SRCS_DIR), $(FILES))
 

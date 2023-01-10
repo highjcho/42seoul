@@ -6,25 +6,38 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 22:02:58 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 15:14:54 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:56:06 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main() {
 	Bureaucrat mu = Bureaucrat("mu", 2);
-	Bureaucrat samsak = Bureaucrat("samsak", 15);
+	Bureaucrat samsak = Bureaucrat("samsak", 139);
+	Bureaucrat yatong = Bureaucrat("yatong", 148);
 
-	Form home = Form("Home", 5, 3);
-	Form copy_home = Form(home);
-	std::cout << "[Form info] - " << home;
-	std::cout << "[Form info] - " << copy_home;
-	std::cout << mu;
-	mu.signForm(home);
-	std::cout << "[Form info] - " << home;
-	std::cout << samsak;
-	samsak.signForm(home);
-	std::cout << "[Form info] - " << home;
+	AForm* moon = new ShrubberyCreationForm("Moon");
+	mu.signForm(*moon);
+	std::cout << "[Form info] " << *moon;
+	mu.executeForm(*moon);
+	samsak.signForm(*moon);
+	std::cout << "[Form info] " << *moon;
+	samsak.executeForm(*moon);
+	yatong.signForm(*moon);
+	std::cout << "[Form info] " << *moon;
+	yatong.executeForm(*moon);
+	delete moon;
+
+	AForm* robot = new RobotomyRequestForm("transfomer");
+	mu.signForm(*robot);
+	mu.executeForm(*robot);
+
+	AForm* where42 = new PresidentialPardonForm("where42");
+	mu.signForm(*where42);
+	mu.executeForm(*where42);
+	delete where42;
 }

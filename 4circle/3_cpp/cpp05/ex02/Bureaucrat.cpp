@@ -6,12 +6,12 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 21:30:59 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 10:35:08 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:54:44 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "AForm.hpp"
 
 Bureaucrat::Bureaucrat() {
 	std::cout << "You can't call this\n";
@@ -39,12 +39,22 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &obj) {
 	return *this;
 };
 
-void Bureaucrat::signForm(const Form& form) const{
+void Bureaucrat::signForm(const AForm& form) const {
 	try {
-		(*const_cast<Form*>(&form)).beSigned(*this); // 왜왜뜨냐~
+		(*const_cast<AForm*>(&form)).beSigned(*this);
 		std::cout << _name << " signed " << form.getName() << "\n\n";
 	} catch (std::exception& e) {
 		std::cout << _name << " couldn't sign " << form.getName() << " becasue ";
+		std::cerr << ERR << e.what() << "\n\n" << EOC;
+	}
+}
+
+void Bureaucrat::executeForm(const AForm& form) const {
+	try {
+		form.execute(*this);
+		std::cout << _name << " executed " << form.getName() << "\n\n";
+	} catch (std::exception& e) {
+		std::cout << _name << " couldn't execute " << form.getName() << " because ";
 		std::cerr << ERR << e.what() << "\n\n" << EOC;
 	}
 }
@@ -82,5 +92,5 @@ const char* Bureaucrat::GradeTooLowException::what() const throw() {
 }
 
 Bureaucrat::~Bureaucrat() {
-	std::cout << "[Destroy] Bureaucrat\n\n";
+	std::cout << "[Destroy] " << "Bureaucrat\n\n";
 };

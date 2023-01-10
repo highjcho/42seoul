@@ -6,25 +6,33 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 22:02:58 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 15:14:54 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/10 18:05:46 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
-#include "Form.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
+#include "Intern.hpp"
 
 int main() {
 	Bureaucrat mu = Bureaucrat("mu", 2);
-	Bureaucrat samsak = Bureaucrat("samsak", 15);
+	Intern intern = Intern();
 
-	Form home = Form("Home", 5, 3);
-	Form copy_home = Form(home);
-	std::cout << "[Form info] - " << home;
-	std::cout << "[Form info] - " << copy_home;
-	std::cout << mu;
-	mu.signForm(home);
-	std::cout << "[Form info] - " << home;
-	std::cout << samsak;
-	samsak.signForm(home);
-	std::cout << "[Form info] - " << home;
+	try {
+		AForm* form = intern.makeForm(R_NAME, "transfomer");
+		mu.signForm(*form);
+		delete form;
+	} catch (std::exception& e) {
+		std::cerr << "Intern can't make form because " << ERR << e.what() << "\n\n";
+	}
+
+	try {
+		AForm* form = intern.makeForm("noform", "error");
+		mu.signForm(*form);
+		delete form;
+	} catch (std::exception& e) {
+		std::cerr << "Intern can't make form because " << ERR << e.what() << "\n\n" << EOC;
+	}
 }
