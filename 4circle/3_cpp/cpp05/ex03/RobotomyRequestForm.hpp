@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:00:46 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 17:40:59 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:20:31 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <ctime>
 #include "AForm.hpp"
 
-# define R_NAME "Robotomy Request"
+# define R_NAME "Robotomy_Request_Form"
 # define R_SIGN 72
 # define R_EXEC 45
 

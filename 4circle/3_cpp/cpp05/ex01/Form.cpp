@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:16:58 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 10:38:05 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:53:02 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,10 +53,14 @@ Form& Form::operator=(const Form& obj) {
 	return (*this);
 }
 
+Form::~Form() {
+	std::cout << "[Destroy] " << _name << " Form\n\n";
+}
+
 void Form::beSigned(const Bureaucrat& bureaucrat){
 	if (_sign < bureaucrat.getGrade()) {
 		_flag = false;
-		throw GradeTooHighException();
+		throw GradeTooLowException();
 	}
 	_flag = true;
 }
@@ -83,14 +87,9 @@ std::ostream& operator<<(std::ostream& o, const Form& obj) {
 }
 
 const char* Form::GradeTooHighException::what() const throw() {
-	return "form Grade Too High";
+	return "grade too high";
 }
 
 const char* Form::GradeTooLowException::what() const throw() {
-	return "form Grade Too Low";
+	return "grade too low";
 }
-
-Form::~Form() {
-	std::cout << "[Destroy] " << _name << " Form\n\n";
-}
-

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 22:02:58 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 15:14:54 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:54:32 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,8 @@ int main() {
 	Form copy_home = Form(home);
 	std::cout << "[Form info] - " << home;
 	std::cout << "[Form info] - " << copy_home;
-	std::cout << mu;
 	mu.signForm(home);
 	std::cout << "[Form info] - " << home;
-	std::cout << samsak;
 	samsak.signForm(home);
 	std::cout << "[Form info] - " << home;
 }

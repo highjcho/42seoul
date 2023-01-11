@@ -6,15 +6,17 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 21:30:59 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 10:35:08 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:50:31 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "Form.hpp"
 
-Bureaucrat::Bureaucrat() {
-	std::cout << "You can't call this\n";
+Bureaucrat::Bureaucrat()
+: _name("default"), _grade(100)
+{
+	std::cout << "[Create] " << *this;
 };
 
 Bureaucrat::Bureaucrat(const std::string& name, int const grade)
@@ -33,28 +35,24 @@ Bureaucrat::Bureaucrat(Bureaucrat const &obj) {
 
 Bureaucrat &Bureaucrat::operator=(Bureaucrat const &obj) {
 	if (this != &obj) {
-		*(const_cast<std::string*>(&_name)) = obj.getName(); // const cast 더 알아보기
+		*(const_cast<std::string*>(&_name)) = obj.getName();
 		_grade = obj.getGrade();
 	}
 	return *this;
 };
 
+Bureaucrat::~Bureaucrat() {
+	std::cout << "[Destroy] Bureaucrat\n\n";
+};
+
 void Bureaucrat::signForm(const Form& form) const{
 	try {
-		(*const_cast<Form*>(&form)).beSigned(*this); // 왜왜뜨냐~
+		(*const_cast<Form*>(&form)).beSigned(*this);
 		std::cout << _name << " signed " << form.getName() << "\n\n";
 	} catch (std::exception& e) {
 		std::cout << _name << " couldn't sign " << form.getName() << " becasue ";
 		std::cerr << ERR << e.what() << "\n\n" << EOC;
 	}
-}
-
-const std::string& Bureaucrat::getName() const {
-	return _name;
-}
-
-int Bureaucrat::getGrade() const {
-	return _grade;
 }
 
 void Bureaucrat::increment() {
@@ -69,18 +67,22 @@ void Bureaucrat::decrement() {
 	_grade++;
 }
 
+const std::string& Bureaucrat::getName() const {
+	return _name;
+}
+
+int Bureaucrat::getGrade() const {
+	return _grade;
+}
+
 std::ostream& operator<<(std::ostream& o, const Bureaucrat& obj) {
 	return o << obj.getName() << ", bureaucrat grade " << obj.getGrade() << "\n\n";
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
-	return "[Error] Bureaucrat Grade Too High";
+	return "bureaucrat grade too high";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
-	return "[Error] Bureaucrat Grade Too Low";
+	return "bureaucrat grade too low";
 }
-
-Bureaucrat::~Bureaucrat() {
-	std::cout << "[Destroy] Bureaucrat\n\n";
-};

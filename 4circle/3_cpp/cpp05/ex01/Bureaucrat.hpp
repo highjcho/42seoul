@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 21:31:34 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 15:40:18 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:28:44 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ class Bureaucrat {
 		~Bureaucrat();
 
 		void signForm(const Form& form) const;
+		void increment();
+		void decrement();
 		
 		const std::string& getName() const;
 		int getGrade() const;
-		void increment();
-		void decrement();
 
 		class GradeTooHighException : public std::exception {
 			public:

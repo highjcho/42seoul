@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 21:30:59 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 16:54:44 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:00:25 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,10 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &obj) {
 		_grade = obj.getGrade();
 	}
 	return *this;
+};
+
+Bureaucrat::~Bureaucrat() {
+	std::cout << "[Destroy] " << "Bureaucrat\n\n";
 };
 
 void Bureaucrat::signForm(const AForm& form) const {
@@ -84,13 +88,9 @@ std::ostream& operator<<(std::ostream& o, const Bureaucrat& obj) {
 }
 
 const char* Bureaucrat::GradeTooHighException::what() const throw() {
-	return "[Error] Bureaucrat Grade Too High";
+	return "bureaucrat grade too high";
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw() {
-	return "[Error] Bureaucrat Grade Too Low";
+	return "bureaucrat grade too low";
 }
-
-Bureaucrat::~Bureaucrat() {
-	std::cout << "[Destroy] " << "Bureaucrat\n\n";
-};

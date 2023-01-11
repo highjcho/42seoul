@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:19:03 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 15:56:56 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:16:10 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ AForm::AForm(const std::string name, const int sign, const int execute)
 : _name(name), _flag(false), _sign(sign), _execute(execute)
 {
 	if (_sign < MAX || _execute < MAX)
-		throw AForm::GradeTooHighException();
+		throw GradeTooHighException();
 	if (_sign > MIN || _execute > MIN)
-		throw AForm::GradeTooLowException();
+		throw GradeTooLowException();
 	std::cout << "[Create] " << FORM << _name << " AForm\n" << EOC;
 }
 
@@ -32,9 +32,9 @@ AForm::AForm(const AForm& obj)
 : _name(obj.getName()),  _flag(obj.getFlag()), _sign(obj.getSign()), _execute(obj.getExecute())
 {
 	if (_sign < MAX || _execute < MAX)
-		throw AForm::GradeTooHighException();
+		throw GradeTooHighException();
 	if (_sign > MIN || _execute > MIN)
-		throw AForm::GradeTooLowException();
+		throw GradeTooLowException();
 	std::cout << "[Create] " << FORM << " Copy AForm\n\n";
 }
 
@@ -46,26 +46,30 @@ AForm& AForm::operator=(const AForm& obj) {
 		*(const_cast<int*>(&_sign)) = obj.getSign();
 		*(const_cast<int*>(&_execute)) = obj.getExecute();
 		if (_sign < MAX || _execute < MAX)
-			throw AForm::GradeTooHighException();
+			throw GradeTooHighException();
 		if (_sign > MIN || _execute > MIN)
-			throw AForm::GradeTooLowException();
+			throw GradeTooLowException();
 	}
 	return (*this);
+}
+
+AForm::~AForm() {
+	std::cout << "[Destroy] " << FORM << _name << " AForm\n\n" << EOC;
 }
 
 void AForm::beSigned(const Bureaucrat& bureaucrat){
 	if (_sign < bureaucrat.getGrade()) {
 		_flag = false;
-		throw GradeTooHighException();
+		throw GradeTooLowException();
 	}
 	_flag = true;
 }
 
 void AForm::checkExecute(const Bureaucrat& bureaucrat) const {
-	if (!getFlag())
-		throw AForm::RequiredSignException();
-	if (getExecute() < bureaucrat.getGrade())
-		throw AForm::GradeTooHighException();
+	if (!_flag)
+		throw RequiredSignException();
+	if (_execute < bureaucrat.getGrade())
+		throw GradeTooLowException();
 }
 
 const std::string& AForm::getName() const {
@@ -90,11 +94,11 @@ std::ostream& operator<<(std::ostream& o, const AForm& obj) {
 }
 
 const char* AForm::GradeTooHighException::what() const throw() {
-	return "form Grade Too High";
+	return "grade too high";
 }
 
 const char* AForm::GradeTooLowException::what() const throw() {
-	return "form Grade Too Low";
+	return "grade too low";
 }
 
 const char* AForm::RequiredSignException::what() const throw() {
@@ -103,8 +107,4 @@ const char* AForm::RequiredSignException::what() const throw() {
 
 const char* AForm::FileErrorException::what() const throw() {
 	return "a file error has occurred";
-}
-
-AForm::~AForm() {
-	std::cout << "[Destroy] " << FORM << _name << " AForm\n\n" << EOC;
 }

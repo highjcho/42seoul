@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:17:04 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 18:15:10 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:22:08 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ AForm* Intern::makeForm(const std::string& form, const std::string& target) {
 		}
 	}
 	throw NoFormException();
-
 }
 
 const char* Intern::NoFormException::what() const throw() {

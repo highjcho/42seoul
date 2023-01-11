@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:35:50 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 17:41:07 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:02:26 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <fstream>
 #include "AForm.hpp"
 
-# define S_NAME "Shrubbery Creation"
+# define S_NAME "Shrubbery_Creation_Form"
 # define S_SIGN 145
 # define S_EXEC 137
 

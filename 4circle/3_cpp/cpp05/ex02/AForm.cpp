@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:19:03 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 17:55:31 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:16:10 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,19 +53,23 @@ AForm& AForm::operator=(const AForm& obj) {
 	return (*this);
 }
 
+AForm::~AForm() {
+	std::cout << "[Destroy] " << FORM << _name << " AForm\n\n" << EOC;
+}
+
 void AForm::beSigned(const Bureaucrat& bureaucrat){
 	if (_sign < bureaucrat.getGrade()) {
 		_flag = false;
-		throw GradeTooHighException();
+		throw GradeTooLowException();
 	}
 	_flag = true;
 }
 
 void AForm::checkExecute(const Bureaucrat& bureaucrat) const {
-	if (!getFlag())
+	if (!_flag)
 		throw RequiredSignException();
-	if (getExecute() < bureaucrat.getGrade())
-		throw GradeTooHighException();
+	if (_execute < bureaucrat.getGrade())
+		throw GradeTooLowException();
 }
 
 const std::string& AForm::getName() const {
@@ -90,11 +94,11 @@ std::ostream& operator<<(std::ostream& o, const AForm& obj) {
 }
 
 const char* AForm::GradeTooHighException::what() const throw() {
-	return "form Grade Too High";
+	return "grade too high";
 }
 
 const char* AForm::GradeTooLowException::what() const throw() {
-	return "form Grade Too Low";
+	return "grade too low";
 }
 
 const char* AForm::RequiredSignException::what() const throw() {
@@ -103,8 +107,4 @@ const char* AForm::RequiredSignException::what() const throw() {
 
 const char* AForm::FileErrorException::what() const throw() {
 	return "a file error has occurred";
-}
-
-AForm::~AForm() {
-	std::cout << "[Destroy] " << FORM << _name << " AForm\n\n" << EOC;
 }

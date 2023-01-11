@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 22:02:58 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/09 17:16:04 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:19:57 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int main() {
 	try {
 		Bureaucrat mu = Bureaucrat("mu", 2);
-	} catch (std::exception& e) { // e는 참조형으로 받아야 함
+	} catch (std::exception& e) {
 		std::cerr << ERR << e.what() << "\n\n" << EOC;
 	}
 

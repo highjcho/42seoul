@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:44:46 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 17:40:50 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/10 16:47:21 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 #include "AForm.hpp"
 
-# define P_NAME "Presidential Pardon"
+# define P_NAME "Presidential_Pardon_Form"
 # define P_SIGN 25
 # define P_EXEC 5
 
