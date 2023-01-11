@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:02:49 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 16:51:59 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:04:20 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,9 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 
 void RobotomyRequestForm::execute(const Bureaucrat& bureaucrat) const {
 	checkExecute(bureaucrat);
-	time_t now = time(NULL);
-	struct tm* t = localtime(&now);
+	srand(time(NULL));
 	std::cout << "[Robot] " << ROBOT << "drrrr.. => ";
-	if (t->tm_sec % 2 == 0)
+	if (rand() % 2 == 0)
 		std::cout << getName() << " has been robotomized successfully\n\n" << EOC;
 	else
 		std::cout << getName() << " has been failed robotomized\n\n" << EOC;

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:14:15 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 22:25:57 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 13:05:36 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ Convert& Convert::operator=(const Convert& obj) {
 Convert::~Convert() {}
 
 char Convert::toChar() {
+	if (_input.size() == 1 && std::isprint(_input[0]))
+		return static_cast<char>(_input[0]);
 	if (_flag || _isNan || _isInf)
 		throw ImpossibleException();
 	if (!std::isprint(_value))
@@ -59,6 +61,8 @@ char Convert::toChar() {
 }
 
 int Convert::toInt() {
+	if (_input.size() == 1 && std::isprint(_input[0]) && (_input[0] > 57 || _input[0] <48))
+		return static_cast<int>(_input[0]);
 	if (_flag || _isNan || _isInf)
 		throw ImpossibleException();
 	if (_value > INT_MAX || _value < INT_MIN)
@@ -67,6 +71,8 @@ int Convert::toInt() {
 }
 
 float Convert::toFloat() {
+	if (_input.size() == 1 && std::isprint(_input[0]) && (_input[0] > 57 || _input[0] <48))
+		return static_cast<float>(_input[0]);
 	if (_flag)
 		throw ImpossibleException();
 	if (_value > FLT_MAX) // flt_min?
@@ -75,6 +81,8 @@ float Convert::toFloat() {
 }
 
 double Convert::toDouble() {
+	if (_input.size() == 1 && std::isprint(_input[0]) && (_input[0] > 57 || _input[0] <48))
+		return static_cast<double>(_input[0]);
 	if (_flag)
 		throw ImpossibleException();
 	if (_value > DBL_MAX)
