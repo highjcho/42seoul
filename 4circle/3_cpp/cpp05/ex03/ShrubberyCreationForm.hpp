@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:35:50 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 16:02:26 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:55:28 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class ShrubberyCreationForm : public AForm {
 		~ShrubberyCreationForm();
 
 		void execute(const Bureaucrat& bureaucrat) const;
+		static AForm* makeShrubbery(const std::string& target);
 };
 
 #endif

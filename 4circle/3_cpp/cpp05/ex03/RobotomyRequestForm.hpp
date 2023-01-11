@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:00:46 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 16:20:31 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:55:17 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ class RobotomyRequestForm : public AForm {
 		~RobotomyRequestForm();
 
 		void execute(const Bureaucrat& bureaucrat) const;
+		static AForm* makeRobot(const std::string& target);
 };
 
 #endif

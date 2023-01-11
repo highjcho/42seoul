@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:02:56 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/11 16:09:41 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:55:44 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,8 @@ void ShrubberyCreationForm::execute(const Bureaucrat& bureaucrat) const {
 	out << shrubbery;
 	out.close();
 	std::cout << "[Shrubbery] " << SHRUBBERY << "tree making success\n\n" << EOC;
+}
+
+AForm* ShrubberyCreationForm::makeShrubbery(const std::string& target) {
+	return new ShrubberyCreationForm(target);
 }

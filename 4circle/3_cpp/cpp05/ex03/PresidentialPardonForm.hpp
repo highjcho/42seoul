@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:44:46 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 16:47:21 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:55:09 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ class PresidentialPardonForm : public AForm {
 		~PresidentialPardonForm();
 
 		void execute(const Bureaucrat& bureaucrat) const;
+		static AForm* makePardon(const std::string& target);
 };
 
 #endif

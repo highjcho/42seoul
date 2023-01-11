@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:02:49 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/11 16:10:44 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:56:01 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,4 +47,8 @@ void RobotomyRequestForm::execute(const Bureaucrat& bureaucrat) const {
 		std::cout << getName() << " has been robotomized successfully\n\n" << EOC;
 	else
 		std::cout << getName() << " has been failed robotomized\n\n" << EOC;
+}
+
+AForm* RobotomyRequestForm::makeRobot(const std::string& target) {
+	return new RobotomyRequestForm(target);
 }

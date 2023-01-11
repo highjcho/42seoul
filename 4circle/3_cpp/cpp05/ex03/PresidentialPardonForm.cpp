@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 16:45:46 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/11 16:11:10 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:56:18 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,8 @@ PresidentialPardonForm::~PresidentialPardonForm()
 void PresidentialPardonForm::execute(const Bureaucrat& bureaucrat) const {
 	checkExecute(bureaucrat);
 	std::cout << "[PARDON] " << PARDON << getName() << " has been pardon by Zaphod Beeblebrox\n\n" << EOC;
+}
+
+AForm* PresidentialPardonForm::makePardon(const std::string& target) {
+	return new PresidentialPardonForm(target);
 }

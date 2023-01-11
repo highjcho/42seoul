@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 17:17:04 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/11 16:22:08 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/11 21:54:27 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,12 @@ Intern::~Intern() {
 
 AForm* Intern::makeForm(const std::string& form, const std::string& target) {
 	std::string forms[3] = {S_NAME, R_NAME, P_NAME};
+	AForm* (*f_ptr[3])(const std::string& target) = {&ShrubberyCreationForm::makeShrubbery, &RobotomyRequestForm::makeRobot, &PresidentialPardonForm::makePardon};
 	
 	for (int i = 0; i < 3; i++) {
 		if (forms[i] == form) {
 			std::cout << "Intern make " << form << " form\n\n";
-			switch (i) {
-				case 0:
-					return new ShrubberyCreationForm(target);
-				case 1:
-					return new RobotomyRequestForm(target);
-				case 2:
-					return new PresidentialPardonForm(target);
-			}
+			return f_ptr[i](target);
 		}
 	}
 	throw NoFormException();
