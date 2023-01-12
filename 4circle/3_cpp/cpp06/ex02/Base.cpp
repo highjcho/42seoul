@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:04:54 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/11 14:29:10 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/12 23:00:56 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void identify(Base* p) {
 	else if (dynamic_cast<C*>(p))
 		std::cout << "\"C\"\n";
 	else
-		std::cout << "none of \"A, B, C\"\n";
+		std::cout << "none of the \"A, B, C\"\n";
 }
 
 void identify(Base& p) {
@@ -65,6 +65,6 @@ void identify(Base& p) {
 		std::cout << "\"C\"\n";
 		static_cast<void>(c);
 	} catch (std::exception &e) {
-		std::cout << "none of \"A, B, C\"\n";
+		std::cout << "none of the \"A, B, C\"\n";
 	}
 }

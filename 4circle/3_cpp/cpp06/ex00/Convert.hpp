@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:04:44 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 22:26:09 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/12 22:49:56 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ class Convert {
 		std::string _input;
 		double _value;
 		bool _flag;
-		bool _isNan;
-		bool _isInf;
 		Convert();
 
 	public:
@@ -59,10 +57,6 @@ class Convert {
 				const char* what() const throw();
 		};
 		class NonDisplayableException : public std::exception {
-			public:
-				const char* what() const throw();
-		};
-		class NotInRangeException : public std::exception {
 			public:
 				const char* what() const throw();
 		};

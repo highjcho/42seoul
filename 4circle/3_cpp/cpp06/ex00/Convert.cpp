@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:14:15 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/11 13:05:36 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/12 22:51:00 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,12 @@ Convert::Convert() {
 }
 
 Convert::Convert(std::string input)
-: _input(input), _flag(false), _isNan(false), _isInf(false)
+: _input(input), _flag(false)
 {
 	char *end = NULL;
 	_value = std::strtod(_input.c_str(), &end);
 	if (*end && std::strcmp(end, "f"))
 		_flag = true;
-	else {
-		if (std::isnan(_value))
-			_isNan = true;
-		if (std::isinf(_value))
-			_isInf = true;
-	}
 }
 
 Convert::Convert(const Convert& obj) {
@@ -40,8 +34,6 @@ Convert& Convert::operator=(const Convert& obj) {
 		_input = obj.getInput();
 		_value = obj.getValue();
 		_flag = obj.getFlag();
-		_isNan = obj.getNan();
-		_isInf = obj.getInf();
 	}
 	return (*this);
 }
@@ -51,22 +43,18 @@ Convert::~Convert() {}
 char Convert::toChar() {
 	if (_input.size() == 1 && std::isprint(_input[0]))
 		return static_cast<char>(_input[0]);
-	if (_flag || _isNan || _isInf)
+	if (_flag)
 		throw ImpossibleException();
 	if (!std::isprint(_value))
 		throw NonDisplayableException();
-	if (_value > CHAR_MAX || _value < CHAR_MIN)
-		throw NotInRangeException();
 	return static_cast<char>(_value);
 }
 
 int Convert::toInt() {
 	if (_input.size() == 1 && std::isprint(_input[0]) && (_input[0] > 57 || _input[0] <48))
 		return static_cast<int>(_input[0]);
-	if (_flag || _isNan || _isInf)
+	if (_flag)
 		throw ImpossibleException();
-	if (_value > INT_MAX || _value < INT_MIN)
-		throw NotInRangeException();
 	return static_cast<int>(_value);
 }
 
@@ -75,8 +63,6 @@ float Convert::toFloat() {
 		return static_cast<float>(_input[0]);
 	if (_flag)
 		throw ImpossibleException();
-	if (_value > FLT_MAX) // flt_min?
-		throw NotInRangeException();
 	return static_cast<float>(_value);
 }
 
@@ -85,8 +71,6 @@ double Convert::toDouble() {
 		return static_cast<double>(_input[0]);
 	if (_flag)
 		throw ImpossibleException();
-	if (_value > DBL_MAX)
-		throw NotInRangeException();
 	return static_cast<double>(_value);
 }
 
@@ -121,10 +105,8 @@ void Convert::printFloat() {
 	std::cout << "float: ";
 	try {
 		float f = toFloat();
-		if (_isNan || _isInf)
+		if (std::isnan(f) || std::isinf(f)) 
 			std::cout << std::showpos << f << "f" << std::endl;
-		else if (std::isinf(f))
-			std::cout << std::setprecision(std::numeric_limits<float>::digits10) << toFloat() << std::endl;
 		else if (f != std::floor(f))
 			std::cout << f << "f" << std::endl;
 		else
@@ -137,11 +119,9 @@ void Convert::printFloat() {
 void Convert::printDouble() {
 	std::cout << "Double: ";
 	try {
-		float d = toDouble();
-		if (_isNan || _isInf)
+		double d = toDouble();
+		if (std::isnan(d) || std::isinf(d))
 			std::cout << std::showpos << d << std::endl;
-		else if (std::isinf(d))
-			std::cout << std::setprecision(std::numeric_limits<double>::digits10) << toDouble() << std::endl;
 		else if (d != std::floor(d))
 			std::cout << d << std::endl;
 		else
@@ -163,22 +143,10 @@ bool Convert::getFlag() const {
 	return _flag;
 }
 
-bool Convert::getNan() const {
-	return _isNan;
-}
-
-bool Convert::getInf() const {
-	return _isInf;
-}
-
 const char* Convert::ImpossibleException::what() const throw() {
 	return "impossible";
 }
 
 const char* Convert::NonDisplayableException::what() const throw() {
 	return "Non displayable";
-}
-
-const char* Convert::NotInRangeException::what() const throw() {
-	return "Not in normal range";
 }
