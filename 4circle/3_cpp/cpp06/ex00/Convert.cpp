@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:14:15 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/12 22:51:00 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/13 15:56:30 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void Convert::printFloat() {
 	std::cout << "float: ";
 	try {
 		float f = toFloat();
-		if (std::isnan(f) || std::isinf(f)) 
+		if (f * 2 == f || f != f) 
 			std::cout << std::showpos << f << "f" << std::endl;
 		else if (f != std::floor(f))
 			std::cout << f << "f" << std::endl;
@@ -120,7 +120,7 @@ void Convert::printDouble() {
 	std::cout << "Double: ";
 	try {
 		double d = toDouble();
-		if (std::isnan(d) || std::isinf(d))
+		if (d * 2 == d || d != d)
 			std::cout << std::showpos << d << std::endl;
 		else if (d != std::floor(d))
 			std::cout << d << std::endl;

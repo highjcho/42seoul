@@ -6,36 +6,31 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:19:03 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/11 16:16:10 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:47:58 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "AForm.hpp"
 
 AForm::AForm()
-: _name("default"), _flag(false), _sign(0), _execute(0)
-{
-	std::cout << "[Create] Default Form\n\n";
-}
+: _name("default"), _flag(false), _sign(100), _execute(100) {}
 
 AForm::AForm(const std::string name, const int sign, const int execute)
 : _name(name), _flag(false), _sign(sign), _execute(execute)
 {
-	if (_sign < MAX || _execute < MAX)
+	if (_sign < HIGH || _execute < HIGH)
 		throw GradeTooHighException();
-	if (_sign > MIN || _execute > MIN)
+	if (_sign > LOW || _execute > LOW)
 		throw GradeTooLowException();
-	std::cout << "[Create] " << FORM << _name << " AForm\n" << EOC;
 }
 
 AForm::AForm(const AForm& obj)
 : _name(obj.getName()),  _flag(obj.getFlag()), _sign(obj.getSign()), _execute(obj.getExecute())
 {
-	if (_sign < MAX || _execute < MAX)
+	if (_sign < HIGH || _execute < HIGH)
 		throw GradeTooHighException();
-	if (_sign > MIN || _execute > MIN)
+	if (_sign > LOW || _execute > LOW)
 		throw GradeTooLowException();
-	std::cout << "[Create] " << FORM << " Copy AForm\n\n";
 }
 
 AForm& AForm::operator=(const AForm& obj) {
@@ -45,17 +40,15 @@ AForm& AForm::operator=(const AForm& obj) {
 		_flag = obj.getFlag();
 		*(const_cast<int*>(&_sign)) = obj.getSign();
 		*(const_cast<int*>(&_execute)) = obj.getExecute();
-		if (_sign < MAX || _execute < MAX)
+		if (_sign < HIGH || _execute < HIGH)
 			throw GradeTooHighException();
-		if (_sign > MIN || _execute > MIN)
+		if (_sign > LOW || _execute > LOW)
 			throw GradeTooLowException();
 	}
 	return (*this);
 }
 
-AForm::~AForm() {
-	std::cout << "[Destroy] " << FORM << _name << " AForm\n\n" << EOC;
-}
+AForm::~AForm() {}
 
 void AForm::beSigned(const Bureaucrat& bureaucrat){
 	if (_sign < bureaucrat.getGrade()) {
@@ -89,8 +82,8 @@ const int& AForm::getExecute() const {
 }
 
 std::ostream& operator<<(std::ostream& o, const AForm& obj) {
-	return o << FORM << "Name : " << obj.getName() << ", Flag : " << std::boolalpha << obj.getFlag()
-		<< ", Sign_Grade : " << obj.getSign() << ", Execute_Grade : " << obj.getExecute() << "\n\n" << EOC;
+	return o << "[Form] Name : " << obj.getName() << ", Flag : " << std::boolalpha << obj.getFlag()
+		<< ", Sign_Grade : " << obj.getSign() << ", Execute_Grade : " << obj.getExecute() << "\n\n";
 }
 
 const char* AForm::GradeTooHighException::what() const throw() {

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 22:02:58 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/11 15:54:32 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:42:42 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int main() {
 	Bureaucrat samsak = Bureaucrat("samsak", 15);
 
 	Form home = Form("Home", 5, 3);
-	Form copy_home = Form(home);
-	std::cout << "[Form info] - " << home;
-	std::cout << "[Form info] - " << copy_home;
+	std::cout << mu;
+	std::cout << samsak;
+	std::cout << home;
 	mu.signForm(home);
-	std::cout << "[Form info] - " << home;
+	std::cout << home;
 	samsak.signForm(home);
-	std::cout << "[Form info] - " << home;
+	std::cout << home;
 }

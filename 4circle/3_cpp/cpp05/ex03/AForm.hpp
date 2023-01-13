@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:18:20 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 16:44:19 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/13 13:00:30 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,6 @@
 # define AFORM_H
 
 #include "Bureaucrat.hpp"
-
-# define FORM "\033[1;33m"
-# define SHRUBBERY "\033[1;32m"
-# define ROBOT "\033[1;36m"
-# define PARDON "\033[1;35m"
 
 class AForm {
 	private:
