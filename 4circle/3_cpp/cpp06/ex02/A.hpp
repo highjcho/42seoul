@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 13:50:10 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/11 14:28:03 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/13 18:29:44 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 
 #include "Base.hpp"
 
-class A : public Base{
-};
+class A : public Base {};
 
 #endif
