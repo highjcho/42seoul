@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:01:59 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/12 16:07:09 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:42:42 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,13 @@ void swap(T& t1, T& t2) {
 }
 
 template <typename T>
-T& min(T& t1, T& t2) {
-	return t1 < t2 ? t1 : t2
+const T& min(const T& t1, const T& t2) {
+	return t1 < t2 ? t1 : t2;
 }
 
-template <typename T> T& max(T& t1, T& t2) {
-	return t1 > t2 ? t1 : t2
+template <typename T>
+const T& max(const T& t1, const T& t2) {
+	return t1 > t2 ? t1 : t2;
 }
 
 #endif

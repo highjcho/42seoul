@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 11:48:27 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/12 16:02:58 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/16 20:57:43 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 #include "whatever.hpp"
 
 int main() {
-
 	int a = 2;
 	int b = 3;
 	swap( a, b );
@@ -46,6 +45,7 @@ int main() {
 	std::cout << std::setw(20) << std::setfill('=') << " max ";
 	std::cout << std::setw(16) << std::setfill('=') << "\n";
 	std::cout << "[result] a ? b : " << max(a, b) << std::endl;
-	std::cout << "c addr = " << &c << ", d addr = " << &d;
+	std::cout << "d addr = " << &d << ", c addr = " << &c;
 	std::cout << "\n[result] d ? c : " << max(d, c) << ", addr = " << &(max(d, c)) << std::endl;
+	return (0);
 }

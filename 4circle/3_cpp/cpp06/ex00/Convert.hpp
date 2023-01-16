@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:04:44 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/13 17:49:47 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:43:56 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ class Convert {
 		std::string getInput() const;
 		double getValue() const;
 		bool getFlag() const;
-		bool getNan() const;
-		bool getInf() const;
 
 		class ImpossibleException : public std::exception {
 			public:
