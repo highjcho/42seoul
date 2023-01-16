@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:14:15 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/13 18:29:41 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:54:18 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ Convert::Convert(std::string input)
 {
 	char *end = NULL;
 	_value = std::strtod(_input.c_str(), &end);
-	if (*end && std::strcmp(end, "f"))
-		_flag = true;
+	if (*end && std::strcmp(end, "f")) {
+		if (_input.size() == 1 && std::isprint(_input[0]))
+			_value = static_cast<double>(_input[0]);
+		else
+			_flag = true;
+	}
 }
 
 Convert::Convert(const Convert& obj) {
@@ -41,8 +45,6 @@ Convert& Convert::operator=(const Convert& obj) {
 Convert::~Convert() {}
 
 char Convert::toChar() {
-	if (_input.size() == 1 && std::isprint(_input[0]))
-		return static_cast<char>(_input[0]);
 	if (_flag)
 		throw ImpossibleException();
 	if (!std::isprint(_value))
@@ -51,7 +53,7 @@ char Convert::toChar() {
 }
 
 int Convert::toInt() {
-	if (_input.size() == 1 && std::isprint(_input[0]) && (_input[0] > 57 || _input[0] <48))
+	if (_input.size() == 1 && std::isprint(_input[0]) && (_input[0] > 57 || _input[0] < 48))
 		return static_cast<int>(_input[0]);
 	if (_flag)
 		throw ImpossibleException();
@@ -59,7 +61,7 @@ int Convert::toInt() {
 }
 
 float Convert::toFloat() {
-	if (_input.size() == 1 && std::isprint(_input[0]) && (_input[0] > 57 || _input[0] <48))
+	if (_input.size() == 1 && std::isprint(_input[0]) && (_input[0] > 57 || _input[0] < 48))
 		return static_cast<float>(_input[0]);
 	if (_flag)
 		throw ImpossibleException();
@@ -67,7 +69,7 @@ float Convert::toFloat() {
 }
 
 double Convert::toDouble() {
-	if (_input.size() == 1 && std::isprint(_input[0]) && (_input[0] > 57 || _input[0] <48))
+	if (_input.size() == 1 && std::isprint(_input[0]) && (_input[0] > 57 || _input[0] < 48))
 		return static_cast<double>(_input[0]);
 	if (_flag)
 		throw ImpossibleException();
@@ -105,7 +107,7 @@ void Convert::printFloat() {
 	std::cout << "float: ";
 	try {
 		float f = toFloat();
-		if ((f * 2 == f && f != 0) || f != f) 
+		if ((f * 2 == f && f != 0) || f != f)
 			std::cout << std::showpos << f << "f" << std::endl;
 		else if (f != std::floor(f))
 			std::cout << f << "f" << std::endl;
