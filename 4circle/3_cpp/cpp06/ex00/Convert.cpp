@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 20:14:15 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/16 16:54:18 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:38:28 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ void Convert::printChar() {
 		char c = toChar();
 		std::cout << "'" << c << "'" << std::endl;
 	} catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 }
 
@@ -99,7 +99,7 @@ void Convert::printInt() {
 		int i = toInt();
 		std::cout << i << std::endl;
 	} catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 }
 
@@ -114,7 +114,7 @@ void Convert::printFloat() {
 		else
 			std::cout << f << ".0f" << std::endl;
 	} catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 }
 
@@ -129,7 +129,7 @@ void Convert::printDouble() {
 		else
 			std::cout << d << ".0" << std::endl;
 	} catch (std::exception& e) {
-		std::cout << e.what() << std::endl;
+		std::cerr << e.what() << std::endl;
 	}
 }
 

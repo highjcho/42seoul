@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 21:00:24 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/12 21:12:11 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/17 02:18:58 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,13 @@ int main() {
 	int arr[5] = {3, 18, 9, 35, 27};
 	for (int i = 0; i < 5; i++)
 		span2.addNumber(arr[i]);
-
+	std::vector<int> v = sp.getSpan();
+	std::vector<int>::iterator iter;
+	int i = 0;
+	for (iter = v.begin(); iter != v.end(); iter++) {
+		span2.addNumber(arr[i]);
+		i++;
+	}
 	std::cout << "short span = " << span2.shortestSpan() << std::endl;
 	std::cout << "long span = " << span2.longestSpan() << std::endl;
 
