@@ -6,16 +6,14 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 21:30:59 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/11 16:00:25 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/13 13:02:07 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
-Bureaucrat::Bureaucrat() {
-	std::cout << "You can't call this\n";
-};
+Bureaucrat::Bureaucrat() : _name("default"), _grade(100) {};
 
 Bureaucrat::Bureaucrat(const std::string& name, int const grade)
 : _name(name), _grade(grade)
@@ -24,7 +22,6 @@ Bureaucrat::Bureaucrat(const std::string& name, int const grade)
 		throw GradeTooHighException();
 	if (_grade > MIN)
 		throw GradeTooLowException();
-	std::cout << "[Create] " << *this;
 }
 
 Bureaucrat::Bureaucrat(Bureaucrat const &obj) {
@@ -39,9 +36,7 @@ Bureaucrat &Bureaucrat::operator=(Bureaucrat const &obj) {
 	return *this;
 };
 
-Bureaucrat::~Bureaucrat() {
-	std::cout << "[Destroy] " << "Bureaucrat\n\n";
-};
+Bureaucrat::~Bureaucrat() {};
 
 void Bureaucrat::signForm(const AForm& form) const {
 	try {

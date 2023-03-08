@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 14:04:54 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/12 23:00:56 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/17 01:38:53 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,6 @@ void identify(Base& p) {
 		std::cout << "\"C\"\n";
 		static_cast<void>(c);
 	} catch (std::exception &e) {
-		std::cout << "none of the \"A, B, C\"\n";
+		std::cerr << "none of the \"A, B, C\"\n";
 	}
 }

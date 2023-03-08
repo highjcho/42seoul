@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 21:31:34 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/10 16:43:25 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:44:03 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 # define ERR "\033[1;31m"
 # define EOC "\033[0;0m"
-# define MAX 1
-# define MIN 150
+# define HIGH 1
+# define LOW 150
 
 class AForm;
 
@@ -27,9 +27,9 @@ class Bureaucrat {
 	private :
 		const std::string _name;
 		int _grade;
-		Bureaucrat();
 
 	public :
+		Bureaucrat();
 		Bureaucrat(const std::string& name, int const grade);
 		Bureaucrat(Bureaucrat const &other);
 		Bureaucrat& operator=(Bureaucrat const &other);

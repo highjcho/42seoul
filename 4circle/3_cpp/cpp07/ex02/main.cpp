@@ -6,16 +6,18 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 18:21:11 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/12 18:48:38 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:43:04 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "Array.hpp"
 
-#define MAX_VAL 750
+#define MAX_VAL 3
 int main(int, char**)
 {
+    // const Array<int> arr(3);
+    // std::cout << arr[1] << std::endl;
     Array<int> numbers(MAX_VAL);
     int* mirror = new int[MAX_VAL];
     srand(time(NULL));
@@ -55,11 +57,23 @@ int main(int, char**)
     {
         std::cerr << e.what() << '\n';
     }
-
     for (int i = 0; i < MAX_VAL; i++)
     {
         numbers[i] = rand();
     }
     delete [] mirror;//
+
+    Array<int> tmmmmmp = numbers;
+    for (int i = 0; i < 5; i++) {
+        std::cout << "numbers[i] = " << numbers[i] << std::endl;
+        std::cout << "tmmmmmp[i] = " << tmmmmmp[i] << std::endl;
+    }
+    std::cout << "=======================================================\n\n";
+    for (int i = 0; i < 5; i++)
+        tmmmmmp[i] = i;
+    for (int i = 0; i < 5; i++) {
+        std::cout << "numbers[i] = " << numbers[i] << std::endl;
+        std::cout << "tmmmmmp[i] = " << tmmmmmp[i] << std::endl;
+    }
     return 0;
 }

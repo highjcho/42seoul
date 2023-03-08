@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:46:03 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/12 19:05:21 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/16 21:33:24 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,13 +28,8 @@ class Array {
 				_arr = new T[_size];
 		}
 
-		Array(const Array& obj) : _size(obj.size()){
-			if (_arr)
-				_arr = NULL;
-			if (_size)
-				_arr = new T[_size];
-			for (size_t i = 0 ; i < _size ; ++i)
-				_arr[i] = obj._arr[i];
+		Array(const Array& obj) : _arr(NULL) {
+			*this = obj;
 		}
 
 		Array& operator=(const Array& obj) {
@@ -65,6 +60,12 @@ class Array {
 		}
 
 		T& operator[](size_t i) {
+			if (i >= _size)
+				throw OutOfIdxException();
+			return _arr[i];
+		}
+
+		const T& operator[](size_t i) const {
 			if (i >= _size)
 				throw OutOfIdxException();
 			return _arr[i];

@@ -6,36 +6,31 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 19:16:58 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/01/11 15:53:02 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:45:41 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 
 Form::Form()
-: _name("default"), _flag(false), _sign(0), _execute(0)
-{
-	std::cout << "[Create] Default Form\n\n";
-}
+: _name("default"), _flag(false), _sign(100), _execute(100) {}
 
 Form::Form(const std::string name, const int sign, const int execute)
 : _name(name), _flag(false), _sign(sign), _execute(execute)
 {
-	if (_sign < MAX || _execute < MAX)
+	if (_sign < HIGH || _execute < HIGH)
 		throw GradeTooHighException();
-	if (_sign > MIN || _execute > MIN)
+	if (_sign > LOW || _execute > LOW)
 		throw GradeTooLowException();
-	std::cout << "[Create] " << _name << " Form\n\n";
 }
 
 Form::Form(const Form& obj)
 : _name(obj.getName()),  _flag(obj.getFlag()), _sign(obj.getSign()), _execute(obj.getExecute())
 {
-	if (_sign < MAX || _execute < MAX)
+	if (_sign < HIGH || _execute < HIGH)
 		throw GradeTooHighException();
-	if (_sign > MIN || _execute > MIN)
+	if (_sign > LOW || _execute > LOW)
 		throw GradeTooLowException();
-	std::cout << "[Create] Copy Form\n\n";
 }
 
 Form& Form::operator=(const Form& obj) {
@@ -45,17 +40,15 @@ Form& Form::operator=(const Form& obj) {
 		_flag = obj.getFlag();
 		*(const_cast<int*>(&_sign)) = obj.getSign();
 		*(const_cast<int*>(&_execute)) = obj.getExecute();
-		if (_sign < MAX || _execute < MAX)
+		if (_sign < HIGH || _execute < HIGH)
 			throw GradeTooHighException();
-		if (_sign > MIN || _execute > MIN)
+		if (_sign > LOW || _execute > LOW)
 			throw GradeTooLowException();
 	}
 	return (*this);
 }
 
-Form::~Form() {
-	std::cout << "[Destroy] " << _name << " Form\n\n";
-}
+Form::~Form() {}
 
 void Form::beSigned(const Bureaucrat& bureaucrat){
 	if (_sign < bureaucrat.getGrade()) {
@@ -82,7 +75,7 @@ const int& Form::getExecute() const {
 }
 
 std::ostream& operator<<(std::ostream& o, const Form& obj) {
-	return o << "Name : " << obj.getName() << ", Flag : " << std::boolalpha << obj.getFlag()
+	return o << "[Form] Name : " << obj.getName() << ", Flag : " << std::boolalpha << obj.getFlag()
 		<< ", Sign_Grade : " << obj.getSign() << ", Execute_Grade : " << obj.getExecute() << "\n\n";
 }
 
