@@ -1,0 +1,79 @@
+version: '3'
+
+volumes: # 도커에서 관리하는 볼륨, ./requirements->/home/hyunjcho로 바꿔야 함, type 뭔지?, driver 뭔지?,
+  mariadb-volume:
+    name: mariadb-volume
+    driver: local
+    driver_opts:
+      type: none
+      device: ./hyunjcho/data/mariadb
+      o: bind
+
+  wordpress-volume:
+    name: wordpress-volume
+    driver: local
+    driver_opts:
+      type: none
+      device: ./hyunjcho/data/wordpress
+      o: bind
+
+services: # 이미지?, tty?
+  mariadb:
+    image: inception:mariadb
+    container_name: mariadb
+    env_file:
+      - .env
+    volumes:
+      - mariadb-volume:/var/lib/mysql
+    build: ./requirements/mariadb
+    networks:
+      inception:
+        ipv4_address: 172.31.0.10
+    expose:
+      - "3306"
+    tty: true
+    restart: always
+
+  wordpress:
+    image: inception:wordpress
+    container_name: wordpress
+    depends_on:
+      - mariadb
+    env_file:
+      - .env
+    volumes:
+      - wordpress-volume:/var/www/html
+    build: ./requirements/wordpress
+    expose:
+      - "9000"
+    networks:
+      inception:
+        ipv4_address: 172.31.0.11
+    tty: true
+    restart: always
+
+  nginx:
+    image: inception:nginx
+    container_name: nginx
+    depends_on:
+      - wordpress
+    env_file:
+      - .env
+    volumes:
+      - wordpress-volume:/var/www/html
+    build: ./requirements/nginx
+    ports:
+      - "443:443"
+    networks:
+      inception:
+        ipv4_address: 172.31.0.12
+    tty: true
+    restart: always
+
+networks:
+  inception:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.31.0.0/16
