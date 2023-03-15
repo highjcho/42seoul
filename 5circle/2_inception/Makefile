@@ -1,17 +1,20 @@
+VOLUME = ./hyunjcho/data
+COMPOSE = ./srcs/docker-compose.yml
+
 all: 
-	mkdir -p ./hyunjcho/data
-	mkdir -p ./hyunjcho/data/mariadb
-	mkdir -p ./hyunjcho/data/wordpress
-	docker-compose -f ./srcs/docker-compose.yml up -d --build
+	@mkdir -p $(VOLUME)
+	@mkdir -p $(VOLUME)/mariadb
+	@mkdir -p $(VOLUME)/wordpress
+	docker-compose -f $(COMPOSE) up -d --build
 
 clean:
-	docker-compose -f ./srcs/docker-compose.yml down
+	docker-compose -f $(COMPOSE) down
 
 
 fclean:
-	docker-compose -f ./srcs/docker-compose.yml down --rmi all
+	docker-compose -f $(COMPOSE) down --rmi all
 	docker volume rm $$(docker volume ls -f dangling=true -q)
-	rm -rf ./hyunjcho
+	@rm -rf ./hyunjcho
 
 re:
 	@make fclean

@@ -1,25 +1,23 @@
 version: '3'
 
-volumes: # 도커에서 관리하는 볼륨, ./requirements->/home/hyunjcho로 바꿔야 함, type 뭔지?, driver 뭔지?,
+volumes: # ./requirements->/home/hyunjcho로 바꿔야 함
   mariadb-volume:
     name: mariadb-volume
     driver: local
     driver_opts:
-      type: none
+      type: bind
       device: ./hyunjcho/data/mariadb
-      o: bind
 
   wordpress-volume:
     name: wordpress-volume
     driver: local
     driver_opts:
-      type: none
+      type: bind
       device: ./hyunjcho/data/wordpress
-      o: bind
 
-services: # 이미지?, tty?
+services:
   mariadb:
-    image: inception:mariadb
+    image: mariadb
     container_name: mariadb
     env_file:
       - .env
@@ -35,7 +33,7 @@ services: # 이미지?, tty?
     restart: always
 
   wordpress:
-    image: inception:wordpress
+    image: wordpress
     container_name: wordpress
     depends_on:
       - mariadb
@@ -53,7 +51,7 @@ services: # 이미지?, tty?
     restart: always
 
   nginx:
-    image: inception:nginx
+    image: nginx
     container_name: nginx
     depends_on:
       - wordpress

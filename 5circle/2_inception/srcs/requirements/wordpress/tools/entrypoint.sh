@@ -1,5 +1,5 @@
 #!/bin/bash
-# 패키지들 뭔지 알아보기
+
 echo start setting wordpress
 apt-get -y update &&
 apt-get -y upgrade &&
