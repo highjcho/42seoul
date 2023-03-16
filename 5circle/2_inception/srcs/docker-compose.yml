@@ -5,15 +5,17 @@ volumes: # ./requirements->/home/hyunjcho로 바꿔야 함
     name: mariadb-volume
     driver: local
     driver_opts:
-      type: bind
+      type: none
       device: ./hyunjcho/data/mariadb
+      o: bind
 
   wordpress-volume:
     name: wordpress-volume
     driver: local
     driver_opts:
-      type: bind
+      type: none
       device: ./hyunjcho/data/wordpress
+      o: bind
 
 services:
   mariadb:

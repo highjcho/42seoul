@@ -3,12 +3,12 @@ server {
 	server_name hyunjcho.42.fr;
 
 	ssl_protocols  TLSv1.2 TLSv1.3;
-	ssl_certificate /etc/ssl/hyunjcho.42.fr.crt;
-	ssl_certificate_key /etc/ssl/private/hyunjcho.42.fr.pem;
+	ssl_certificate /etc/ssl/certs/server.crt;
+	ssl_certificate_key /etc/ssl/private/server_pkey.pem;
 
 	root /var/www/html;
 
-	index index.php index.html;
+	index index.php index.html index.htm;
 
 	location / {
 		try_files $uri $uri/ =404;
