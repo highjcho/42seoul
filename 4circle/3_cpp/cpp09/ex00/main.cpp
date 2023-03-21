@@ -6,11 +6,12 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 19:40:48 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/20 19:34:36 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/03/21 13:41:11 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
+#include <map>
 #include <iomanip>
 
 int stringToInt(std::string date) {
@@ -26,7 +27,7 @@ int stringToInt(std::string date) {
 	return(atoi(tmp.c_str()));
 }
 
-void fileToMap(std::map<int, double> &db) {
+void makeDBMap(std::map<int, double> &db) {
 	std::ifstream data("data.csv");
 	std::string line;
 	int i;
@@ -85,7 +86,7 @@ int	main(int ac, char **av) {
 		std::cerr << "Error: could not open file.\n";
 		exit(EXIT_FAILURE);
 	}
-	fileToMap(db);
+	makeDBMap(db);
 	int i = 0;
 	while (getline(inputFile, line)) { // line으로 돌릴 수 있는 방법?
 		if (i == 0 && line == "date | value")

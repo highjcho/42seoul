@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 19:47:08 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/20 18:04:01 by hyunjcho         ###   ########.fr       */
+/*   Created: 2023/03/21 13:33:07 by hyunjcho          #+#    #+#             */
+/*   Updated: 2023/03/21 13:38:00 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 # define BITCOINEXCHANGE_HPP
 
 #include <iostream>
-#include <map>
 #include <cstdlib>
 #include <fstream>
 
