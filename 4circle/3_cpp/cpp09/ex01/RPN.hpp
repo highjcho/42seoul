@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:33:21 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/21 17:29:03 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:31:05 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ class RPN {
 		int calculator(char f);
 
 		std::stack<int> getFormular() const;
+		int getA() const;
+		int getB() const;
 };
 
 

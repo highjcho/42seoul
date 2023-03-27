@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:37:32 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/21 17:29:01 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/03/27 16:32:14 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ RPN& RPN::operator=(const RPN& obj) {
 	if (this != &obj)
 	{
 		_formular = obj.getFormular();
+		_a = obj.getA();
+		_b = obj.getB();
 	}
 	return (*this);
 }
@@ -30,12 +32,12 @@ RPN::~RPN() {}
 
 int RPN::calculator(char f) {
 	if (f == '+') 
-		return _b + _a;
+		return _a + _b;
 	if (f == '-')
-		return _b - _a;
+		return _a - _b;
 	if (f == '*')
-		return _b * _a;
-	return _b / _a;
+		return _a * _b;
+	return _a / _b;
 }
 
 void RPN::makeStack(std::string input) {
@@ -44,9 +46,9 @@ void RPN::makeStack(std::string input) {
 			_formular.push(input[i] - '0');
 		else if (input[i] == '+' || input[i] == '-' || input[i] == '*' || input[i] == '/') {
 			if (_formular.size() >= 2) {
-				_a = _formular.top();
-				_formular.pop();
 				_b = _formular.top();
+				_formular.pop();
+				_a = _formular.top();
 				_formular.pop();
 				_formular.push(calculator(input[i]));
 			} else {
@@ -64,4 +66,12 @@ void RPN::makeStack(std::string input) {
 
 std::stack<int> RPN::getFormular() const {
 	return _formular;
+}
+
+int RPN::getA() const {
+	return _a;
+}
+
+int RPN::getB() const {
+	return _b;
 }
