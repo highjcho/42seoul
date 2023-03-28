@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:37:32 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/27 16:32:14 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:45:05 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,14 @@ int RPN::calculator(char f) {
 		return _a - _b;
 	if (f == '*')
 		return _a * _b;
+	if (_b == 0)
+		throw ZeroDivisionException();
 	return _a / _b;
 }
 
 void RPN::makeStack(std::string input) {
+	int tmp;
+
 	for (size_t i = 0; i < input.length(); i++) {
 		if (input[i] - '0' >= 0 && input[i] - '0' <= 9)
 			_formular.push(input[i] - '0');
@@ -50,7 +54,13 @@ void RPN::makeStack(std::string input) {
 				_formular.pop();
 				_a = _formular.top();
 				_formular.pop();
-				_formular.push(calculator(input[i]));
+				try {
+					tmp = calculator(input[i]);
+				} catch (std::exception& e) {
+					std::cout << e.what() << "\n";
+					exit(EXIT_FAILURE);
+				}
+				_formular.push(tmp);
 			} else {
 				std::cerr << "Error\n";
 				exit(EXIT_FAILURE);
@@ -74,4 +84,8 @@ int RPN::getA() const {
 
 int RPN::getB() const {
 	return _b;
+}
+
+const char* RPN::ZeroDivisionException::what() const throw() {
+	return "Error";
 }

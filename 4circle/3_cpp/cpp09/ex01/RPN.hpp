@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:33:21 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/27 16:31:05 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/03/28 17:36:45 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ class RPN {
 		std::stack<int> getFormular() const;
 		int getA() const;
 		int getB() const;
+
+		class ZeroDivisionException : public std::exception {
+			public:
+				const char* what() const throw();
+		};
 };
 
 
