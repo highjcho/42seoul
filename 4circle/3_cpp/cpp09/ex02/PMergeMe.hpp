@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PMergeMe.hpp                                       :+:      :+:    :+:   */
+/*   PmergeMe.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/22 17:06:26 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/27 16:33:11 by hyunjcho         ###   ########.fr       */
+/*   Created: 2023/03/30 15:03:08 by hyunjcho          #+#    #+#             */
+/*   Updated: 2023/03/30 19:17:13 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PMergeMe_HPP
-# define PMergeMe_HPP
+#ifndef PmergeMe_HPP
+# define PmergeMe_HPP
 
 #include <iostream>
 #include <vector>
@@ -22,7 +22,7 @@
 # define LIST "\033[0;33m"
 # define EOC "\033[0;0m"
 
-class PMergeMe {
+class PmergeMe {
 	private:
 		int _size;
 		std::vector<int> _vector;
@@ -33,29 +33,33 @@ class PMergeMe {
 		clock_t _lEnd;
 
 	public:
-		PMergeMe();
-		PMergeMe(const PMergeMe& obj);
-		PMergeMe& operator=(const PMergeMe &obj);
-		~PMergeMe();
+		PmergeMe();
+		PmergeMe(const PmergeMe& obj);
+		PmergeMe& operator=(const PmergeMe &obj);
+		~PmergeMe();
 
 		void makeVectorAndList(int len, char** av);
 
 		void vectorInsertionSort(int left, int right);
 		void mergeVector(int left, int mid, int right);
-		void sortVector(int left, int right);
+		void vectorMergeInsetionSort(int left, int right);
+		void sortAndPrintVector();
 
 		void listInsertionSort(std::list<int>& lst);
 		void mergeList(std::list<int>& left, std::list<int>& right);
-		void sortList(std::list<int>& lst);
+		void listMergeInsertionSort(std::list<int>& lst);
+		void sortAndPrintList();
 
 		std::vector<int> getVector() const;
 		void setVectorStartTime();
 		void setVectorEndTime();
+		void printVector();
 		void printVectorTimeDiff() const;
 
 		std::list<int>& getList();
 		void setListStartTime();
 		void setListEndTime();
+		void printList();
 		void printListTimeDiff() const;
 };
 

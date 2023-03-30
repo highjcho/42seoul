@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:59:39 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/21 17:33:02 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/03/30 19:18:02 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int main(int ac, char** av) {
 	RPN rpn;
+	
 	if (ac != 2) {
 		std::cout << "Error\n";
 		exit(EXIT_FAILURE);

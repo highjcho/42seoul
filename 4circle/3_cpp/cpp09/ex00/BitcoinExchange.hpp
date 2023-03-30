@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:33:07 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/21 13:38:00 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/03/30 18:47:29 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <fstream>
+#include <sstream>
 
 class BitcoinExchange {
 	private:

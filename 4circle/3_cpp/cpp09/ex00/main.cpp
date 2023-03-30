@@ -5,26 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/12 19:40:48 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/21 13:41:11 by hyunjcho         ###   ########.fr       */
+/*   Created: 2023/03/30 15:00:29 by hyunjcho          #+#    #+#             */
+/*   Updated: 2023/03/30 18:50:38 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 #include <map>
-#include <iomanip>
 
 int stringToInt(std::string date) {
 	if (date.length() < 10)
 		return (0);
-	std::string year = date.substr(0, 4);
-	std::string month = date.substr(5, 2);
-	std::string day = date.substr(8, 2);
-	std::string tmp;
-	tmp.append(year);
-	tmp.append(month);
-	tmp.append(day);
-	return(atoi(tmp.c_str()));
+	std::stringstream ss;
+
+	ss << date.substr(0, 4) << date.substr(5, 2) << date.substr(8, 2);
+	int ret;
+	ss >> ret;
+	std::cout << ret << std::endl;
+	return(ret);
 }
 
 void makeDBMap(std::map<int, double> &db) {
@@ -61,7 +59,7 @@ std::map<int,double>::iterator findPrice(std::map<int, double> &db, int date) {
 		iter--;
 		if (iter->first > date) {
 			for (iter = db.begin(); iter != db.end(); iter++) {
-				if (date < iter->first) {
+				if (iter->first > date) {
 						iter--;
 					break;
 				}
@@ -88,7 +86,7 @@ int	main(int ac, char **av) {
 	}
 	makeDBMap(db);
 	int i = 0;
-	while (getline(inputFile, line)) { // line으로 돌릴 수 있는 방법?
+	while (getline(inputFile, line)) {
 		if (i == 0 && line == "date | value")
 			getline(inputFile, line);
 		if (!bitcoinExchanger.splitAndCheckInput(line))
@@ -96,7 +94,7 @@ int	main(int ac, char **av) {
 		iter = findPrice(db, bitcoinExchanger.getIDate());
 		if (iter != db.end()) {
 			std::cout << bitcoinExchanger.getSDate() << " => " << bitcoinExchanger.getValue() << " = " << \
-				iter->second * bitcoinExchanger.getValue() << std::endl; // 출력 문제
+				iter->second * bitcoinExchanger.getValue() << std::endl;
 		}
 		i++;
 	}
