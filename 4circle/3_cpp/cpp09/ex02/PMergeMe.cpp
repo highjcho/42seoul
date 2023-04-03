@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PmergeMe.cpp                                       :+:      :+:    :+:   */
+/*   PMergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/30 15:04:52 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/30 19:17:13 by hyunjcho         ###   ########.fr       */
+/*   Created: 2023/04/03 19:59:31 by hyunjcho          #+#    #+#             */
+/*   Updated: 2023/04/03 20:08:58 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,16 +29,20 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& obj) {
 PmergeMe::~PmergeMe() {}
 
 void PmergeMe::makeVectorAndList(int size, char **av) {
+	char *end;
 	for (int i = 1; i < size; i++) {
-		int num = atoi(av[i]);
-		if (num < 0 || (strcmp(av[i], "0") != 0 && num == 0)) {
-			std::cout << "\nError\n";
+		end = NULL;
+		int num = std::strtod(av[i], &end);
+		if (num < 0 || *end != '\0') {
+			std::cout << "Error\n";
 			exit(EXIT_FAILURE);
 		}
 		_vector.push_back(num);
 		_list.push_back(num);
 		_size = size - 1;
 	}
+	std::cout << "Before: ";
+	printVector();
 }
 
 void PmergeMe::vectorInsertionSort(int left, int right) {

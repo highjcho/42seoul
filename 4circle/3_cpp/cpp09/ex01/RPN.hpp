@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:33:21 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/28 17:36:45 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:10:06 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,5 @@ class RPN {
 				const char* what() const throw();
 		};
 };
-
 
 #endif

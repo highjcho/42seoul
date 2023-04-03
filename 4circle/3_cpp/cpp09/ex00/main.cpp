@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:00:29 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/30 18:50:38 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/04/03 18:23:41 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ int stringToInt(std::string date) {
 	if (date.length() < 10)
 		return (0);
 	std::stringstream ss;
+	int ret;
 
 	ss << date.substr(0, 4) << date.substr(5, 2) << date.substr(8, 2);
-	int ret;
 	ss >> ret;
 	std::cout << ret << std::endl;
 	return(ret);
@@ -50,22 +50,13 @@ void makeDBMap(std::map<int, double> &db) {
 std::map<int,double>::iterator findPrice(std::map<int, double> &db, int date) {
 	std::map<int, double>::iterator iter;
 
-	iter = db.find(date);
-	if (iter == db.end()) {
-		if (db.begin()->first > date) {
-			std::cerr << "Error: cannot find the lower date\n";
-			return db.end();
-		}
-		iter--;
-		if (iter->first > date) {
-			for (iter = db.begin(); iter != db.end(); iter++) {
-				if (iter->first > date) {
-						iter--;
-					break;
-				}
-			}
-		}
+	if (db.begin()->first > date) {
+		std::cerr << "Error: cannot find the lower date\n";
+		return db.end();
 	}
+	iter = db.lower_bound(date);
+	if (iter->first != date)
+		iter--;
 	return iter;
 }
 
@@ -86,9 +77,9 @@ int	main(int ac, char **av) {
 	}
 	makeDBMap(db);
 	int i = 0;
-	while (getline(inputFile, line)) {
+	while (std::getline(inputFile, line)) {
 		if (i == 0 && line == "date | value")
-			getline(inputFile, line);
+			std::getline(inputFile, line);
 		if (!bitcoinExchanger.splitAndCheckInput(line))
 			continue;
 		iter = findPrice(db, bitcoinExchanger.getIDate());

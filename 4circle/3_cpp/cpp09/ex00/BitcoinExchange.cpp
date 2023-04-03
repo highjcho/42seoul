@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:00:20 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/03/30 18:53:36 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/04/03 20:14:36 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ bool BitcoinExchange::checkValidDate() {
 		return false;
 	if (_day < 1)
 		return false;
-	if (_month == 1 || _month == 3 || _month == 5 || _month == 7 || _month == 8 || _month == 10 || _month == 12) {
+	if ((_month < 8 && _month % 2 == 1) || (_month > 7 && _month % 2 == 0)) {
 		if (_day > 31)
 			return false;
 	}
-	else if (_month == 4 || _month == 6 || _month == 9 || _month == 11) {
+	else if ((_month > 3 && _month % 2 == 0) || (_month % 2 == 1)) {
 		if (_day > 30)
 			return false;
 	}
@@ -63,26 +63,32 @@ bool BitcoinExchange::checkValidDate() {
 bool BitcoinExchange::splitAndCheckDate(std::string date) {
 	if (date.length() != 10 || !(date[4] == '-' && date[7] == '-'))
 		return false;
-	std::string year = date.substr(0, 4);
-	std::string month = date.substr(5, 2);
-	std::string day = date.substr(8, 2);
-	_year = atoi(year.c_str());
-	_month = atoi(month.c_str());
-	_day = atoi(day.c_str());
+
+	std::stringstream ss; // 여기만 정리.
+
+	ss << date.substr(0, 4);
+	ss >> _year;
+	ss.clear();
+	ss << date.substr(5, 2);
+	ss >> _month;
+	ss.clear();
+	ss << date.substr(8, 2);
+	ss >> _day;
 	if (!checkValidDate())
 		return false;
-	std::string tmp;
-	tmp.append(year);
-	tmp.append(month);
-	tmp.append(day);
 	_sDate = date;
-	_iDate = atoi(tmp.c_str());
+	ss.clear();
+	ss << date.substr(0, 4) << date.substr(5, 2) << date.substr(8, 2);
+	std::string tmp;
+	ss >> tmp;
+	_iDate = std::strtod(tmp.c_str(), NULL); // 에러처리
 	return true;
 }
 
 bool BitcoinExchange::splitAndCheckInput(std::string input) {
 	int len = input.length();
 	int i;
+	char *end;
 
 	for (i = 0; i < len; i++) {
 		if (input[i] == '|')
@@ -96,7 +102,12 @@ bool BitcoinExchange::splitAndCheckInput(std::string input) {
 		std::cerr << "Error: bad input => " << input << std::endl;
 		return false;
 	}
-	_value = atof((input.substr(i + 2, len - i - 2)).c_str());
+	end = NULL;
+	_value = strtod((input.substr(i + 2, len - i - 2)).c_str(), &end);
+	if (*end != '\0') {
+		std::cerr << "Error: bad input => " << input << std::endl;
+		return false;
+	}
 	if (_value < 0) {
 		std::cerr << "Error: not a positive number.\n";
 		return false;
