@@ -6,43 +6,66 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:00:29 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/04/03 18:23:41 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:55:34 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "BitcoinExchange.hpp"
 #include <map>
 
+bool checkDateFormat(std::string &date) {
+	std::stringstream ss(date);
+	int tmp;
+	ss >> tmp;
+	if (ss.get() != '-' || !std::isdigit(ss.peek()))
+		return false;
+	ss >> tmp;
+	if (ss.get() != '-' || !std::isdigit(ss.peek()))
+		return false;
+	ss >> tmp;
+	if (!ss.eof())
+		return false;
+	return true;
+}
+
 int stringToInt(std::string date) {
 	if (date.length() < 10)
-		return (0);
+		return (-1);
+	if (!checkDateFormat(date))
+		return (-1);
 	std::stringstream ss;
 	int ret;
-
 	ss << date.substr(0, 4) << date.substr(5, 2) << date.substr(8, 2);
 	ss >> ret;
-	std::cout << ret << std::endl;
 	return(ret);
 }
 
 void makeDBMap(std::map<int, double> &db) {
 	std::ifstream data("data.csv");
 	std::string line;
-	int i;
+	int i, len, date;
+	double value;
+	char* end = NULL;
 
 	if (data.fail()) {
 		std::cerr << "Error: can't open database\n";
 		exit(EXIT_FAILURE);
 	}
-	getline(data,line);
-	while (getline(data, line)) {
-		int len = line.length();
+	std::getline(data,line);
+	while (std::getline(data, line)) {
+		len = line.length();
 		for (i = 0; i < len; i++) {
 			if (line[i] == ',')
 				break;
 		}
-		int date = stringToInt(line.substr(0, i));
-		db.insert(std::make_pair(date, atof((line.substr(i + 1, len - i - 1)).c_str())));
+		date = stringToInt(line.substr(0, i));
+		value = strtod((line.substr(i + 1, len - i - 1)).c_str(), &end);
+		if (date == -1 || *end != '\0') {
+			std::cerr << "Error: Database has error date" << std::endl;
+			data.close();
+			exit(EXIT_FAILURE);
+		}
+		db.insert(std::make_pair(date, value));
 	}
 	data.close();
 }
@@ -55,7 +78,7 @@ std::map<int,double>::iterator findPrice(std::map<int, double> &db, int date) {
 		return db.end();
 	}
 	iter = db.lower_bound(date);
-	if (iter->first != date)
+	if (iter == db.end() || iter->first != date)
 		iter--;
 	return iter;
 }
@@ -89,4 +112,5 @@ int	main(int ac, char **av) {
 		}
 		i++;
 	}
+	inputFile.close();
 }

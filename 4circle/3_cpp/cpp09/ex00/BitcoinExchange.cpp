@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:00:20 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/04/03 20:14:36 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:01:51 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,60 +35,57 @@ BitcoinExchange::~BitcoinExchange() {}
 
 
 bool BitcoinExchange::checkValidDate() {
-	
-	if (_year > 2023 || (_year == 2023 && _month > 3))
+	time_t timer = time(NULL);
+	struct tm* t = localtime(&timer);
+	if (_year > 2023 || (_year == 2023 && (_month > t->tm_mon + 1 || (_month == t->tm_mon + 1 && _day > t->tm_mday))))
 		return false;
-	if (_month < 1 || _month > 12)
+	if (_month < 1 || _month > 12 || _day < 1 || _day > 31)
 		return false;
-	if (_day < 1)
-		return false;
-	if ((_month < 8 && _month % 2 == 1) || (_month > 7 && _month % 2 == 0)) {
-		if (_day > 31)
+	if (_month == 2) {
+		if ((_year % 400 == 0 || (_year % 4 == 0 && _year % 100 != 0)) && _day > 29)
+			return false;
+		else if (_day > 28)
 			return false;
 	}
-	else if ((_month > 3 && _month % 2 == 0) || (_month % 2 == 1)) {
+	else if (_month == 4 || _month == 6 || _month == 9 || _month == 11) {
 		if (_day > 30)
-			return false;
-	}
-	else if (_year % 400 == 0 || (_year % 4 == 0 && _year % 100 != 0)) {
-		if (_day > 29)
-			return false;
-	} else {
-		if (_day > 28)
 			return false;
 	}
 	return true;
 }
 
-bool BitcoinExchange::splitAndCheckDate(std::string date) {
-	if (date.length() != 10 || !(date[4] == '-' && date[7] == '-'))
-		return false;
-
-	std::stringstream ss; // 여기만 정리.
-
-	ss << date.substr(0, 4);
+bool BitcoinExchange::convertDate(std::string &date) {
+	std::stringstream ss(date);
 	ss >> _year;
-	ss.clear();
-	ss << date.substr(5, 2);
+	if (ss.get() != '-' || !std::isdigit(ss.peek()))
+		return false;
 	ss >> _month;
-	ss.clear();
-	ss << date.substr(8, 2);
+	if (ss.get() != '-' || !std::isdigit(ss.peek()))
+		return false;
 	ss >> _day;
+	if (!ss.eof())
+		return false;
+	return true;
+}
+
+bool BitcoinExchange::splitAndCheckDate(std::string date) {
+	if (date.length() != 10)
+		return false;
+	if (!convertDate(date))
+		return false;
 	if (!checkValidDate())
 		return false;
 	_sDate = date;
-	ss.clear();
+	std::stringstream ss;
 	ss << date.substr(0, 4) << date.substr(5, 2) << date.substr(8, 2);
-	std::string tmp;
-	ss >> tmp;
-	_iDate = std::strtod(tmp.c_str(), NULL); // 에러처리
+	ss >> _iDate;
 	return true;
 }
 
 bool BitcoinExchange::splitAndCheckInput(std::string input) {
 	int len = input.length();
 	int i;
-	char *end;
+	char* end;
 
 	for (i = 0; i < len; i++) {
 		if (input[i] == '|')
