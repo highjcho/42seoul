@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:33:07 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/04/12 14:22:51 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:51:20 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,7 @@ class BitcoinExchange {
 		int _year;
 		int _month;
 		int _day;
-		std::string _sDate;
-		int _iDate;
+		std::string _date;
 		double _value;
 
 	public:
@@ -34,13 +33,12 @@ class BitcoinExchange {
 		~BitcoinExchange();
 
 		void stringToMap();
-		bool splitAndCheckInput(std::string input);
-		bool convertDate(std::string &date);
+		bool convertDate(std::string const& date);
 		bool checkValidDate();
-		bool splitAndCheckDate(std::string date);
+		bool splitAndCheckDate(std::string const& date);
+		bool splitAndCheckInput(std::string const& input);
 
-		std::string getSDate() const;
-		int getIDate() const;
+		std::string getDate() const;
 		double getValue() const;
 		int getYear() const;
 		int getMonth() const;

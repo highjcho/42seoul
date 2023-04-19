@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:00:20 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/04/12 15:01:51 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:08:22 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange& obj) {
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& obj) {
 	if (this != &obj)
 	{
-		_sDate = obj.getSDate();
-		_iDate = obj.getIDate();
+		_date = obj.getDate();
 		_value = obj.getValue();
 		_year = obj.getYear();
 		_month = obj.getMonth();
@@ -38,51 +37,45 @@ bool BitcoinExchange::checkValidDate() {
 	time_t timer = time(NULL);
 	struct tm* t = localtime(&timer);
 	if (_year > 2023 || (_year == 2023 && (_month > t->tm_mon + 1 || (_month == t->tm_mon + 1 && _day > t->tm_mday))))
-		return false;
+		return (false);
 	if (_month < 1 || _month > 12 || _day < 1 || _day > 31)
-		return false;
+		return (false);
 	if (_month == 2) {
-		if ((_year % 400 == 0 || (_year % 4 == 0 && _year % 100 != 0)) && _day > 29)
-			return false;
+		if ((_year % 400 == 0 || (_year % 4 == 0 && _year % 100 != 0)) && _day < 30)
+			return (true);
 		else if (_day > 28)
-			return false;
+			return (false);
 	}
-	else if (_month == 4 || _month == 6 || _month == 9 || _month == 11) {
-		if (_day > 30)
-			return false;
-	}
-	return true;
+	else if ((_month == 4 || _month == 6 || _month == 9 || _month == 11) && _day > 30)
+		return (false);
+	return (true);
 }
 
-bool BitcoinExchange::convertDate(std::string &date) {
+bool BitcoinExchange::convertDate(std::string const& date) {
 	std::stringstream ss(date);
 	ss >> _year;
 	if (ss.get() != '-' || !std::isdigit(ss.peek()))
-		return false;
+		return (false);
 	ss >> _month;
 	if (ss.get() != '-' || !std::isdigit(ss.peek()))
-		return false;
+		return (false);
 	ss >> _day;
 	if (!ss.eof())
-		return false;
-	return true;
+		return (false);
+	return (true);
 }
 
-bool BitcoinExchange::splitAndCheckDate(std::string date) {
+bool BitcoinExchange::splitAndCheckDate(std::string const& date) {
 	if (date.length() != 10)
-		return false;
+		return (false);
 	if (!convertDate(date))
-		return false;
+		return (false);
 	if (!checkValidDate())
-		return false;
-	_sDate = date;
-	std::stringstream ss;
-	ss << date.substr(0, 4) << date.substr(5, 2) << date.substr(8, 2);
-	ss >> _iDate;
-	return true;
+		return (false);
+	return (true);
 }
 
-bool BitcoinExchange::splitAndCheckInput(std::string input) {
+bool BitcoinExchange::splitAndCheckInput(std::string const& input) {
 	int len = input.length();
 	int i;
 	char* end;
@@ -93,35 +86,32 @@ bool BitcoinExchange::splitAndCheckInput(std::string input) {
 	}
 	if (i == len || len < 14 || input[i - 1] != ' ' || input[i + 1] != ' ') {
 		std::cerr << "Error: bad input => " << input << std::endl;
-		return false;
+		return (false);
 	}
-	if (!splitAndCheckDate(input.substr(0, i - 1))) {
+	_date = input.substr(0, i - 1);
+	if (!splitAndCheckDate(_date)) {
 		std::cerr << "Error: bad input => " << input << std::endl;
-		return false;
+		return (false);
 	}
 	end = NULL;
-	_value = strtod((input.substr(i + 2, len - i - 2)).c_str(), &end);
+	_value = strtod((input.substr(i + 2)).c_str(), &end);
 	if (*end != '\0') {
 		std::cerr << "Error: bad input => " << input << std::endl;
-		return false;
+		return (false);
 	}
 	if (_value < 0) {
 		std::cerr << "Error: not a positive number.\n";
-		return false;
+		return (false);
 	}
 	if (_value > 1000) {
 		std::cerr << "Error: too large a number.\n";
-		return false;
+		return (false);
 	}
-	return true;
+	return (true);
 }
 
-std::string BitcoinExchange::getSDate() const {
-	return _sDate;
-}
-
-int BitcoinExchange::getIDate() const {
-	return _iDate;
+std::string BitcoinExchange::getDate() const {
+	return _date;
 }
 
 double BitcoinExchange::getValue() const {
