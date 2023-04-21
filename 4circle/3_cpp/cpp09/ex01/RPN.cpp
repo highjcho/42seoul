@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/21 13:37:32 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/04/03 19:48:29 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:32:23 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ RPN::RPN(const RPN& obj) {
 RPN& RPN::operator=(const RPN& obj) {
 	if (this != &obj)
 	{
-		_formular = obj.getFormular();
-		_a = obj.getA();
-		_b = obj.getB();
+		_a = obj._a;
+		_b = obj._b;
+		_formular = obj._formular;
 	}
 	return (*this);
 }
@@ -76,14 +76,6 @@ void RPN::makeStack(std::string input) {
 
 std::stack<int> RPN::getFormular() const {
 	return _formular;
-}
-
-int RPN::getA() const {
-	return _a;
-}
-
-int RPN::getB() const {
-	return _b;
 }
 
 const char* RPN::ZeroDivisionException::what() const throw() {

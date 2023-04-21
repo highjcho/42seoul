@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PMergeMe.cpp                                       :+:      :+:    :+:   */
+/*   PmergeMe.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 19:59:31 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/04/19 13:29:45 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/04/21 14:48:29 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,13 @@ PmergeMe::PmergeMe(const PmergeMe& obj) {
 PmergeMe& PmergeMe::operator=(const PmergeMe& obj) {
 	if (this != &obj)
 	{
-		_vector = getVector();
+		_size = obj._size;
+		_vector = obj._vector;
+		_list = obj._list;
+		_vStart = obj._vStart;
+		_vEnd = obj._vEnd;
+		_lStart = obj._lStart;
+		_lEnd = obj._lEnd;
 	}
 	return (*this);
 }
@@ -107,18 +113,22 @@ void PmergeMe::listInsertionSort(std::list<int>& lst) {
 
 	for (std::list<int>::iterator it = ++lst.begin(); it != lst.end(); ++it) {
 		tmp = *it;
-		std::list<int>::iterator j = it;
-		j--;
-		while (j != lst.begin() && *j > tmp) {
-			*(std::next(j)) = *j;
-			j--;
+		std::list<int>::iterator i = it;
+		std::list<int>::iterator next_i = i;
+		i--;
+		while (i != lst.begin() && *i > tmp) {
+			next_i = i;
+			std::advance(next_i, 1);
+			*next_i = *i;
+			i--;
 		}
-		if (*j > tmp) {
-			*(std::next(j)) = *j;
-			*j = tmp;
-		} else {
-			*(std::next(j)) = tmp;
-		}
+		next_i = i;
+		std::advance(next_i, 1);
+		if (*i > tmp) {
+			*next_i = *i;
+			*i = tmp;
+		} else
+			*next_i = tmp;
 	}
 }
 
@@ -173,10 +183,6 @@ void PmergeMe::sortAndPrintList() {
 	printList();
 }
 
-std::vector<int> PmergeMe::getVector() const {
-	return _vector;
-}
-
 void PmergeMe::setVectorStartTime() {
 	_vStart = clock();
 }
@@ -194,10 +200,6 @@ void PmergeMe::printVector(){
 void PmergeMe::printVectorTimeDiff() const {
 	double time = static_cast<double>(_vEnd - _vStart) / CLOCKS_PER_SEC * 1000;
 	std::cout << "Time to process a range of " << _size << " elements with " << VECTOR << "std::[vector]: " << time << "ms" << EOC << std::endl;
-}
-
-std::list<int>& PmergeMe::getList() {
-	return _list;
 }
 
 void PmergeMe::setListStartTime() {

@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 15:00:20 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/04/19 13:08:22 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:19:24 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ BitcoinExchange::BitcoinExchange(const BitcoinExchange& obj) {
 BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& obj) {
 	if (this != &obj)
 	{
-		_date = obj.getDate();
-		_value = obj.getValue();
-		_year = obj.getYear();
-		_month = obj.getMonth();
-		_day = obj.getDay();
+		_date = obj._date;
+		_value = obj._value;
+		_year = obj._year;
+		_month = obj._month;
+		_day = obj._day;
 	}
 	return (*this);
 }
@@ -116,16 +116,4 @@ std::string BitcoinExchange::getDate() const {
 
 double BitcoinExchange::getValue() const {
 	return _value;
-}
-
-int BitcoinExchange::getYear() const {
-	return _year;
-}
-
-int BitcoinExchange::getMonth() const {
-	return _month;
-}
-
-int BitcoinExchange::getDay() const {
-	return _day;
 }

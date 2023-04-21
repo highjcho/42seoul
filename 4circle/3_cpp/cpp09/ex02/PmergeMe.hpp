@@ -6,7 +6,7 @@
 /*   By: hyunjcho <hyunjcho@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/19 13:25:46 by hyunjcho          #+#    #+#             */
-/*   Updated: 2023/04/19 13:25:56 by hyunjcho         ###   ########.fr       */
+/*   Updated: 2023/04/21 13:35:05 by hyunjcho         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,13 +51,11 @@ class PmergeMe {
 		void listMergeInsertionSort(std::list<int>& lst);
 		void sortAndPrintList();
 
-		std::vector<int> getVector() const;
 		void setVectorStartTime();
 		void setVectorEndTime();
 		void printVector();
 		void printVectorTimeDiff() const;
 
-		std::list<int>& getList();
 		void setListStartTime();
 		void setListEndTime();
 		void printList();
